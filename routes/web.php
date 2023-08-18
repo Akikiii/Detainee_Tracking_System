@@ -29,3 +29,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+//CREATE ATTORNEY PROFILE
+Route::get("Create_Attorney", function(){
+    return view("Create_Attorney");
+});
