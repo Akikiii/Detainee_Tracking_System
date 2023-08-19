@@ -18,6 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+     
+Route::prefix('admin')->middleware('auth')->group(function(){
+    Route::get("Create_Attorney", function(){ return view("Create_Attorney"); });
+    });
+    
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -30,7 +36,3 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-//CREATE ATTORNEY PROFILE
-Route::get("Create_Attorney", function(){
-    return view("Create_Attorney");
-});
