@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Admin') }}
         </h2>
     </x-slot>
 
@@ -11,7 +11,9 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                         <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                            <p class="text-gray-900">Create Attorney Profile</p>
+                            <a href="{{ route('create.attorney') }}" class="bg-gray-200 p-4 rounded-md w-56 h-56">
+                                <p class="text-gray-900">Create Attorney Profile</p>
+                            </a>
                         </div>
                         <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
                             <p class="text-gray-900">Assign Attorney</p>

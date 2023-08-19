@@ -21,12 +21,12 @@ Route::get('/', function () {
 
      
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
-    Route::get("Create_Attorney", function(){ return view("Create_Attorney"); });
-    });
-    
+    Route::get("Create_Attorney", function(){ return view("Create_Attorney"); })->name('create.attorney');
+});
+
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard_admin');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
