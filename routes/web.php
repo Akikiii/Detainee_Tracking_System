@@ -19,9 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-     
+     //Add controller for admin
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
-    Route::get("Create_Attorney", function(){ return view("Create_Attorney"); })->name('create.attorney');
+    Route::get("auth.register", function(){ return view("auth.register"); })->name('register.user');
+    Route::get("Invite_User", function(){ return view("Invite_User"); })->name('invite.user');
 });
 
 

@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                         <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                            <a href="{{ route('create.attorney') }}" class="bg-gray-200 p-4 rounded-md w-56 h-56">
+                            <a href="{{ route('register.user') }}" class="bg-gray-200 p-4 rounded-md w-56 h-56">
                                 <p class="text-gray-900">Create Attorney Profile</p>
                             </a>
                         </div>
