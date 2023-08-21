@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\InviteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\InviteUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +18,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::post('/invite/send', [InviteController::class, 'sendInvitation'])->name('invite.send');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-     //Add controller for admin
-Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get("auth.register", function(){ return view("auth.register"); })->name('register.user');
+    
+     //Add controller for admin
+    Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get("Invite_User", function(){ return view("Invite_User"); })->name('invite.user');
+    Route::post('/send-email', [MailController::class, 'sendEmail'])->name('send.email');
 });
 
 

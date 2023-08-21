@@ -15,31 +15,45 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
     public function create(): View
     {
         return view('auth.register');
     }
-
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+    //Registration Stuffs Down here
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'office_address' => ['required', 'string'],
+            'contact_number' => ['required', 'string'],
+            'gender' => ['required', 'in:male,female'],
+            'education_qualifications' => ['required', 'string'],
+            'practice_areas' => ['required', 'string'],
+            'work_experience' => ['required', 'string'],
+            'professional_affiliations' => ['required', 'string'],
+            'cases_handled' => ['required', 'string'],
+            'language_spoken' => ['required', 'string'],
+            'office_hours_open' => ['required', 'date_format:H:i'],
+            'office_hours_close' => ['required', 'date_format:H:i'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'office_address' => $request->office_address,
+            'contact_number' => $request->contact_number,
+            'gender' => $request->gender,
+            'education_qualifications' => $request->education_qualifications,
+            'practice_areas' => $request->practice_areas,
+            'work_experience' => $request->work_experience,
+            'professional_affiliations' => $request->professional_affiliations,
+            'cases_handled' => $request->cases_handled,
+            'language_spoken' => $request->language_spoken,
+            'office_hours_open' => $request->office_hours_open,
+            'office_hours_close' => $request->office_hours_close,
         ]);
 
         event(new Registered($user));
