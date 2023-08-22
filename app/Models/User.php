@@ -21,6 +21,19 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'office_address',
+        'contact_number',
+        'gender',
+        'education_qualifications',
+        'practice_areas',
+        'work_experience',
+        'professional_affiliations',
+        'cases_handled',
+        'languages_spoken',
+        'office_hours_open',
+        'office_hours_close',
+
+        
     ];
 
     /**
