@@ -30,7 +30,7 @@ class RegisteredUserController extends Controller
             'contact_number' => ['required', 'string'],
             'gender' => ['required', 'in:male,female'],
             'education_qualifications' => ['required', 'string'],
-            'practice_areas' => ['required', 'string'],
+            'practice_areas' => ['required', 'string'], 
             'work_experience' => ['required', 'string'],
             'professional_affiliations' => ['required', 'string'],
             'cases_handled' => ['required', 'string'],

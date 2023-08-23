@@ -32,6 +32,7 @@ class InviteUser extends Mailable
         ->view('emails.invite-user') 
         ->with([
             'role' => $this->role,
+            //'token' => tokenGenerator()
         ]);
         
     }
