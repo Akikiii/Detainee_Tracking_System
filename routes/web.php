@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InviteController;
+use App\Http\Controllers\DetaineeProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -19,21 +20,28 @@ use App\Mail\InviteUser;
 */
 
 
+
 Route::post('/invite/send', [InviteController::class, 'sendInvitation'])->name('invite.send');
 
 
 Route::get('/', function () {
     return view('welcome');
 });
-
     Route::get("auth.register", function(){ return view("auth.register"); })->name('register.user');
     Route::get("create_detainee", function(){ return view("create_detainee"); })->name('register.detainee');
     
-     //Add controller for admin
+     //Add controller for admin 
     Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get("Invite_User", function(){ return view("Invite_User"); })->name('invite.user');
     Route::post('/send-email', [MailController::class, 'sendEmail'])->name('send.email');
 });
+
+Route::get('detainee-list',[DetaineeProfileController::class, 'index']);
+Route::get('add-detainee',[DetaineeProfileController::class, 'addDetainee']);
+Route::post('save-detainee',[DetaineeProfileController::class, 'saveDetainee']); 
+Route::get('edit-detainee/{id}',[DetaineeProfileController::class, 'editDetainee']);
+Route::post('update-detainee',[DetaineeProfileController::class,'updateDetainee']);
+Route::get('delete-detainee/{id}',[DetaineeProfileController::class, 'deleteDetainee']);
 
 
 Route::get('/dashboard', function () {
