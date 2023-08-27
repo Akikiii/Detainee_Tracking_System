@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Detainee extends Model
+class DetaineeDetails extends Model
 {
     use HasFactory;
 
-    public function detaineeDetails()
+    public function detainee()
     {
-        return $this->hasOne(DetaineeDetails::class);
+        return $this->belongsTo(Detainee::class);
     }
 }
+

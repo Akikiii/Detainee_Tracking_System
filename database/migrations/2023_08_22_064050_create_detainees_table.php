@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('middle_name');
             $table->string('home_address');
-            $table->string('contact_address');
-            $table->text('email_address');
+            $table->string('contact_number'); // Change 'contact_address' to 'contact_number'
+            $table->string('email_address');
             $table->timestamps();
         });
     }
@@ -31,3 +31,4 @@ return new class extends Migration
         Schema::dropIfExists('detainees');
     }
 };
+
