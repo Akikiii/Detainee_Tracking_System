@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InviteController;
 use App\Http\Controllers\DetaineeProfileController;
+use App\Http\Controllers\CasesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -36,6 +37,7 @@ Route::get('/', function () {
     Route::post('/send-email', [MailController::class, 'sendEmail'])->name('send.email');
 });
 
+//Detainee List
 Route::get('detainee-list',[DetaineeProfileController::class, 'index']);
 Route::get('add-detainee',[DetaineeProfileController::class, 'addDetainee']);
 Route::post('save-detainee',[DetaineeProfileController::class, 'saveDetainee']); 
@@ -43,6 +45,9 @@ Route::get('edit-detainee/{id}',[DetaineeProfileController::class, 'editDetainee
 Route::post('update-detainee',[DetaineeProfileController::class,'updateDetainee']);
 Route::get('delete-detainee/{id}',[DetaineeProfileController::class, 'deleteDetainee']);
 
+//Cases List
+Route::get('cases-list',[CasesController::class, 'index']);
+Route::get('add-cases',[DetaineeProfileController::class, 'addCases']);
 
 Route::get('/dashboard', function () {
     return view('dashboard_admin');
