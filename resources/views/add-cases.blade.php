@@ -19,6 +19,51 @@
 
                     <form method="post" action="{{url('save-cases')}}">
                         @csrf
+                         <div>
+                            <label class = 'form-label'>Case Name</label>
+                            <input type="text" class='form-control text-black' name='case_name' placeholder='Case Name'>
+                            @error('case_name')
+                            <div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative' role></div>
+                            {{$message}} 
+                        </div>
+                        @enderror
+
+                         <div>
+                            <label class = 'form-label'>Violations</label>
+                            <input type="text" class='form-control text-black' name='violations' placeholder='Violations'>
+                            @error('violations')
+                            <div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative' role></div>
+                            {{$message}}
+                        </div>
+                        @enderror
+                        <div>
+                            <label class = 'form-label'>Arrest Report</label>
+                            <input type="text" class='form-control text-black' name='arrest_report' placeholder='Arrest Report'>
+                            @error('arrest_report')
+                            <div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative' role></div>
+                            {{$message}}
+                        </div>
+                        @enderror
+                        <div>
+                            <label class = 'form-label'>Testimonies</label>
+                            <input type="text" class='form-control text-black' name='testimonies' placeholder='Testimonies'>
+                            @error('violations')
+                            <div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative' role></div>
+                            {{$message}}
+                        </div>
+                        @enderror
+
+                        <div>
+                            <label class =  'form-label'>Case Created</label>
+                            <input type="text" class='form-control text-black' name='case_created' placeholder='Case Created'>
+                            @error('case_created')
+                            <div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative' role></div>
+                            {{$message}}
+                        </div>
+                        @enderror
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add Case to Detainee</button>
+                        <a href="{{url('detainee-list')}}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Back to Detainee List</a>
+                        <a href="{{url('cases-list')}}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Back to Cases List</a>
                     </form>
                 </div>
             </div>

@@ -39,8 +39,9 @@
                                         <td class="px-4 py-2">{{ $detainee->home_address }}</td>
                                         <td class="px-4 py-2">
                                             <a href="{{ url('edit-detainee/'. $detainee->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Edit</a>
-                                            |
-                                            <a href="{{ url('delete-detainee/'. $detainee->id) }}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Delete</a>
+                                            <a href="{{ url('delete-detainee/'. $detainee->id) }}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this detainee?')">Delete</a> <!-- TEMPORARYY ONLY! TODO: Make confirmation box -->
+                                            <a href="{{ url('assign-attorney/'. $detainee->id) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">Assign Attorney</a>
+                                            <a href="{{ url('add-cases/'. $detainee->id) }}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Assign a Case</a>
                                         </td>
                                     </tr>
                                 @endforeach

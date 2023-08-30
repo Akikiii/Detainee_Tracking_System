@@ -13,4 +13,8 @@ class Detainee extends Model
     {
         return $this->hasOne(DetaineeDetails::class);
     }
+    public function cases()
+    {
+        return $this->hasMany(Cases::class);
+    }
 }

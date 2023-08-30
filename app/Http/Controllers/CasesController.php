@@ -18,7 +18,7 @@ class CasesController extends Controller
     public function saveCases(Request $request){
 
         $combinedRules =[
-            'case_id' => 'required',
+            //'case_id' => 'required',
             'case_name' => 'required',
             'violations' => 'required',
             'case_created' => 'required',
@@ -30,7 +30,7 @@ class CasesController extends Controller
 
         //Save Case Data
         $cases = new Cases();
-        $cases->case_id = $request->case_id;
+        //$cases->case_id = $request->case_id;
         $cases->case_name = $request->case_name; 
         $cases->violations = $request->violations;
         $cases->case_created = $request->case_created;
@@ -48,7 +48,7 @@ class CasesController extends Controller
 
     public function updateCases(Request $request){
         $combinedRules =[
-            'case_id' => 'required',
+            //'case_id' => 'required',
             'case_name' => 'required',
             'violations' => 'required',
             'case_created' => 'required',
@@ -60,7 +60,7 @@ class CasesController extends Controller
         $id = $request->id;
 
         $cases = [
-            'case_id' => $request->case_id,
+            //'case_id' => $request->case_id,
             'case_name' => $request->case_name,
             'violations' => $request->violations,
             'case_created' => $request->case_created,

@@ -4,10 +4,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InviteController;
 use App\Http\Controllers\DetaineeProfileController;
 use App\Http\Controllers\CasesController;
+use App\Http\Controllers\CounselCaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\InviteUser;
+use App\Models\Counsel_Case_Assignment;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,11 +45,19 @@ Route::get('add-detainee',[DetaineeProfileController::class, 'addDetainee']);
 Route::post('save-detainee',[DetaineeProfileController::class, 'saveDetainee']); 
 Route::get('edit-detainee/{id}',[DetaineeProfileController::class, 'editDetainee']);
 Route::post('update-detainee',[DetaineeProfileController::class,'updateDetainee']);
-Route::get('delete-detainee/{id}',[DetaineeProfileController::class, 'deleteDetainee']);
+Route::get('delete-detainee/{id}',[DetaineeProfileController::class, 'deleteDetainee']); //I think unecessary? 
+Route::get('assign-attorney/{id}',[DetaineeProfileController::class, 'viewDetails']);
 
 //Cases List
-Route::get('cases-list',[CasesController::class, 'index']);
-Route::get('add-cases',[DetaineeProfileController::class, 'addCases']);
+Route::get('cases-list',[CasesController::class, 'getCases']);
+Route::get('add-cases/{id}',[CasesController::class, 'addCases']);
+Route::post('save-case/{id}',[CasesController::class, 'saveCases']);
+
+//Assigned Case
+Route::post('save-assignment',[CounselCaseController::class, 'assignAttorney']); 
+Route::get('delete-assigned/{id}',[CounselCaseController::class, 'removeAssignedAttorney']);
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard_admin');

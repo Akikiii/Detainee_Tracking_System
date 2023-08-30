@@ -136,4 +136,8 @@ class DetaineeProfileController extends Controller
         Detainee::where('id','=',$id)->delete();
         return redirect()->back()->with('Success','Detainee Deleted Successfully');
     }
+    public function viewDetails($id){
+        $detainee = Detainee::find($id); // Fetch a specific detainee by ID
+        return view('assign-attorney', ['detainee' => $detainee]); // Pass the detainee data to the view
+    }
 }
