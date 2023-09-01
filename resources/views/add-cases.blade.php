@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                      <!-- Triggers when user successfully added a Case -->
+                <!-- Triggers when user successfully added a Case -->
                 @if(Session::has('success'))
                     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                         {{Session::get('success')}}
@@ -19,7 +19,7 @@
 
                     <form method="post" action="{{url('save-cases')}}">
                         @csrf
-                         <div>
+                        <div>
                             <label class = 'form-label'>Case Name</label>
                             <input type="text" class='form-control text-black' name='case_name' placeholder='Case Name'>
                             @error('case_name')
