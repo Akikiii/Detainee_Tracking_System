@@ -17,7 +17,7 @@
                     </div>
                     @endif
 
-                    <form method="post" action="{{url('save-detainee')}}">
+                    <form method="POST" action="{{url('save-detainee')}}">
                         @csrf
                         <div class="md-3">
                             <label class="form-label">First Name</label>

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Detainee;
 use App\Models\DetaineeDetails;
+use App\Models\Counsel_Case_Assignment;
 class DetaineeProfileController extends Controller
 {
     public function index(){
@@ -71,73 +72,80 @@ class DetaineeProfileController extends Controller
     
 
     public function editDetainee($id){
-        $data = Detainee::where('id','=',$id)->first();
-        return view ('edit-detainee',compact('data'));
+        // 
+        $data = Detainee::with('detaineeDetails')->where('id', $id)->first();
+        return view ('edit-detainee', compact('data'));
     }
-   public function updateDetainee(Request $request)
-{
-    $combinedRules = [
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'middle_name' => 'required',
-        'email_address' => 'required|email',
-        'home_address' => 'required',
-        'contact_address' => 'required',
-        'detainee_id' => 'required',
-        'gender' => 'required',
-        'mother_name' => 'required',
-        'father_name' => 'required',
-        'spouse_name' => 'nullable',
-        'related_photos' => 'required',
-        'crime_history' => 'required',
-        'max_detention_period' => 'required',
-        'detention_begin' => 'required',
-        'medical_information' => 'required',
-        'emergency_contact_number' => 'required',
-        'emergency_contact_name' => 'required'
-    ];
-
-    $request->validate($combinedRules);
-
-    $id = $request->id;
     
-    // Update Detainee data(basic information)
-    $detaineeData = [
-        'first_name' => $request->first_name,
-        'last_name' => $request->last_name,
-        'middle_name' => $request->middle_name,
-        'email_address' => $request->email_address,
-        'home_address' => $request->home_address,
-        'contact_address' => $request->contact_address
-    ];
-    Detainee::where('id', $id)->update($detaineeData);
+    public function updateDetainee(Request $request)
+    {
+        dd($request->all());
+        $combinedRules = [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'middle_name' => 'required',
+            'email_address' => 'required|email',
+            'home_address' => 'required',
+            'contact_address' => 'required',
+            'detainee_id' => 'required',
+            'gender' => 'required',
+            'mother_name' => 'required',
+            'father_name' => 'required',
+            'spouse_name' => 'nullable',
+            'related_photos' => 'required',
+            'crime_history' => 'required',
+            'max_detention_period' => 'required',
+            'detention_begin' => 'required',
+            'medical_information' => 'required',
+            'emergency_contact_number' => 'required',
+            'emergency_contact_name' => 'required'
+        ];
     
-    // Update Detainee data(Broader details)
-    $detaineeDetailsData = [
-        'detainee_id' => $request->detainee_id,
-        'gender' => $request->gender,
-        'mother_name' => $request->mother_name,
-        'father_name' => $request->father_name,
-        'spouse_name' => $request->spouse_name,
-        'related_photos' => $request->related_photos,
-        'crime_history' => $request->crime_history,
-        'max_detention_period' => $request->max_detention_period,
-        'detention_begin' => $request->detention_begin,
-        'medical_information' => $request->medical_information,
-        'emergency_contact_number' => $request->emergency_contact_number,
-        'emergency_contact_name' => $request->emergency_contact_name
-    ];
-    DetaineeDetails::where('detainee_id', $id)->update($detaineeDetailsData);
-
-    return redirect()->back()->with('Success', 'Detainee Profile and Details Updated Successfully');
-}
+        $request->validate($combinedRules);
+    
+        $id = $request->id;
+    
+        // Update Detainee data (basic information)
+        $detainee = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'middle_name' => $request->middle_name,
+            'email_address' => $request->email_address,
+            'home_address' => $request->home_address,
+            'contact_address' => $request->contact_address,
+        ];
+        Detainee::where('id', $id)->update($detainee);
+    
+        // Update DetaineeDetails data (broader details)
+        $detaineeDetails = [
+            'gender' => $request->gender,
+            'mother_name' => $request->mother_name,
+            'father_name' => $request->father_name,
+            'spouse_name' => $request->spouse_name,
+            'related_photos' => $request->related_photos,
+            'crime_history' => $request->crime_history,
+            'max_detention_period' => $request->max_detention_period,
+            'detention_begin' => $request->detention_begin,
+            'medical_information' => $request->medical_information,
+            'emergency_contact_number' => $request->emergency_contact_number,
+            'emergency_contact_name' => $request->emergency_contact_name,
+        ];
+        DetaineeDetails::where('detainee_id', $id)->update($detaineeDetails);
+        
+    
+        return redirect()->back()->with('Success', 'Detainee Profile and Details Updated Successfully');
+    }
+    
 
     public function deleteDetainee($id){
         Detainee::where('id','=',$id)->delete();
         return redirect()->back()->with('Success','Detainee Deleted Successfully');
     }
+
+    //For Viewing
     public function viewDetails($id){
-        $detainee = Detainee::find($id); // Fetch a specific detainee by ID
-        return view('assign-attorney', ['detainee' => $detainee]); // Pass the detainee data to the view
+        $assignedAttorney = Counsel_Case_Assignment::where('detainee_id',$id)->first();
+        $detainee = Detainee::find($id);
+        return view('assign-attorney', ['detainee' => $detainee, 'counsel_case_assignment' => $assignedAttorney]);
     }
 }

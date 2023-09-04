@@ -45,7 +45,7 @@ Route::get('add-detainee',[DetaineeProfileController::class, 'addDetainee']);
 Route::post('save-detainee',[DetaineeProfileController::class, 'saveDetainee']); 
 Route::get('edit-detainee/{id}',[DetaineeProfileController::class, 'editDetainee']);
 Route::post('update-detainee',[DetaineeProfileController::class,'updateDetainee']);
-Route::get('delete-detainee/{id}',[DetaineeProfileController::class, 'deleteDetainee']); //I think unecessary? 
+Route::get('delete-detainee/{id}',[DetaineeProfileController::class, 'deleteDetainee']);
 Route::get('assign-attorney/{id}',[DetaineeProfileController::class, 'viewDetails']);
 
 //Cases List
@@ -54,8 +54,9 @@ Route::get('add-cases/{id}',[CasesController::class, 'addCases']);
 Route::post('save-case/{id}',[CasesController::class, 'saveCases']);
 
 //Assigned Case
-Route::post('save-assignment',[CounselCaseController::class, 'assignAttorney']); 
-Route::get('delete-assigned/{id}',[CounselCaseController::class, 'removeAssignedAttorney']);
+Route::post('save-assignment', [CounselCaseController::class, 'assignAttorney'])->name('save-assignment');
+Route::get('/remove-assignment/{detainee_id}', [CounselCaseController::class, 'removeAssigned'])->name('remove-assignment');
+
 
 
 

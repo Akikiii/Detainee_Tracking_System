@@ -50,15 +50,23 @@
                                     <dd>{{ $detainee['emergency_contact_number'] }}</dd>
                                     <dt>Emergency Contact Name:</dt>
                                     <dd>{{ $detainee['emergency_contact_name'] }}</dd>
+                                    <dt>Assigned to:</dt>
+                                    <dd>{{ optional($counsel_case_assignment)->assigned_by }}</dd>
                                 </dl>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-4">
                     <div class="col-md-12">
-                    <form action="{{ route('save-assignment') }}" method="POST">
+                    <form action="{{ route('save-assignment') }}" method="post">
                         @csrf
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Assign User to Detainee</button>
+                        @if ($counsel_case_assignment)
+                            <a href="{{ url('remove-assignment/' . $counsel_case_assignment->detainee_id) }}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this detainee?')">Remove Assigned User to Detainee</a>
+                        @else
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                                Assign User to Detainee
+                            </button>
+                        @endif
                     </form>
                     <a href="{{ url('detainee-list') }}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Back</a>
                     </div>

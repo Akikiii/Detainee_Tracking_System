@@ -12,39 +12,22 @@ use Carbon\Carbon;
 class CounselCaseController extends Controller
 {
     public function assignAttorney(Request $request)
-    {
-        // Assuming you have authenticated users, you can get the current user
-        $currentUser = Auth::user();
+{
+    // Assuming you have authenticated users, you can get the current user
+    $currentUser = Auth::user();
+    $detainee_id = 17;
+    // Create a new assignment record
+    $assignment = new Counsel_Case_Assignment();
+    $assignment->user_id = $currentUser->id;
+    $assignment->assigned_by = $currentUser->name;
+    $assignment->detainee_id = $detainee_id; 
+    $assignment->date_assigned = now(); // Use Carbon's now() method to get the current timestamp
+    $assignment->save();
 
-        // Assuming you have the case ID and detainee ID from the request
-        $caseId = $request->input('case_id');
-        $detaineeId = $request->input('detainee_id');
-
-        // Create a new assignment record
-        $assignment = new Counsel_Case_Assignment();
-        $assignment->user_id = $currentUser->id;
-        $assignment->detainee_id = $detaineeId;
-        $assignment->assigned_by = $currentUser->name; // You can change this to the appropriate field
-        $assignment->date_assigned = Carbon::now();
-        $assignment->save();
-
-        return response()->json(['message' => 'Attorney assigned successfully']);
+    return redirect()->back()->with('success', 'User Assigned to Detainee Successfully!');
     }
-    public function removeAssignedAttorney(Request $request)
-    {
-        // Assuming you have the assignment ID from the request
-        $assignmentId = $request->input('assignment_id');
-
-        // Find the assignment record by ID
-        $assignment = Counsel_Case_Assignment::find($assignmentId);
-
-        if (!$assignment) {
-            return response()->json(['message' => 'Assignment not found'], 404);
-        }
-
-        // Delete the assignment record
-        $assignment->delete();
-
-        return response()->json(['message' => 'Assignment removed successfully']);
+    public function removeAssigned($id){
+        Counsel_Case_Assignment::where('detainee_id','=',$id)->delete();
+        return redirect()->back()->with('success','Assigned User Removed Successfully');
     }
 }

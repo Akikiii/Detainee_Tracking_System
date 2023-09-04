@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Counsel_Case_Assignment extends Model
 {
     use HasFactory;
+
+    protected $table = 'counsel_case_assignment';
+
+    // Define the relationship to Detainee
+    public function detainee()
+    {
+        return $this->belongsTo(Detainee::class);
+    }
 }
