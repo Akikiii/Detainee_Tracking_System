@@ -1,8 +1,100 @@
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+    
+    <!-- Font Styles via googlefonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Castoro&family=Commissioner:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <style>
+        .placeholder-black::placeholder {
+            color: black;
+        }
+
+        .buttonFormat {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .searchBarPlaceHolder {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .circle {
+            width: 63px;
+            border-radius: 5rem;
+        }
+
+        .labelname {
+            font-size: 1.15rem;
+            font-family: 'Castoro', serif;
+        }
+
+        .placeholderfont {
+            color: #686576;
+            font-size: 1rem;
+            font-family: 'Castoro', serif;
+        }
+
+        .sections {
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            color: #686576; 
+        }
+
+        h1 {
+            font-family: 'Commissioner', sans-serif;
+        }
+
+        h3 {
+            color: #686576;
+            font-family: 'Castoro', serif;
+        }
+    </style>
+
+    <!-- Navigation Bar -->
+    <div class="w-full bg-white flex items-center justify-between p-5">
+        
+        
+        <div class="flex items-center gap-6">
+            <div>
+                <!-- <img class="circle" src="/assets/chief-atty.png" alt="chief attorney pic"> -->
+                <div style="background-color:black; height: 65px; width: 65px; border-radius: 100%;"></div>
+            </div>
+            <div>
+                <h1 class="font-bold text-xl">{{ Auth::user()->name }}</h1>
+                <h3 class="abc">CHIEF ATTORNEY</h3>
+            </div>
+            
+        </div>
+
+        <!-- Logo and System Name -->
+        <a class="flex items-center gap-6" href="{{ route('dashboard') }}">
+            <div>
+                <!-- <img class="circle" src="/assets/pao-logo-bw.png" alt="pao logo"> -->
+                <div style="background-color:gray; height: 65px; width: 65px; border-radius: 100%;"></div>
+            </div>
+            <div>
+                <!-- <img class="circle" src="/assets/davao-region-bjmp-logo-bw.png" alt="bjmp-davao-logo"> -->
+                <div style="background-color:gray; height: 65px; width: 65px; border-radius: 100%;"></div>
+            </div>
+            <div>
+                <h1 class="font-bold text-2xl">DETAINEE TRACKING SYSTEM</h1>
+            </div>
+        </a>
+        
+    </div>
+
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
+
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
@@ -66,6 +158,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
@@ -97,4 +190,5 @@
             </div>
         </div>
     </div>
+    
 </nav>
