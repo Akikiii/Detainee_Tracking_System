@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Admin') }}
         </h2>
     </x-slot>
 
@@ -129,121 +129,58 @@
             </div>
         </div>
 
-        <!-- Create Detainee Profile Form -->
+        <!-- Dashboard -->
         <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-black rounded-md mt-[2.38rem]">
-            <div>
-                <h1 class="text-[1.875rem] uppercase font-bold">Create Detainee Profile</h1>
-                <hr class="mt-[1.94rem] mb-[2.31rem]"/>
-                <div class="grid gap-5">
-                    <div class="flex flex-col">
-                        <p class="block font-bold mb-2 labelname text-lg">Name</p>
-                        <div class="grid grid-flow-col gap-10">
-                            <input class="border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" placeholder="Last Name"/>
-                            <input class="border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" placeholder="First Name"/>
-                            <input class="border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" placeholder="Middle Name"/>
-                        </div>
-                    </div>
-                    <div class="flex flex-col mt-5">
-                        <p class="block labelname font-bold mb-2">Home Address</p>
-                        <div class="grid grid-flow-col gap-10">
-                            <input
-                            class="border border-black border rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black"
-                            placeholder="Home Address (Street Name, City, State/Province, Postal Code)"
-                            />
-                        </div>
-                    </div>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                <!-- class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" -->
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
 
-                    <div class="grid grid-flow-row col-2 gap-10 mt-5">
-                        <div class="grid col-start-1">
-                            <p class="block labelname font-bold mb-2">Birthday</p>
-                            <input
-                                class="border border-black rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black"
-                                placeholder="Birthdate (Month, Day, Year)"
-                            />
-                        </div>
-                        <div class="grid col-start-2">
-                            <p class="block labelname font-bold mb-2">Contact Number</p>
-                            <input
-                                class="border border-black rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black"
-                                placeholder="Contact Number"
-                            />
-                        </div>
-                        <div class="grid col-start-3">
-                            <p class="block labelname font-bold mb-2">Email Address</p>
-                            <input
-                                class="border border-black rounded rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black"
-                                placeholder="Email Address"
-                            />
-                        </div>
-
-                        <div class="flex flex-col gap-2 mt-5">
-                            <p class="block labelname font-bold mb-2">Sex</p>
-                            <div class="grid grid-flow-col gap-5">
-                                <button class="bg-[#FFFFFF] border-2 border-black">Female</button>
-                                <button class="bg-[#FFFFFF] border-2 border-black">Male</button>
+                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
+                                <a href="{{ route('register.user') }}">
+                                    <p class="text-gray-900">Create Attorney Profile</p>
+                                </a>
                             </div>
-                        </div>
 
-                        <div class="grid grid-flow-col grid-cols-2 mt-[2.12rem]">
-                            <button class="buttonFormat col-end-4 w-[7.5rem] h-[2.5rem] bg-[#cccccc] font-bold">
-                                NEXT
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
+                                <a href="{{ url('detainee-list') }}">
+                                    <p class="text-gray-900">Assign Attorney</p>
+                                </a>
+                            </div>
 
-    </div>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="container mt-4">
-                        <div class="row">
-                        <div class="col-md-12">
-                        <h2>Detainee List</h2>
-                        <div>
-                            <a href="{{ url('add-detainee') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add</a>
-                        </div>
-                        <table class="table border">
-                            <thead>
-                                <tr>
-                                    <th class="px-4 py-2">#</th>
-                                    <th class="px-4 py-2">Name</th>
-                                    <th class="px-4 py-2">Email</th>
-                                    <th class="px-4 py-2">Phone</th>
-                                    <th class="px-4 py-2">Address</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $counter = count($data);
-                                @endphp
-                                @foreach ($data as $detainee)
-                                    <tr>
-                                        <td class="px-4 py-2">{{ $counter-- }}</td>
-                                        <td class="px-4 py-2">{{ $detainee->last_name . ', ' . $detainee->first_name . ' ' . $detainee->middle_name }}</td>
-                                        <td class="px-4 py-2">{{ $detainee->email_address }}</td>
-                                        <td class="px-4 py-2">{{ $detainee->contact_address }}</td>
-                                        <td class="px-4 py-2">{{ $detainee->home_address }}</td>
-                                        <td class="px-4 py-2">
-                                            <a href="{{ url('edit-detainee/'. $detainee->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Edit</a>
-                                            <a href="{{ url('delete-detainee/'. $detainee->id) }}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this detainee?')">Delete</a> <!-- TEMPORARYY ONLY! TODO: Make confirmation box -->
-                                            <a href="{{ url('assign-attorney/'. $detainee->id) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">Assign Attorney</a>
-                                            <a href="{{ url('add-cases/'. $detainee->id) }}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Assign a Case</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
+                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
+                                <a href="{{ url('detainee-list') }}">
+                                    <p class="text-gray-900">Create Detainee Profile</p>
+                                </a>
+                            </div>
+                                
+                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
+                                <a href="{{ url('detainee-list') }}">
+                                    <p class="text-gray-900">View Detainee List</p>
+                                </a>
+                            </div>
+                                    
+                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
+                                <a href="{{ route('profile.edit') }}">
+                                    <p class="text-gray-900">View Profile</p>
+                                </a>
+                            </div>
+                        
+                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
+                                <!--  -->
+                                <p class="text-gray-900">Case View</p>
+                                <!--  -->
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        
     </div>
+
+    
 </x-app-layout>
