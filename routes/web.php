@@ -5,6 +5,7 @@ use App\Http\Controllers\InviteController;
 use App\Http\Controllers\DetaineeProfileController;
 use App\Http\Controllers\CasesController;
 use App\Http\Controllers\CounselCaseController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -55,7 +56,16 @@ Route::get('assign-attorney/{id}',[DetaineeProfileController::class, 'viewDetail
 //Cases List
 Route::get('cases-list',[CasesController::class, 'getCases']);
 Route::get('add-cases/{id}',[CasesController::class, 'addCases']);
-Route::post('save-case/{id}',[CasesController::class, 'saveCases']);
+Route::get('edit-cases/{id}', [CasesController::class, 'editCases']);   
+Route::post('update-cases', [CasesController::class, 'updateCases'])->name('update-cases');
+Route::post('save-cases', [CasesController::class, 'saveCases']); //Add Cases
+Route::get('live-cases/{id}', [CasesController::class, 'caseOverview'])->name('live-cases');
+Route::get('add-event/{case_id}', [EventController::class, 'addEventForm'])->name('add-event');
+Route::post('save-event/{case_id}', [EventController::class, 'saveEvent'])->name('save-event');
+Route::get('edit-event/{event_id}', [EventController::class, 'editEvent'])->name('edit-event');
+Route::get('delete-event/{event_id}', [EventController::class, 'deleteEvent'])->name('delete-event');
+
+
 
 //Assigned Case
 Route::post('save-assignment', [CounselCaseController::class, 'assignAttorney'])->name('save-assignment');

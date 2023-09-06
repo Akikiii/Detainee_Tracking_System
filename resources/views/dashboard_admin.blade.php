@@ -152,7 +152,7 @@
                                 <a href="{{ route('profile.edit') }}" class="bg-gray-200 p-4 rounded-md w-56 h-56">
                             <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
                                 <p class="text-gray-900">View Profile</p>
-                            </div>  
+                            </div>
                             <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
                                 <p class="text-gray-900">Settings</p>
                             </div>
