@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cases;
+use App\Models\Event;
 class CasesController extends Controller
 {
     public function getCases(){
@@ -15,6 +16,14 @@ class CasesController extends Controller
         return view('add-cases');
     }
 
+    public function caseOverview($id) {
+        $case = Cases::find($id);
+        $case_events = Event::where('case_id', $id)->get();
+    
+        return view('live-cases', compact('case', 'case_events'));
+    }
+    
+    
     public function saveCases(Request $request){
 
         $combinedRules =[
@@ -23,11 +32,13 @@ class CasesController extends Controller
             'violations' => 'required',
             'case_created' => 'required',
             'arrest_report' => 'required',
-            'testimonies' => 'required'
+            'testimonies' => 'required',
+            'status' => 'in:Active,Pending,Finished',
         ];
 
+        
         $request->validate($combinedRules);
-
+        $status = $request->status ?? 'Active';
         //Save Case Data
         $cases = new Cases();
         //$cases->case_id = $request->case_id;
@@ -36,8 +47,8 @@ class CasesController extends Controller
         $cases->case_created = $request->case_created;
         $cases->arrest_report = $request->arrest_report;
         $cases->testimonies = $request->testimonies;
+        $cases->status = $status; 
         $cases->save();
-
         return redirect()->back()->with("success", "Case sucessfully added");
     }
 
@@ -53,7 +64,8 @@ class CasesController extends Controller
             'violations' => 'required',
             'case_created' => 'required',
             'arrest_report' => 'required',
-            'testimonies' => 'required'
+            'testimonies' => 'required',
+            'status' => 'in:Active,Pending,Finished',
         ];
 
         $request->validate($combinedRules);
@@ -65,7 +77,8 @@ class CasesController extends Controller
             'violations' => $request->violations,
             'case_created' => $request->case_created,
             'arrest_report' => $request->arrest_report,
-            'testimonies' => $request->testimonies
+            'testimonies' => $request->testimonies,
+            'status' => $request->status,
         ];
         Cases::where('id',$id)->update($cases);
 

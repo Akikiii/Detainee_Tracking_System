@@ -37,13 +37,14 @@
                         </div>
                         @enderror
                         <div>
-                            <label class = 'form-label'>Arrest Report</label>
+                            <label class='form-label'>Arrest Report</label>
                             <input type="text" class='form-control text-black' name='arrest_report' placeholder='Arrest Report'>
                             @error('arrest_report')
-                            <div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative' role></div>
-                            {{$message}}
+                            <div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative' role='alert'>
+                                {{$message}}
+                            </div>
+                            @enderror
                         </div>
-                        @enderror
                         <div>
                             <label class = 'form-label'>Testimonies</label>
                             <input type="text" class='form-control text-black' name='testimonies' placeholder='Testimonies'>
@@ -52,12 +53,24 @@
                             {{$message}}
                         </div>
                         @enderror
-
                         <div>
-                            <label class =  'form-label'>Case Created</label>
-                            <input type="text" class='form-control text-black' name='case_created' placeholder='Case Created'>
+                            <label class="form-label">Case Created</label>
+                            <input type="date" class="form-control text-black" name="case_created" placeholder="Case Created" value="{{ old('case_created') }}">
                             @error('case_created')
-                            <div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative' role></div>
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="md-3">
+                            <label class="form-label">Status</label>
+                            <select class="form-control" name="status">
+                                <option value="Active">Active</option>
+                                <option value="Pending" selected>Pending</option>
+                                <option value="Finished">Finished</option>
+                            </select>
+                            @error('case_created') 
                             {{$message}}
                         </div>
                         @enderror
