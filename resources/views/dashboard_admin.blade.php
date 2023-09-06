@@ -134,21 +134,25 @@
                                     <p class="text-gray-900">Create Attorney Profile</p>
                                 </a>
                             </div>
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <p class="text-gray-900">Assign Attorney</p>
-                            </div>
+                                <a href="{{ url('detainee-list') }}" class="bg-gray-200 p-4 rounded-md w-56 h-56">
+                                    <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
+                                        <p class="text-gray-900">Assign Attorney</p>
+                                    </div>
+                                </a>
+                                <a href="{{ url('detainee-list') }}" class="bg-gray-200 p-4 rounded-md w-56 h-56">
                             <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
                                 <p class="text-gray-900">Create Detainee Profile</p>
                             </div>
+                                </a>
+                                <a href="{{ url('detainee-list') }}" class="bg-gray-200 p-4 rounded-md w-56 h-56">
                             <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
                                 <p class="text-gray-900">View Detainee List</p>
                             </div>
+                                </a>
+                                <a href="{{ route('profile.edit') }}" class="bg-gray-200 p-4 rounded-md w-56 h-56">
                             <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
                                 <p class="text-gray-900">View Profile</p>
-                            </div>
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <p class="text-gray-900">Update Profile</p>
-                            </div>
+                            </div>  
                             <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
                                 <p class="text-gray-900">Settings</p>
                             </div>

@@ -31,7 +31,11 @@ Route::get('/', function () {
     return view('welcome');
 });
     Route::get("auth.register", function(){ return view("auth.register"); })->name('register.user');
-    Route::get("create_detainee", function(){ return view("create_detainee"); })->name('register.detainee');
+    Route::get("create_detainee", function(){ return view("create_detainee"); })->name('register.detainee'); //?
+    Route::get("add-detainee", function () {
+        return view("add-detainee");
+    })->name('detainee-list');
+    
     
      //Add controller for admin 
     Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
