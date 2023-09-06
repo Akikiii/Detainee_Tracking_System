@@ -68,7 +68,7 @@ Route::get('delete-event/{event_id}', [EventController::class, 'deleteEvent'])->
 
 
 //Assigned Case
-Route::post('save-assignment', [CounselCaseController::class, 'assignAttorney'])->name('save-assignment');
+Route::post('assign-attorney', [CounselCaseController::class, 'assignAttorney'])->name('assign-attorney');
 Route::get('/remove-assignment/{detainee_id}', [CounselCaseController::class, 'removeAssigned'])->name('remove-assignment');
 
 

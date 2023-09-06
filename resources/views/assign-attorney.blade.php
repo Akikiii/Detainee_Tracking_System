@@ -58,7 +58,7 @@
                     </div>
                     <div class="row mt-4">
                     <div class="col-md-12">
-                    <form action="{{ route('save-assignment') }}" method="post">
+                    <form action="{{ route('assign-attorney', ['detainee_id' => $detainee->id]) }}" method="post">
                         @csrf
                         @if ($counsel_case_assignment)
                             <a href="{{ url('remove-assignment/' . $counsel_case_assignment->detainee_id) }}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this detainee?')">Remove Assigned User to Detainee</a>
