@@ -139,246 +139,10 @@
                     <div class="flex flex-col">
                         <p class="block font-bold mb-2 labelname text-lg">Name</p>
                         <div class="grid grid-flow-col gap-10">
-
-                            <div>
-                                <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name="last_name" placeholder="Enter Last Name" value="{{old('last_name')}}">
-                                @error('last_name')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                            
-                            <div>
-                                <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name="first_name" placeholder="Enter First Name" value="{{old('first_name')}}">
-                                @error('first_name')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div>
-                                <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name="middle_name" placeholder="Enter Middle name" value="{{old('middle_name')}}">
-                                @error('middle_name')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
+                            <input class="border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" placeholder="Last Name"/>
+                            <input class="border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" placeholder="First Name"/>
+                            <input class="border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" placeholder="Middle Name"/>
                         </div>
-
-                        <div class="flex flex-col mt-5">
-                            <p class="block labelname font-bold mb-2">Home Address</p>
-                            <div class="grid grid-flow-col gap-10">
-                                <textarea class="form-control text-black border border-black border rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="home_address" placeholder="Home Address (Street Name, City, State/Province, Postal Code)" value="{{old('home_address')}}"></textarea>
-                                @error('home_address')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="grid grid-flow-row col-2 gap-10 mt-5">
-                            <div class="grid col-start-1">
-                                <p class="block labelname font-bold mb-2">Contact Number</p>
-                                <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="contact_address" placeholder="Enter Contact Number" value="{{old('contact_address')}}">
-                                @error('contact_address')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                            <div class="grid col-start-2">
-                                <p class="block labelname font-bold mb-2">Email Address</p>
-                                <input type="text" class="form-control text-black border border-black rounded rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="email_address" placeholder="Enter Email Address" value="{{old('email_address')}}">
-                                @error('email_address')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                            <div class="grid col-start-3">
-                                <p class="block labelname font-bold mb-2">Detainee ID</p>
-                                <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="detainee_id" placeholder="Enter Detainee ID">
-                                @error('detainee_id')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="grid grid-flow-row col-2 gap-10 mt-5">
-                            <div class="grid col-start-1">
-                                <p class="block labelname font-bold mb-2">Gender</p>
-                                <select class="form-control text-black border border-black rounded rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="gender">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-                                @error('gender')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="grid col-start-2">
-                                <p class="block labelname font-bold mb-2">Birthdate</p>
-                                <input type="text" class="form-control text-black border border-black rounded rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="email_address" placeholder="Enter Email Address" value="{{old('email_address')}}">
-                                @error('email_address')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="grid col-start-3">
-                                <p class="block labelname font-bold mb-2">Start of Detention</p>
-                                <input type="date" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="detention_begin" value="{{ old('detention_begin') }}">
-                                @error('detention_begin')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col mt-5">
-                            <p class="block labelname font-bold mb-2">Mother’s Name</p>
-                            <div class="grid grid-flow-col gap-10">
-                                <input type="text" class="form-control text-black border border-black border rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="mother_name" placeholder="Enter Mother's Name (Last Name, First Name + Middle Name)" value="{{old('mother_name')}}">
-                                @error('mother_name')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col mt-5">
-                            <p class="block labelname font-bold mb-2">Father’s Name</p>
-                            <div class="grid grid-flow-col gap-10">
-                                <input type="text" class="form-control text-black border border-black border rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="father_name" placeholder="Enter Father's Name (Last Name, First Name + Middle Name)" value="{{old('father_name')}}">
-                                @error('father_name')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col mt-5">
-                            <p class="block labelname font-bold mb-2">Spouse’s Name (Place ‘N/A’ if not applicable)</p>
-                            <div class="grid grid-flow-col gap-10">
-                                <input type="text" class="form-control text-black border border-black border rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="spouse_name" placeholder="Enter Spouse's Name (Last Name, First Name + Middle Name) if N/A leave blank" value="{{old('spouse_name')}}">
-                                @error('spouse_name')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col mt-5">
-                            <p class="block labelname font-bold mb-2">Person to contact in case of emergency</p>
-                            <div class="grid grid-flow-col gap-10">
-                                <input type="text" class="form-control text-black border border-black border rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="emergency_contact_name" placeholder="Enter Emergency Contact Name (Last Name, First Name + Middle Name)" value="{{old('emergency_contact_name')}}">
-                                @error('emergency_contact_name')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col mt-5">
-                            <p class="block labelname font-bold mb-2">Contact Number of the Person to contact in case of emergency</p>
-                            <div class="grid grid-flow-col gap-10">
-                                <input type="text" class="form-control text-black border border-black border rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="emergency_contact_number" placeholder="Enter Emergency Contact Number" value="{{old('emergency_contact_number')}}">
-                                @error('emergency_contact_number')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col mt-5">
-                            <p class="block labelname font-bold mb-2">Medical Information</p>
-                            <div class="flex">
-                                <input
-                                    class="border border-black border rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black mr-2"
-                                    placeholder="Detainee’s existing allergy and conditions (Upload Medical Documents)"
-                                />
-                                <button
-                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                    type="button"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col mt-5">
-                            <p class="block labelname font-bold mb-2">Reason for Detention</p>
-                            <div class="flex">
-                                <input
-                                    class="border border-black border rounded w-full py-4 px-3 placeholderfont leading-tight focus:outline-none focus:border-black mr-2"
-                                    placeholder="Input the reason for detention here (Upload Documents if necessary)"
-                                />
-                                <button
-                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                    type="button"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col mt-5">
-                            <p class="block labelname font-bold mb-2">Detainee’s Crime History</p>
-                            <div class="grid grid-flow-col gap-10">
-                                <input type="text" class="form-control text-black border border-black border rounded w-full py-8 px-3 placeholderfont leading-tight focus:outline-none focus:border-black" name="max_detention_period" placeholder="Enter detainee’s history of crime here" value="{{old('max_detention_period')}}">
-                                @error('max_detention_period')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col">
-                            <p class="block labelname font-bold mb-2">Upload Photo/s (Mugshot, Full-body photo, Injuries, Evidence, Etc.)</p>
-                            <div class="grid grid-flow-col gap-10">
-                                <div class="border border-black border rounded w-full py-40 px-3 placeholderfont leading-tight focus:outline-none focus:border-black relative text-center">
-                                    <span class="block text-gray-400 mb-2">Drag & Drop to Upload File</span>
-                                    <p class="font-bold">OR</p>
-                                    <div class="flex justify-center mt-2">
-                                        <button class="buttonFormat w-[8.5rem] h-[2.5rem] bg-[#cccccc] font-bold text-[#000] uppercase font-inter">
-                                            Browse File
-                                        </button>
-                                    </div>
-                                    <input
-                                    class="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer"
-                                    type="file"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-flow-col grid-cols-2 mt-[2.12rem]">
-                            <button class="buttonFormat col-end-4 w-[10.5rem] h-[2.5rem] bg-[#cccccc] font-bold">
-                                Add Detainee
-                            </button>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -386,4 +150,200 @@
 
     </div>
 
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    
+                    <!-- Triggers when user successfully added a detainee -->
+                    @if(Session::has('success'))
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                        {{Session::get('success')}}
+                    </div>
+                    @endif
+
+                    <form method="POST" action="{{url('save-detainee')}}">
+                        @csrf
+                        <div class="md-3">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control text-black" name="first_name" placeholder="Enter First Name" value="{{old('first_name')}}">
+                            @error('first_name')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="md-3">
+                            <label class="form-label">Last name</label>
+                            <input type="text" class="form-control text-black" name="last_name" placeholder="Enter Last Name" value="{{old('last_name')}}">
+                            @error('last_name')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="md-3">
+                            <label class="form-label">Middle Name</label>
+                            <input type="text" class="form-control text-black" name="middle_name" placeholder="Enter Middle name" value="{{old('middle_name')}}">
+                            @error('middle_name')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="md-3">
+                            <label class="form-label">Home Address</label>
+                            <textarea class="form-control text-black" name="home_address" placeholder="Enter Home Address" value="{{old('home_address')}}"></textarea>
+                            @error('home_address')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="md-3">
+                            <label class="form-label">Contact Address</label>
+                            <input type="text" class="form-control text-black" name="contact_address" placeholder="Enter Contact Address" value="{{old('contact_address')}}">
+                            @error('contact_address')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="md-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="text" class="form-control text-black" name="email_address" placeholder="Enter Email Address" value="{{old('email_address')}}">
+                            @error('email_address')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="md-3">
+                            <label class="form-label">Detainee ID</label>
+                            <input type="text" class="form-control text-black" name="detainee_id" placeholder="Enter Detainee ID">
+                            @error('detainee_id')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="md-3">
+                        <label class="form-label">Gender</label>
+                        <select class="form-control" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        @error('gender')
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="md-3">
+                            <label class="form-label">Mother Name</label>
+                            <input type="text" class="form-control text-black" name="mother_name" placeholder="Enter Mother name" value="{{old('mother_name')}}">
+                            @error('mother_name')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="md-3">
+                            <label class="form-label">Father Name</label>
+                            <input type="text" class="form-control text-black" name="father_name" placeholder="Enter Father name" value="{{old('father_name')}}">
+                            @error('father_name')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="md-3">
+                            <label class="form-label">Spouse Name</label>
+                            <input type="text" class="form-control text-black" name="spouse_name" placeholder="Enter Spouse name if None leave blank" value="{{old('spouse_name')}}">
+                            @error('spouse_name')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <!-- FIX TO ADD PHOTOS -->
+                        <div class="md-3">
+                            <label class="form-label">Related photos</label>
+                            <input type="text" class="form-control text-black" name="related_photos" placeholder="Put related photos">
+                            @error('related_photos')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="md-3">
+                            <label class="form-label">Crime History</label>
+                            <input type="text" class="form-control text-black" name="crime_history" placeholder="Enter Crime History" value="{{old('crime_history')}}">
+                            @error('crime_history')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <!-- Make it related to time -->
+                        <div class="md-3">
+                            <label class="form-label">Max Detention Period</label>
+                            <input type="text" class="form-control text-black" name="max_detention_period" placeholder="Enter Crime History" value="{{old('max_detention_period')}}">
+                            @error('max_detention_period')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="md-3">
+                        <label class="form-label">Detention begin</label>
+                        <input type="date" class="form-control text-black" name="detention_begin" value="{{ old('detention_begin') }}">
+                        @error('detention_begin')
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="md-3">
+                            <label class="form-label">Medical Information</label>
+                            <input type="text" class="form-control text-black" name="medical_information" placeholder="Enter Medical Information" value="{{old('Medical Information')}}">
+                            @error('medical_information')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>  
+
+                        <div class="md-3">
+                            <label class="form-label">Emergency Contact Number</label>
+                            <input type="text" class="form-control text-black" name="emergency_contact_number" placeholder="Enter Emergency Contact Number" value="{{old('emergency_contact_number')}}">
+                            @error('emergency_contact_number')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="md-3">
+                            <label class="form-label">Emergency Contact Name</label>
+                            <input type="text" class="form-control text-black" name="emergency_contact_name" placeholder="Enter Emergency Contact Name" value="{{old('emergency_contact_name')}}">
+                            @error('emergency_contact_name')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add Detainee</button>
+                        <a href="{{url('detainee-list')}}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Back</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </x-app-layout>
