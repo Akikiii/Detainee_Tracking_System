@@ -373,10 +373,16 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-flow-col grid-cols-2 mt-[2.12rem]">
-                            <button class="buttonFormat col-end-4 w-[10.5rem] h-[2.5rem] bg-[#cccccc] font-bold">
+                        <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
+
+                            <button type="submit" class="buttonFormat col-end-4 w-[10.5rem] h-[2.5rem] bg-[#cccccc] font-bold">
                                 Add Detainee
                             </button>
+
+                            <a href="{{url('detainee-list')}}" class="buttonFormat bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                                Back
+                            </a>
+
                         </div>
 
                     </div>
