@@ -78,7 +78,7 @@
                 <div>
                     <h1 class="font-bold text-[1.625rem] mt-3.5">Detainee Tracker </h1>
                     <div class="sections ml-1">
-                        <a href="{{ url('detainee-list') }}" class="flex items-center gap-[0.5rem] mt-3">
+                        <a href="{{ url('add-detainee') }}" class="flex items-center gap-[0.5rem] mt-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="0 0 39 40" fill="none">
                                 <path d="M20.3125 33.3334H17.0625C10.9548 33.3334 7.90096 33.3334 5.86212 31.6819C5.53602 31.4177 5.23443 31.1267 4.9608 30.8119C3.25 28.8437 3.25 25.8959 3.25 20.0001C3.25 14.1043 3.25 11.1564 4.9608 9.18825C5.23443 8.87346 5.53602 8.58233 5.86212 8.3182C7.90096 6.66675 10.9548 6.66675 17.0625 6.66675H21.9375C28.0452 6.66675 31.0991 6.66675 33.1378 8.3182C33.4639 8.58233 33.7656 8.87346 34.0392 9.18825C35.489 10.856 35.7102 13.2274 35.744 17.5001" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M30.0625 33.3334V21.6667M24.375 27.5001H35.75" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
