@@ -68,6 +68,7 @@ class DetaineeProfileController extends Controller
         $detaineeDetails->save();
     
         return redirect()->back()->with("success", 'Detainee and Details Added Successfully');
+
     }
     
 
@@ -79,7 +80,7 @@ class DetaineeProfileController extends Controller
     
     public function updateDetainee(Request $request)
     {
-        dd($request->all());
+
         $combinedRules = [
             'first_name' => 'required',
             'last_name' => 'required',

@@ -23,17 +23,7 @@ class User extends Authenticatable
         'password',
         'office_address',
         'contact_number',
-        'gender',
-        'education_qualifications',
-        'practice_areas',
-        'work_experience',
-        'professional_affiliations',
-        'cases_handled',
-        'languages_spoken',
-        'office_hours_open',
-        'office_hours_close',
-
-        
+        'gender', 
     ];
 
     /**
@@ -55,4 +45,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+        public function userDetails()
+    {
+        return $this->hasOne(UserDetails::class);
+    }
+
 }

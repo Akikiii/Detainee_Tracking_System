@@ -45,25 +45,29 @@ Route::get('/', function () {
 });
 
 //Detainee List
-Route::get('detainee-list',[DetaineeProfileController::class, 'index']);
-Route::get('add-detainee',[DetaineeProfileController::class, 'addDetainee']);
-Route::post('save-detainee',[DetaineeProfileController::class, 'saveDetainee']); 
-Route::get('edit-detainee/{id}',[DetaineeProfileController::class, 'editDetainee']);
-Route::post('update-detainee',[DetaineeProfileController::class,'updateDetainee']);
-Route::get('delete-detainee/{id}',[DetaineeProfileController::class, 'deleteDetainee']);
-Route::get('assign-attorney/{id}',[DetaineeProfileController::class, 'viewDetails']);
+Route::controller(DetaineeProfileController::class)->group(function () {
+    Route::get('detainee-list', 'index');
+    Route::get('add-detainee', 'addDetainee');
+    Route::post('save-detainee', 'saveDetainee'); 
+    Route::get('edit-detainee/{id}', 'editDetainee');
+    Route::post('update-detainee','updateDetainee');
+    Route::get('delete-detainee/{id}', 'deleteDetainee');
+    Route::get('assign-attorney/{id}', 'viewDetails');
+});
 
 //Cases List
-Route::get('cases-list',[CasesController::class, 'getCases']);
-Route::get('add-cases/{id}',[CasesController::class, 'addCases']);
-Route::get('edit-cases/{id}', [CasesController::class, 'editCases']);   
-Route::post('update-cases', [CasesController::class, 'updateCases'])->name('update-cases');
-Route::post('save-cases', [CasesController::class, 'saveCases']); //Add Cases
-Route::get('live-cases/{id}', [CasesController::class, 'caseOverview'])->name('live-cases');
-Route::get('add-event/{case_id}', [EventController::class, 'addEventForm'])->name('add-event');
-Route::post('save-event/{case_id}', [EventController::class, 'saveEvent'])->name('save-event');
-Route::get('edit-event/{event_id}', [EventController::class, 'editEvent'])->name('edit-event');
-Route::get('delete-event/{event_id}', [EventController::class, 'deleteEvent'])->name('delete-event');
+Route::controller(CasesController::class)->group(function () {
+    Route::get('cases-list', 'getCases');
+    Route::get('add-cases/{id}', 'addCases');
+    Route::get('edit-cases/{id}', 'editCases');   
+    Route::post('update-cases', 'updateCases')->name('update-cases');
+    Route::post('save-cases', 'saveCases'); //Add Cases
+    Route::get('live-cases/{id}', 'caseOverview')->name('live-cases');
+    Route::get('add-event/{case_id}', 'addEventForm')->name('add-event');
+    Route::post('save-event/{case_id}', 'saveEvent')->name('save-event');
+    Route::get('edit-event/{event_id}', 'editEvent')->name('edit-event');
+    Route::get('delete-event/{event_id}', 'deleteEvent')->name('delete-event');
+});
 
 
 

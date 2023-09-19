@@ -55,7 +55,7 @@
                     </div>
 
                     <!-- Event Table -->
-                    <h2>Related Documents</h2>
+                    <h2>Litigation Process</h2>
                     <table class="table border">
                         <thead>
                             <tr>
@@ -66,7 +66,7 @@
                                 <th class="px-4 py-2">Related Entity</th>
                                 <th class="px-4 py-2">Event Location</th>
                                 <th class="px-4 py-2">Event Outcome</th>
-                                <th class="px-4 py-2">Event Notes</th>
+                                <th class="px-4 py-2">Additional Notes</th>
                                 <th class="px-4 py-2">Actions</th> <!-- Add this header for actions -->
                             </tr>
                         </thead>

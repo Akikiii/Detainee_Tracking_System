@@ -49,11 +49,11 @@
                                             @endif
                                         </td>
 
-                                        <td class="px-4 py-2">
+                                        <td class="flex flex-nowrap">
                                             @if ($Cases->status === 'Active')
-                                                <span class="bg-green-500 text-white px-2 py-1 rounded">Active</span>
+                                                <span class="bg-green-500">Active</span>
                                             @elseif ($Cases->status === 'Pending')
-                                                <span class="bg-orange-500 text-white px-2 py-1 rounded">Pending</span>
+                                                <span class="bg-orange-500">Pending</span>
                                             @elseif ($Cases->status === 'Finished')
                                                 <span class="bg-blue-500 text-white px-2 py-1 rounded">Finished</span>
                                             @else
