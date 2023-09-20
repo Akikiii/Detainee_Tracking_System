@@ -24,7 +24,7 @@ class DetaineeProfileController extends Controller
             'middle_name' => 'required',
             'email_address' => 'required|email',
             'home_address' => 'required',
-            'contact_address' => 'required',
+            'contact_number' => 'required',
             'detainee_id' => 'required',
             'gender' => 'required',
             'mother_name' => 'required',
@@ -47,7 +47,7 @@ class DetaineeProfileController extends Controller
         $detainee->last_name = $request->last_name;
         $detainee->middle_name = $request->middle_name;
         $detainee->home_address = $request->home_address;
-        $detainee->contact_address = $request->contact_address;
+        $detainee->contact_number = $request->contact_number;
         $detainee->email_address = $request->email_address;
         $detainee->save();
     
@@ -86,7 +86,7 @@ class DetaineeProfileController extends Controller
             'middle_name' => 'required',
             'email_address' => 'required|email',
             'home_address' => 'required',
-            'contact_address' => 'required',
+            'contact_number' => 'required',
             'detainee_id' => 'required',
             'gender' => 'required',
             'mother_name' => 'required',
@@ -112,7 +112,7 @@ class DetaineeProfileController extends Controller
             'middle_name' => $request->middle_name,
             'email_address' => $request->email_address,
             'home_address' => $request->home_address,
-            'contact_address' => $request->contact_address,
+            'contact_number' => $request->contact_number,
         ];
         Detainee::where('id', $id)->update($detainee);
     
