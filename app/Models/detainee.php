@@ -9,16 +9,6 @@ class Detainee extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'middle_name',
-        'home_address',
-        'contact_address',
-        'email_address',
-    ];
-
-    protected $guarded = [];
     public function detaineeDetails()
     {
         return $this->hasOne(DetaineeDetails::class);
@@ -27,6 +17,4 @@ class Detainee extends Model
     {
         return $this->hasMany(Cases::class);
     }
-
-
 }

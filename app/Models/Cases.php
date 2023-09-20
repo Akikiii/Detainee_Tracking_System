@@ -9,4 +9,5 @@ class Cases extends Model
 {
     use HasFactory;
     protected $fillable = ['case_name', 'violations', 'case_created', 'arrest_report', 'testimonies', 'status'];
+
 }

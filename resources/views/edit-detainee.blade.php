@@ -11,7 +11,6 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form method="POST" action="{{ route('save-event', ['case_id' => $case_id]) }}">
                         @csrf
-                        <input type="hidden">
                         <!-- Add the hidden input field for case_id -->
                         <input type="hidden" name="case_id" value="{{ $case_id }}">
                         <div class="md-3">
@@ -91,7 +90,7 @@
                         <a href="{{ url()->previous() }}" class="bg-red-600 hover:bg-red-400 text-black font-bold py-2 px-4 rounded">Back</a>
                     </div>
                 </div>
-            </div>n
+            </div>
         </div>
     </div>
 </x-app-layout>
