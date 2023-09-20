@@ -67,7 +67,7 @@
                 <div style="background-color:black; height: 65px; width: 65px; border-radius: 100%;"></div>
             </div>
             <div>
-                <h1 class="font-bold text-xl" style="text-transform: uppercase;">ATTY. {{ Auth::user()->name }}</h1>
+                <h1 class="font-bold text-xl" style="text-transform: uppercase;">ATTY. {{ Auth::user()->name }}</h1> <!-- -->
                 <h3 class="abc">CHIEF ATTORNEY</h3>
             </div>
             
