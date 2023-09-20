@@ -35,7 +35,7 @@
                                         <td class="px-4 py-2">{{ $counter-- }}</td>
                                         <td class="px-4 py-2">{{ $detainee->last_name . ', ' . $detainee->first_name . ' ' . $detainee->middle_name }}</td>
                                         <td class="px-4 py-2">{{ $detainee->email_address }}</td>
-                                        <td class="px-4 py-2">{{ $detainee->contact_address }}</td>
+                                        <td class="px-4 py-2">{{ $detainee->contact_number }}</td>
                                         <td class="px-4 py-2">{{ $detainee->home_address }}</td>
                                         <td class="px-4 py-2">
                                             <a href="{{ url('edit-detainee/'. $detainee->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Edit</a>
