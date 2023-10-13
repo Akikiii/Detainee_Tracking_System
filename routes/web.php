@@ -36,7 +36,8 @@ Route::get('/', function () {
     Route::get("add-detainee", function () {
         return view("add-detainee");
     })->name('detainee-list');
-    
+
+    Route::get('view-profile', [ProfileController::class, 'viewDetails'])->name('view.profile')->middleware('auth');
     
      //Add controller for admin 
     Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){

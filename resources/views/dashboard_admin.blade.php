@@ -162,11 +162,11 @@
                             </div>
                                     
                             <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{ route('profile.edit') }}">
+                                <a href="{{ route('view.profile') }}">
                                     <p class="text-gray-900">View Profile</p>
                                 </a>
                             </div>
-                        
+
                             <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
                                 <a href="{{url('cases-list')}}">
                                     <p class="text-gray-900">Case View</p>
