@@ -46,6 +46,7 @@ Route::get('/', function () {
 
 //Detainee List
 Route::get('detainee-list',[DetaineeProfileController::class, 'index']);
+Route::get('view-detainee/{id}', [DetaineeProfileController::class, 'viewdetails2'])->name('view-detainee');
 Route::get('add-detainee',[DetaineeProfileController::class, 'addDetainee']);
 Route::post('save-detainee',[DetaineeProfileController::class, 'saveDetainee']); 
 Route::get('edit-detainee/{id}',[DetaineeProfileController::class, 'editDetainee']);
