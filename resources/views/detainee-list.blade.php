@@ -44,7 +44,7 @@
                 <div>
                     <h1 class="font-bold text-[1.625rem] mt-3.5">My Profile </h1>
                     <div class="sections ml-1">
-                        <a href="{{ route('profile.edit') }}" class="flex items-center gap-[0.5rem] mt-3">
+                        <a href="{{ route('view.profile') }}" class="flex items-center gap-[0.5rem] mt-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="0 0 51 49" fill="none">
                                 <path d="M35.8017 4.02783V8.05561M25.2743 4.02783V8.05561M14.747 4.02783V8.05561" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M7.37787 20.139C7.37787 13.4935 7.37787 10.1707 9.53624 8.10625C11.6946 6.04175 15.1685 6.04175 22.1161 6.04175H28.4325C35.3801 6.04175 38.854 6.04175 41.0125 8.10625C43.1708 10.1707 43.1708 13.4935 43.1708 20.139V30.2084C43.1708 36.8539 43.1708 40.1766 41.0125 42.2412C38.854 44.3057 35.3801 44.3057 28.4325 44.3057H22.1161C15.1685 44.3057 11.6946 44.3057 9.53624 42.2412C7.37787 40.1766 7.37787 36.8539 7.37787 30.2084V20.139Z" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

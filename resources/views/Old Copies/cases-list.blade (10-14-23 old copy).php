@@ -212,13 +212,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex flex-col justify-center items-center">
-                                    <a href="{{ url('live-cases/'. $Cases->id) }}" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex-shrink" type="button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2.46-2.46a4.88 4.88 0 014.9-1.227m3.094.45a4.88 4.88 0 014.898 1.227L21 12M9 6a6 6 0 100 12 6 6 0 000-12z" />
-                                        </svg>
-                                    </a>
-                                </div>
                             </div>
                         @endforeach
                     </div>
