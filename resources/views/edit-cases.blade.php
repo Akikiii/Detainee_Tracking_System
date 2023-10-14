@@ -27,7 +27,7 @@
                         </div>
                         @enderror
 
-                         <div>
+                        <div>
                             <label class = 'form-label'>Violations</label>
                             <input type="text" class='form-control text-black' name='violations' placeholder='Violations' value="{{ $data->violations }}">
                             @error('violations')

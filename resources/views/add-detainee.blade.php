@@ -1,9 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+    
     <!-- Canvas -->
     <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
 
@@ -381,4 +377,5 @@
             </div>
         </div>
     </div>
+    
 </x-app-layout>

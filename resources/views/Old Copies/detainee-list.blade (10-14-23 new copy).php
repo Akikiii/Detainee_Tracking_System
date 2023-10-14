@@ -1,8 +1,13 @@
 <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
     <!-- Canvas -->
     <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
-        
+
         <!-- Sidebar -->
         <div class="col-start-1 mt-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-black pt-[1.44rem] pb-[3.72rem] px-[1rem]">
             <div class="flex flex-col justify-between h-full">
@@ -124,58 +129,74 @@
             </div>
         </div>
 
-        <!-- Dashboard -->
+        <!-- Detainee Masterlist -->
         <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-black rounded-md mt-[2.38rem]">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                <!-- class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" -->
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div>
+                <h1 class="text-[1.875rem] uppercase font-bold">View Detainee Masterlist</h1>
+                <hr class="mt-[1.94rem] mb-[2.31rem]"/>
 
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{ route('register.user') }}">
-                                    <p class="text-gray-900">Create Attorney Profile</p>
-                                </a>
-                            </div>
-
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{ url('detainee-list') }}">
-                                    <p class="text-gray-900">Assign Attorney</p>
-                                </a>
-                            </div>
-
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{ url('add-detainee') }}">
-                                    <p class="text-gray-900">Create Detainee Profile</p>
-                                </a>
-                            </div>
-                                
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{ url('detainee-list') }}">
-                                    <p class="text-gray-900">View Detainee List</p>
-                                </a>
-                            </div>
-                                    
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{ route('view.profile') }}">
-                                    <p class="text-gray-900">View Profile</p>
-                                </a>
-                            </div>
-
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{url('cases-list')}}">
-                                    <p class="text-gray-900">Case View</p>
-                                </a>
-                            </div>
-                            
+                <div class="grid gap-5">
+                    <div class="flex flex-col">
+                        <div class="grid grid-flow-col gap-10">
+                            <input
+                                type="text"
+                                class="pl-10 rounded-3xl w-[42.9375rem] py-4 px-3 font-bold leading-tight bg-gray-200 focus:outline-none searchBarPlaceHolder"
+                                placeholder="Search for a detainee (Enter detainee name)"
+                            />
                         </div>
                     </div>
+
+                    <div class="flex flex-col gap-4">
+                        <label class="form-label block labelname font-bold mb-2">Detainees</label>
+                        @php
+                            $counter = count($data);
+                        @endphp
+                        @foreach ($data as $detainee)
+                            <div class="flex space-x-4">
+                                <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
+                                    <div class="flex items-center">
+                                        <div style="background-color: black; height: 85px; width: 85px; border-radius: 100%;"></div>
+                                        <div class="ml-4">
+                                            <p class="text-left font-bold">{{ $detainee->last_name }}, {{ $detainee->first_name }} {{ $detainee->middle_name }}</p>
+                                            <p class="text-left">Age: {{ $detainee->age }} years old</p>
+                                            @if (isset($detainee->detaineeDetails))
+                                                <p class="text-left">Gender: {{ ucfirst($detainee->detaineeDetails->gender) }}</p>
+                                                <p class="text-left">Offense: {{ $detainee->detaineeDetails->crime_history }}</p>
+                                                <p class="text-left">Start of Detention: {{ $detainee->detaineeDetails->detention_begin }}</p>
+                                                <p class="text-left">Time Served: {{ $detainee->detaineeDetails->max_detention_period }} hours</p>
+                                            @else
+                                                <p class="text-left">Offense: N/A</p>
+                                                <p class="text-left">Start of Detention: N/A</p>
+                                                <p class="text-left">Time Served: N/A</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col justify-center items-center">
+                                    <a href="{{ route('view-detainee', ['id' => $detainee->id]) }}" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex-shrink" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2.46-2.46a4.88 4.88 0 014.9-1.227m3.094.45a4.88 4.88 0 014.898 1.227L21 12M9 6a6 6 0 100 12 6 6 0 000-12z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
+                        <a href="{{ url('add-detainee') }}" class="buttonFormat bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">ADD NEW DETAINEE</a>
+                        <a href="{{ url('edit-detainee/'. $detainee->id) }}" class="buttonFormat bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">EDIT</a>
+                        <a href="{{ url('delete-detainee/'. $detainee->id) }}" class="buttonFormat bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this detainee?')">DELETE</a> <!-- TEMPORARYY ONLY! TODO: Make confirmation box -->
+                        <a href="{{ url('assign-attorney/'. $detainee->id) }}" class="buttonFormat bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">ASSIGN ATTORNEY</a>
+                        <a href="{{ url('add-cases/'. $detainee->id) }}" class="buttonFormat bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">ASSIGN A CASE</a>
+                        <a href="{{url('detainee-list')}}" class="buttonFormat bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded">BACK</a>
+                    </div>
+
                 </div>
             </div>
+            
         </div>
 
-        
     </div>
 
-    
 </x-app-layout>

@@ -1,9 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
 
     <!-- Canvas -->
     <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
@@ -157,28 +152,36 @@
                                     <div class="flex items-center">
                                         <div style="background-color: black; height: 85px; width: 85px; border-radius: 100%;"></div>
                                         <div class="ml-4">
-                                            <p class="text-left font-bold">{{ $detainee->last_name }}, {{ $detainee->first_name }} {{ $detainee->middle_name }}</p>
-                                            <p class="text-left">Age: {{ $detainee->age }} years old</p>
+                                            <p class="text-left mb-2 font-bold">{{ $detainee->last_name }}, {{ $detainee->first_name }} {{ $detainee->middle_name }}</p>
+                                            <p class="text-left mb-2">Age: {{ $detainee->age }} years old</p>
                                             @if (isset($detainee->detaineeDetails))
-                                                <p class="text-left">Gender: {{ ucfirst($detainee->detaineeDetails->gender) }}</p>
-                                                <p class="text-left">Offense: {{ $detainee->detaineeDetails->crime_history }}</p>
-                                                <p class="text-left">Start of Detention: {{ $detainee->detaineeDetails->detention_begin }}</p>
-                                                <p class="text-left">Time Served: {{ $detainee->detaineeDetails->max_detention_period }} hours</p>
+                                                <p class="text-left mb-2">Gender: {{ ucfirst($detainee->detaineeDetails->gender) }}</p>
+                                                <p class="text-left mb-2">Offense: {{ $detainee->detaineeDetails->crime_history }}</p>
+                                                <p class="text-left mb-2">Start of Detention: {{ $detainee->detaineeDetails->detention_begin }}</p>
+                                                <p class="text-left mb-2">Time Served: {{ $detainee->detaineeDetails->max_detention_period }} hours</p>
                                             @else
-                                                <p class="text-left">Offense: N/A</p>
-                                                <p class="text-left">Start of Detention: N/A</p>
-                                                <p class="text-left">Time Served: N/A</p>
+                                                <p class="text-left mb-2">Offense: N/A</p>
+                                                <p class="text-left mb-2">Start of Detention: N/A</p>
+                                                <p class="text-left mb-2">Time Served: N/A</p>
                                             @endif
+                                            <!-- Assigned Attorney Label still not working -->
+                                            <p class="text-left mb-2">
+                                                Assigned Attorney: 
+                                                @if (isset($counsel_case_assignment) && optional($counsel_case_assignment)->assigned_by)
+                                                    <strong class="bg-green-500 text-white px-1 py-1 rounded">{{ $counsel_case_assignment->assigned_by }}</strong>
+                                                @else
+                                                    <strong class="bg-orange-500 text-white px-1 py-1 rounded">None</strong>
+                                                @endif
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex flex-col justify-center items-center">
-                                    <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex-shrink" type="button">
-                                    <a href="{{ route('view-detainee', ['id' => $detainee->id]) }}" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex-shrink">
+                                    <a href="{{ route('view-detainee', ['id' => $detainee->id]) }}" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex-shrink" type="button">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2.46-2.46a4.88 4.88 0 014.9-1.227m3.094.45a4.88 4.88 0 014.898 1.227L21 12M9 6a6 6 0 100 12 6 6 0 000-12z" />
                                         </svg>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         @endforeach

@@ -2,7 +2,7 @@
 
     <!-- Canvas -->
     <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
-        
+
         <!-- Sidebar -->
         <div class="col-start-1 mt-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-black pt-[1.44rem] pb-[3.72rem] px-[1rem]">
             <div class="flex flex-col justify-between h-full">
@@ -124,58 +124,70 @@
             </div>
         </div>
 
-        <!-- Dashboard -->
+        <!-- View Detainee Profile -->
         <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-black rounded-md mt-[2.38rem]">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                <!-- class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" -->
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div>
+                <h1 class="text-[1.875rem] uppercase font-bold">View Detainee Profile</h1>
+                <hr class="mt-[1.94rem] mb-[2.31rem]"/>
 
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{ route('register.user') }}">
-                                    <p class="text-gray-900">Create Attorney Profile</p>
-                                </a>
-                            </div>
-
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{ url('detainee-list') }}">
-                                    <p class="text-gray-900">Assign Attorney</p>
-                                </a>
-                            </div>
-
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{ url('add-detainee') }}">
-                                    <p class="text-gray-900">Create Detainee Profile</p>
-                                </a>
-                            </div>
-                                
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{ url('detainee-list') }}">
-                                    <p class="text-gray-900">View Detainee List</p>
-                                </a>
-                            </div>
-                                    
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{ route('view.profile') }}">
-                                    <p class="text-gray-900">View Profile</p>
-                                </a>
-                            </div>
-
-                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{url('cases-list')}}">
-                                    <p class="text-gray-900">Case View</p>
-                                </a>
-                            </div>
-                            
+                <div class="grid gap-5">
+                    <div class="flex flex-col">
+                        <div class="grid grid-flow-col gap-10">
+                            <input
+                                type="text"
+                                class="pl-10 rounded-3xl w-[42.9375rem] py-4 px-3 font-bold leading-tight bg-gray-200 focus:outline-none searchBarPlaceHolder"
+                                placeholder="Search for a detainee (Enter detainee name)"
+                            />
                         </div>
                     </div>
+
+                    <div class="flex flex-col gap-4">
+                        <label class="form-label block labelname font-bold mb-2">Detainees</label>
+                        <div class="flex space-x-4">
+                            <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
+                                <div class="ml-4 flex">
+                                    <div style="background-color: black; height: 125px; width: 125px; border-radius: 100%; margin-top: 10px;"></div>
+                                    <div class="ml-10">
+                                        <p class="text-left mt-3 mb-3 font-bold">{{ $detainee->last_name }}, {{ $detainee->first_name }} {{ $detainee->middle_name }}</p>
+                                        <p class="text-left mb-3">Detainee ID: {{ $detainee['detainee_id'] }}</p>
+                                        <p class="text-left mb-3">Age: {{ $detainee->age }} years old</p>
+                                        @if (isset($detainee->detaineeDetails))
+                                            <p class="text-left mb-3">Gender: {{ ucfirst($detainee->detaineeDetails->gender) }}</p>
+                                            <p class="text-left mb-3">Offense: {{ $detainee->detaineeDetails->crime_history }}</p>
+                                            <p class="text-left mb-3">Start of Detention: {{ $detainee->detaineeDetails->detention_begin }}</p>
+                                            <p class="text-left mb-3">Time Served: {{ $detainee->detaineeDetails->max_detention_period }} hours</p>
+                                        @else
+                                            <p class="text-left mb-3">Offense: N/A</p>
+                                            <p class="text-left mb-3">Start of Detention: N/A</p>
+                                            <p class="text-left mb-3">Time Served: N/A</p>
+                                        @endif
+                                        <p class="text-left mb-3">Email Address: {{ $detainee['email_address'] }}</p>
+                                        <p class="text-left mb-3">Home Address: {{ $detainee['home_address'] }}</p>
+                                        <p class="text-left mb-3">Mother's Name: {{ $detainee->detaineeDetails->mother_name }}</p>
+                                        <p class="text-left mb-3">Faher's Name: {{ $detainee->detaineeDetails->father_name}}</p>
+                                        <p class="text-left mb-3">Spouse's Name: {{ $detainee->detaineeDetails->spouse_name}}</p>
+                                        <p class="text-left mb-3">Emergency Contact's Name: {{ $detainee->detaineeDetails->emergency_contact_name }}</p>
+                                        <p class="text-left mb-3">Emergency Contact's Number: {{ $detainee->detaineeDetails->emergency_contact_number }}</p>
+                                        <p class="text-left mb-3">Medical Information: {{ $detainee->detaineeDetails->medical_information }}</p>
+                                        <p class="text-left mb-3">Related Photos: {{ $detainee->detaineeDetails->related_photos}}</p>
+                                        <p class="text-left mb-10">Assigned Attorney: <strong>None</strong></p> <!-- Insert Assign Attorney Data -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
+                        <a href="{{url('detainee-list')}}" class="buttonFormat bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded">BACK</a>
+                    </div>
+
                 </div>
             </div>
+            
         </div>
 
-        
     </div>
-
     
+</div>
+
 </x-app-layout>
