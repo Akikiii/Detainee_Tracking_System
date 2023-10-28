@@ -46,23 +46,17 @@ class DetaineeProfileController extends Controller
 
         $request->validate($combinedRules);
     
-        // Save Detainee data
-        $detainee = new Detainee();
-        $detainee->first_name = $request->first_name;
-        $detainee->last_name = $request->last_name;
-        $detainee->middle_name = $request->middle_name;
-        $detainee->home_address = $request->home_address;
-        $detainee->contact_number = $request->contact_number;
-        $detainee->email_address = $request->email_address;
-        $detainee->save();
-    
-        // Save Detainee Details data
         $detaineeDetails = new DetaineeDetails();
         $detaineeDetails->detainee_id = $request->detainee_id;
         $detaineeDetails->gender = $request->gender;
         $detaineeDetails->mother_name = $request->mother_name;
         $detaineeDetails->father_name = $request->father_name;
-        $detaineeDetails->spouse_name = $request->spouse_name;
+        
+        // Check if 'spouse_name' is provided in the request before assigning it
+        if ($request->has('spouse_name')) {
+            $detaineeDetails->spouse_name = $request->spouse_name;
+        }
+        
         $detaineeDetails->related_photos = $request->related_photos;
         $detaineeDetails->crime_history = $request->crime_history;
         $detaineeDetails->max_detention_period = $request->max_detention_period;
@@ -71,7 +65,7 @@ class DetaineeProfileController extends Controller
         $detaineeDetails->emergency_contact_number = $request->emergency_contact_number;
         $detaineeDetails->emergency_contact_name = $request->emergency_contact_name;
         $detaineeDetails->save();
-    
+        
         return redirect()->back()->with("success", 'Detainee and Details Added Successfully');
     }
     

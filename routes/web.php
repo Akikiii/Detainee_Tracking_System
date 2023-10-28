@@ -6,6 +6,7 @@ use App\Http\Controllers\DetaineeProfileController;
 use App\Http\Controllers\CasesController;
 use App\Http\Controllers\CounselCaseController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -74,9 +75,17 @@ Route::post('assign-attorney', [CounselCaseController::class, 'assignAttorney'])
 Route::get('/remove-assignment/{detainee_id}', [CounselCaseController::class, 'removeAssigned'])->name('remove-assignment');
 
 
+//Team List
+Route::get('view-teams',[TeamController::class,'index']);
+Route::get('/create-team-form', [TeamController::class, 'CreateTeam'])->name('create-team-form');
+Route::post('/save-team', [TeamController::class, 'saveTeam'])->name('save-team');
+Route::get('/teams/{team}/members', [TeamController::class, 'viewTeamMembers'])->name('teams.members.index');
 
 
-Route::get('/dashboard', function () {
+
+
+
+Route::get('/dashboard',    function () {
     return view('dashboard_admin');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
