@@ -78,8 +78,10 @@ Route::get('/remove-assignment/{detainee_id}', [CounselCaseController::class, 'r
 //Team List
 Route::get('view-teams',[TeamController::class,'index']);
 Route::get('/create-team-form', [TeamController::class, 'CreateTeam'])->name('create-team-form');
-Route::post('/save-team', [TeamController::class, 'saveTeam'])->name('save-team');
-Route::get('/teams/{team}/members', [TeamController::class, 'viewTeamMembers'])->name('teams.members.index');
+Route::post('save-cases', [TeamController::class, 'saveTeam']);
+Route::get('/view-team-members/{id}', [TeamController::class , 'viewTeamMembers'])->name('view-team-members');
+
+Route::post('/add-member', [TeamController::class, 'addMember'])->name('add-member');
 
 
 

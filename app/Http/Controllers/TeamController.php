@@ -19,9 +19,8 @@ class TeamController extends Controller
     public function viewTeamMembers($id)
     {   
         $team = Team::find($id);
-        $members = $team->members;
     
-        return view('view-team-members', compact('team', 'members'));
+        return view('view-team-members', compact('team'));
     }
     
 
@@ -29,7 +28,6 @@ class TeamController extends Controller
     public function addMember()
     {
         $users = User::all();
-
         return view('add-member', ['users' => $users]);
     }
 

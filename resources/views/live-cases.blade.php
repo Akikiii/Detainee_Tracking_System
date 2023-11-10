@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
-                        <a href="{{ route('add-event', ['case_id' => $case->id]) }}" class="buttonFormat bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">ADD EVENT</a>
+                        <a href="{{ route('add-event', ['case_id' => $case->case_id]) }}" class="buttonFormat bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">ADD EVENT</a>
                         <a href="{{url('cases-list')}}" class="buttonFormat bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">BACK TO CASES LIST</a>
                     </div>
 

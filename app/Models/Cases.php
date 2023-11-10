@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cases extends Model
 {
     use HasFactory;
-    protected $fillable = ['case_name', 'violations', 'case_created', 'arrest_report', 'testimonies', 'status'];
+    protected $primaryKey = 'case_id';
+    protected $fillable = ['case_id','case_name', 'violations', 'case_created', 'arrest_report', 'testimonies', 'status'];
 
 }

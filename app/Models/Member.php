@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 // Member.php
 class Member extends Model
 {
-    protected $fillable = ['user_id']; 
 
-    public function user()
+    public function team()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Team::class);
     }
 }
 

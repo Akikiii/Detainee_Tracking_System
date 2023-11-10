@@ -12,7 +12,7 @@ class CreateCasesTable extends Migration
     public function up(): void
     {
         Schema::create('cases', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('case_id')->index();
             $table->string('case_name');
             $table->string('violations');
             $table->string('case_created');

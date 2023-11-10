@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detainee_details', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('detainee_id');
             $table->string('gender');
             $table->string('mother_name');
@@ -29,7 +28,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Foreign Key 
-            $table->foreign('detainee_id')->references('id')->on('detainees')->onDelete('cascade');
+            $table->foreign('detainee_id')->references('detainee_id')->on('detainees')->onDelete('cascade');
         });
     }
 

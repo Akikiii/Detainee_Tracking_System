@@ -27,7 +27,7 @@ class CasesController extends Controller
     public function saveCases(Request $request){
 
         $combinedRules =[
-            //'case_id' => 'required',
+            'case_id' => 'required',
             'case_name' => 'required',
             'violations' => 'required',
             'case_created' => 'required',
@@ -41,7 +41,7 @@ class CasesController extends Controller
         $status = $request->status ?? 'Active';
         //Save Case Data
         $cases = new Cases();
-        //$cases->case_id = $request->case_id;
+        $cases->case_id = $request->case_id;
         $cases->case_name = $request->case_name; 
         $cases->violations = $request->violations;
         $cases->case_created = $request->case_created;
@@ -53,13 +53,13 @@ class CasesController extends Controller
     }
 
     public function editCases($id){
-        $data = Cases::where('id','=',$id)->first();
+        $data = Cases::where('case_id','=',$id)->first();
         return view('edit-cases',compact('data'));
     }
 
     public function updateCases(Request $request){
         $combinedRules =[
-            //'case_id' => 'required',
+            'case_id' => 'required',
             'case_name' => 'required',
             'violations' => 'required',
             'case_created' => 'required',
@@ -72,7 +72,7 @@ class CasesController extends Controller
         $id = $request->id;
 
         $cases = [
-            //'case_id' => $request->case_id,
+            'case_id' => $request->case_id,
             'case_name' => $request->case_name,
             'violations' => $request->violations,
             'case_created' => $request->case_created,
@@ -80,14 +80,14 @@ class CasesController extends Controller
             'testimonies' => $request->testimonies,
             'status' => $request->status,
         ];
-        Cases::where('id',$id)->update($cases);
+        Cases::where('case_id',$id)->update($cases);
 
         return redirect()->back()->with('success', 'Case Successfully updated!');
     }
 
 
     public function deleteCases($id){
-        Cases::where('id','=',$id)->delete();
+        Cases::where('case_id','=',$id)->delete();
         return redirect()->back()->with('success','Cases Deleted Successfully');
     }
 
