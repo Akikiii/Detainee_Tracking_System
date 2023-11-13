@@ -71,18 +71,19 @@ Route::get('delete-event/{event_id}', [EventController::class, 'deleteEvent'])->
 
 
 //Assigned Case
-Route::post('assign-attorney', [CounselCaseController::class, 'assignAttorney'])->name('assign-attorney');
+Route::post('assign-attorney/{detainee}', [CounselCaseController::class, 'assignAttorney'])->name('assign-attorney');
 Route::get('/remove-assignment/{detainee_id}', [CounselCaseController::class, 'removeAssigned'])->name('remove-assignment');
 
 
 //Team List
 Route::get('view-teams',[TeamController::class,'index']);
 Route::get('/create-team-form', [TeamController::class, 'CreateTeam'])->name('create-team-form');
-Route::post('save-cases', [TeamController::class, 'saveTeam']);
+Route::post('/save-team', [TeamController::class, 'saveTeam'])->name('saveTeam');
 Route::get('/view-team-members/{id}', [TeamController::class , 'viewTeamMembers'])->name('view-team-members');
 
 Route::post('/add-member', [TeamController::class, 'addMember'])->name('add-member');
-
+Route::post('/save-new-member', [TeamController::class, 'saveNewMember'])->name('save-new-member');
+    
 
 
 

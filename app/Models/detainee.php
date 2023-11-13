@@ -8,13 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Detainee extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'detainee_id';
+
 
     public function detaineeDetails()
     {
-        return $this->hasOne(DetaineeDetails::class);
+        return $this->hasOne(DetaineeDetails::class, 'detainee_id');
     }
     public function cases()
     {
         return $this->hasMany(Cases::class);
     }
+    public function counselCaseAssignment()
+    {
+        return $this->hasOne(Counsel_Case_Assignment::class, 'detainee_id', 'detainee_id');
+    }
+
 }

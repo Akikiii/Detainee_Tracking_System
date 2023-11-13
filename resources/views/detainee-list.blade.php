@@ -51,8 +51,8 @@
                                             <!-- Assigned Attorney Label still not working -->
                                             <p class="text-left mb-2">
                                                 Assigned Attorney: 
-                                                @if (isset($counsel_case_assignment) && optional($counsel_case_assignment)->assigned_by)
-                                                    <strong class="bg-green-500 text-white px-1 py-1 rounded">{{ $counsel_case_assignment->assigned_by }}</strong>
+                                                @if (optional($detainee->counselCaseAssignment)->assigned_by)
+                                                    <strong class="bg-green-500 text-white px-1 py-1 rounded">{{ $detainee->counselCaseAssignment->assigned_by }}</strong>
                                                 @else
                                                     <strong class="bg-orange-500 text-white px-1 py-1 rounded">None</strong>
                                                 @endif

@@ -10,9 +10,10 @@ use App\Models\Counsel_Case_Assignment;
 class DetaineeProfileController extends Controller
 {
     public function index(){
-        $data = Detainee::get();
-        return view('detainee-list',compact('data'));
+        $data = Detainee::with('counselCaseAssignment')->get();
+        return view('detainee-list', compact('data'));
     }
+    
     public function addDetainee(){
         return view('add-detainee');
     }

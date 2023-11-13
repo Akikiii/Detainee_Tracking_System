@@ -15,3 +15,18 @@
         </div>
     </div>
 </x-app-layout>
+
+                                        <!-- detainee list-->
+                                            <p class="text-left mb-2">
+                                                Assigned Attorney: 
+                                                @if (optional($detainee->counselCaseAssignment)->assigned_by)
+                                                    <strong class="bg-green-500 text-white px-1 py-1 rounded">{{ $detainee->counselCaseAssignment->assigned_by }}</strong>
+                                                @else
+                                                    <strong class="bg-orange-500 text-white px-1 py-1 rounded">None</strong>
+                                                @endif
+                                            </p>
+
+                                        <!-- create-team -->
+                                        <form action="{{ route('saveTeam') }}" method="post"> 
+
+                                        <a href="{{ url('view-teams') }}" class="buttonFormat border-2 border-[#F8861E] bg-rgba(165, 42, 42, 0) hover:bg-[#F8861E] text-[#F8861E] hover:text-black font-bold py-2 px-4">BACK TO TEAM LIST</a>

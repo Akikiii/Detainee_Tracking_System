@@ -27,7 +27,7 @@
                     </div>
                     @endif
 
-                    <form method="POST" action="{{url('save-cases')}}">
+                    <form action="{{ route('saveTeam') }}" method="post"> t"> 
                         @csrf
 
                         <div class="grid grid-flow-row col-2 gap-10">
@@ -103,7 +103,7 @@
 
                         <div class="flex flex-row justify-end gap-2.5 mt-10">
                             <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD TEAM</button>
-                            <a href="{{ url('team-list') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO TEAM LIST</a>
+                            <a href="{{ url('view-teams') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO TEAM LIST</a>
                         </div>
                     </form>
                     

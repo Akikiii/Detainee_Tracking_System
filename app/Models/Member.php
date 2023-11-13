@@ -1,13 +1,19 @@
 <?php
 
+// Member.php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-// Member.php
 class Member extends Model
 {
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'user_id',
+    ];
 
     public function team()
     {

@@ -23,7 +23,27 @@ class TeamController extends Controller
         return view('view-team-members', compact('team'));
     }
     
-
+    public function saveNewMember(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'selected_user' => 'required|exists:users,id',
+        ]);
+    
+        // Get the selected user
+        $selectedUserId = $request->input('selected_user');
+        $user = User::find($selectedUserId);
+    
+        // Create a new member record
+        Member::create([
+            'user_id' => $user->id,
+            'name' => $user->name,
+        ]);
+    
+        return redirect()->back()->with('success', 'Selected user added successfully');
+    }
+        
+    
 
     public function addMember()
     {

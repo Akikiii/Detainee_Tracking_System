@@ -11,7 +11,7 @@ class DetaineeDetails extends Model
 
     public function detainee()
     {
-        return $this->belongsTo(Detainee::class);
+        return $this->belongsTo(Detainee::class, 'detainee_id');
     }
 }
 
