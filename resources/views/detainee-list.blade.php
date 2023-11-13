@@ -25,13 +25,13 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-4" >
                         <label class="form-label block labelname font-bold mb-2">Detainees</label>
                         @php
                             $counter = count($data);
                         @endphp
                         @foreach ($data as $detainee)
-                            <div class="flex space-x-4">
+                            <div class="flex space-x-4" onclick="selectCard(this)">
                                 <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
                                     <div class="flex items-center">
                                         <div style="background-color: black; height: 85px; width: 85px; border-radius: 100%;"></div>
@@ -60,23 +60,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex flex-col justify-center items-center">
+                                <!-- <div class="flex flex-col justify-center items-center">
                                     <a href="{{ route('view-detainee', ['id' => $detainee->detainee_id]) }}" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex-shrink" type="button">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2.46-2.46a4.88 4.88 0 014.9-1.227m3.094.45a4.88 4.88 0 014.898 1.227L21 12M9 6a6 6 0 100 12 6 6 0 000-12z" />
                                         </svg>
                                     </a>
-                                </div>
+                                </div> -->
                             </div>
                         @endforeach
                     </div>
 
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
                         <a href="{{ url('add-detainee') }}" class="buttonFormat bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">ADD NEW DETAINEE</a>
-                        <a href="{{ url('edit-detainee/'. $detainee->id) }}" class="buttonFormat bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">EDIT</a>
-                        <a href="{{ url('delete-detainee/'. $detainee->id) }}" class="buttonFormat bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this detainee?')">DELETE</a> <!-- TEMPORARYY ONLY! TODO: Make confirmation box -->
-                        <a href="{{ url('assign-attorney/'. $detainee->id) }}" class="buttonFormat bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">ASSIGN ATTORNEY</a>
-                        <a href="{{ url('add-cases/'. $detainee->id) }}" class="buttonFormat bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">ASSIGN A CASE</a>
+                        <a id="editLink" href="{{ url('edit-detainee/') }}" class="buttonFormat bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">EDIT</a>
+                        <a id="deleteLink" href="{{ url('delete-detainee/') }}" class="buttonFormat bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this detainee?')">DELETE</a>
+                        <a id="assignAttorneyLink" href="{{ url('assign-attorney/') }}" class="buttonFormat bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">ASSIGN ATTORNEY</a>
+                        <a id="assignCaseLink" href="{{ url('add-cases/') }}" class="buttonFormat bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">ASSIGN A CASE</a>
                         <a href="{{url('detainee-list')}}" class="buttonFormat bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded">BACK</a>
                     </div>
 
@@ -86,5 +86,29 @@
         </div>
 
     </div>
+
+    <script>
+        function selectCard(clickedElement, detaineeId) {
+            // Remove 'selected' class from all other cards
+            var allCards = document.querySelectorAll('.flex.space-x-4');
+            allCards.forEach(function(card) {
+                if (card !== clickedElement) {
+                    card.classList.remove('selected');
+                }
+            });
+
+            // Add 'selected' class to the clicked card
+            clickedElement.classList.toggle('selected');
+
+            // Update the links with the selected detainee ID
+            document.getElementById('editLink').href = "{{ url('edit-detainee') }}/" + {{ $detainee->detainee_id }};
+            document.getElementById('deleteLink').href = "{{ url('delete-detainee') }}/" + {{ $detainee->detainee_id }}
+            document.getElementById('assignAttorneyLink').href = "{{ url('assign-attorney') }}/" + {{ $detainee->detainee_id }};
+            document.getElementById('assignCaseLink').href = "{{ url('add-cases') }}/" + {{ $detainee->detainee_id }};
+
+            // You can also perform other actions here based on the selection
+            // For example, update a variable or send an AJAX request
+        }
+    </script>
 
 </x-app-layout>
