@@ -9,10 +9,10 @@
         </div>
 
         <!-- Detainee Masterlist -->
-        <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-black rounded-md mt-[2.38rem]">
+        <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-2 border-black mt-[2.38rem]" style="background-image: url('logos/background-with-grid-bw.png'); background-size: contain;">
             <div>
-                <h1 class="text-[1.875rem] uppercase font-bold">View Detainee Masterlist</h1>
-                <hr class="mt-[1.94rem] mb-[2.31rem]"/>
+                <h1 class="text-[1.875rem] uppercase font-bold ibm-plex-mono" style="color: black; text-shadow: 0 0 2px #888888;">View Detainee Masterlist</h1>
+                <img class="mt-[1.94rem] mb-[2.31rem]" src="{{ asset('logos/line-bw.png') }}" alt="TVA Line" style="height: 10px;">
 
                 <div class="grid gap-5">
                     <div class="flex flex-col">
@@ -31,7 +31,8 @@
                             $counter = count($data);
                         @endphp
                         @foreach ($data as $detainee)
-                            <div class="flex space-x-4" onclick="selectCard(this)">
+                            <div class="flex space-x-4" onclick="selectCard(this, id)">
+                                id = {{ $detainee->detainee_id }}>
                                 <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
                                     <div class="flex items-center">
                                         <div style="background-color: black; height: 85px; width: 85px; border-radius: 100%;"></div>
@@ -72,12 +73,12 @@
                     </div>
 
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
-                        <a href="{{ url('add-detainee') }}" class="buttonFormat bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">ADD NEW DETAINEE</a>
-                        <a id="editLink" href="{{ url('edit-detainee/') }}" class="buttonFormat bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">EDIT</a>
-                        <a id="deleteLink" href="{{ url('delete-detainee/') }}" class="buttonFormat bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this detainee?')">DELETE</a>
-                        <a id="assignAttorneyLink" href="{{ url('assign-attorney/') }}" class="buttonFormat bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">ASSIGN ATTORNEY</a>
-                        <a id="assignCaseLink" href="{{ url('add-cases/') }}" class="buttonFormat bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">ASSIGN A CASE</a>
-                        <a href="{{url('detainee-list')}}" class="buttonFormat bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded">BACK</a>
+                        <a href="{{ url('add-detainee') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD NEW DETAINEE</a>
+                        <a href="{{ url('edit-detainee/'.$detainee->detainee_id) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">EDIT</a>
+                        <a href="{{ url('delete-detainee/'.$detainee->detainee_id) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4" onclick="return confirm('Are you sure you want to delete this detainee?')">DELETE</a>
+                        <a href="{{ url('assign-attorney/'.$detainee->detainee_id) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ASSIGN ATTORNEY</a>
+                        <a href="{{ url('add-cases/'.$detainee->detainee_id) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ASSIGN A CASE</a>
+                        <a href="{{ url('detainee-list')}}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK</a>
                     </div>
 
                 </div>
@@ -88,6 +89,8 @@
     </div>
 
     <script>
+        var selectedDetaineeId = null;
+
         function selectCard(clickedElement, detaineeId) {
             // Remove 'selected' class from all other cards
             var allCards = document.querySelectorAll('.flex.space-x-4');
@@ -101,10 +104,10 @@
             clickedElement.classList.toggle('selected');
 
             // Update the links with the selected detainee ID
-            document.getElementById('editLink').href = "{{ url('edit-detainee') }}/" + {{ $detainee->detainee_id }};
-            document.getElementById('deleteLink').href = "{{ url('delete-detainee') }}/" + {{ $detainee->detainee_id }}
-            document.getElementById('assignAttorneyLink').href = "{{ url('assign-attorney') }}/" + {{ $detainee->detainee_id }};
-            document.getElementById('assignCaseLink').href = "{{ url('add-cases') }}/" + {{ $detainee->detainee_id }};
+            document.getElementById('editLink').href = "{{ url('edit-detainee') }}/" + detaineeId;
+            document.getElementById('deleteLink').href = "{{ url('delete-detainee') }}/" + detaineeId;
+            document.getElementById('assignAttorneyLink').href = "{{ url('assign-attorney') }}/" + detaineeId;
+            document.getElementById('assignCaseLink').href = "{{ url('add-cases') }}/" + detaineeId;
 
             // You can also perform other actions here based on the selection
             // For example, update a variable or send an AJAX request

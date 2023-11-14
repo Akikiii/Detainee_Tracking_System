@@ -27,7 +27,7 @@
                     </div>
                     @endif
 
-                    <form action="{{ route('saveTeam') }}" method="post"> t"> 
+                    <form action="{{ route('saveTeam') }}" method="post">
                         @csrf
 
                         <div class="grid grid-flow-row col-2 gap-10">

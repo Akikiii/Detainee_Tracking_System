@@ -9,10 +9,10 @@
         </div>
 
         <!-- View Detainee Profile -->
-        <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-black rounded-md mt-[2.38rem]">
+        <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-2 border-black mt-[2.38rem]" style="background-image: url('logos/background-with-grid-bw.png'); background-size: contain;">
             <div>
-                <h1 class="text-[1.875rem] uppercase font-bold">View Detainee Profile</h1>
-                <hr class="mt-[1.94rem] mb-[2.31rem]"/>
+                <h1 class="text-[1.875rem] uppercase font-bold ibm-plex-mono" style="color: black; text-shadow: 0 0 2px #888888;">View Detainee Profile</h1>
+                <img class="mt-[1.94rem] mb-[2.31rem]" src="{{ asset('logos/line-bw.png') }}" alt="TVA Line" style="height: 10px;">
 
                 <div class="grid gap-5">
 
@@ -67,12 +67,12 @@
                                     onclick="return confirm('Are you sure you want to remove your assignment?')">REMOVE ASSIGNED ATTY TO DETAINEE
                                 </a>
                             @else
-                                <button type="submit" class="buttonFormat bg-[#D0B638] hover:bg-yellow-400 font-bold py-3 px-6 rounded">
+                                <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">
                                     ASSIGN ATTORNEY TO DETAINEE
                                 </button>
                             @endif
                         </form>
-                        <a href="{{url('detainee-list')}}" class="buttonFormat bg-[#CCCCCC] hover:bg-[#777777] font-bold py-3 px-4 rounded">BACK</a>
+                        <a href="{{url('detainee-list')}}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK</a>
                     </div>
 
                 </div>

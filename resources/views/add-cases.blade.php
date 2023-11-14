@@ -9,10 +9,10 @@
         </div>
 
         <!-- Add Cases -->
-        <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-black rounded-md mt-[2.38rem]">
+        <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-2 border-black mt-[2.38rem]" style="background-image: url('logos/background-with-grid-bw.png'); background-size: contain;">
             <div>
-                <h1 class="text-[1.875rem] uppercase font-bold">ADD CASES</h1>
-                <hr class="mt-[1.94rem] mb-[2.31rem]"/>
+                <h1 class="text-[1.875rem] uppercase font-bold ibm-plex-mono" style="color: black; text-shadow: 0 0 2px #888888;">ADD CASES</h1>
+                <img class="mt-[1.94rem] mb-[2.31rem]" src="{{ asset('logos/line-bw.png') }}" alt="TVA Line" style="height: 10px;">
                 <div class="grid gap-5">
                     
                     <!-- Triggers when user successfully added a detainee -->
@@ -110,9 +110,9 @@
                         </div>
 
                         <div class="flex flex-row justify-end gap-2.5 mt-10">
-                            <button type="submit" class="buttonFormat bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-5 rounded">ADD CASE TO DETAINEE</button>
-                            <a href="{{url('detainee-list')}}" class="buttonFormat bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-5 rounded">BACK TO DETAINEE LIST</a>
-                            <a href="{{url('cases-list')}}" class="buttonFormat bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-5 rounded">BACK TO CASES LIST</a>
+                            <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD CASE TO DETAINEE</button>
+                            <a href="{{url('detainee-list')}}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO DETAINEE LIST</a>
+                            <a href="{{url('cases-list')}}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO CASES LIST</a>
                         </div>
                     </form>
                     
