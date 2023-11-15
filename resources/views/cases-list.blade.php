@@ -61,13 +61,15 @@
                         </div>
                     </div>
 
+                    <div id="selectedCaseID"></div>
+
                     <div class="flex flex-col gap-4">
                         <label class="form-label block labelname font-bold mb-2">Cases</label>
                         @php
                             $counter = count($data);
                         @endphp
                         @foreach ($data as $key => $Cases)
-                            <div class="flex space-x-4" onclick="selectCard(this)">
+                            <div class="flex space-x-4" onclick="selectedCase(this, {{ $Cases->case_id }})">
                                 <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
                                     <div class="flex justify-between items-center">
                                         <div>
@@ -96,21 +98,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex flex-col justify-center items-center">
-                                    <a href="{{ url('live-cases/'. $Cases->id) }}" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex-shrink" type="button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2.46-2.46a4.88 4.88 0 014.9-1.227m3.094.45a4.88 4.88 0 014.898 1.227L21 12M9 6a6 6 0 100 12 6 6 0 000-12z" />
-                                        </svg>
-                                    </a>
-                                </div>
                             </div>
                         @endforeach
                     </div>
 
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
-                        <a href="{{ url('live-cases/'. $Cases->id) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">CASE OVERVIEW</a>
-                        <a href="{{ url('edit-cases/'. $Cases->id) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">UPDATE</a>
-                        <a href="{{ url('delete-cases/'. $Cases->id) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">DELETE</a>
+                        <a href="{{ url('live-cases', ['id' => 'case_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">CASE OVERVIEW</a>
+                        <a href="{{ url('edit-cases', ['id' => 'case_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">UPDATE</a>
+                        <a href="{{ url('delete-cases', ['id' => 'case_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">DELETE</a>
                     </div>
 
                 </div>
@@ -120,8 +115,9 @@
     </div>
 
     <script>
-        function selectCard(clickedElement, caseId) {
-            // Remove 'selected' class from all other cards
+
+        function selectedCase (clickedElement, caseID) {
+
             var allCards = document.querySelectorAll('.flex.space-x-4');
             allCards.forEach(function(card) {
                 if (card !== clickedElement) {
@@ -129,18 +125,27 @@
                 }
             });
 
-            // Add 'selected' class to the clicked card
             clickedElement.classList.toggle('selected');
 
-            // Update the links with the selected detainee ID
-            document.getElementById('editLink').href = "{{ url('edit-detainee') }}/" + {{ $Cases->case_id }};
-            document.getElementById('deleteLink').href = "{{ url('delete-detainee') }}/" + {{ $Cases->case_id }};
-            document.getElementById('assignAttorneyLink').href = "{{ url('assign-attorney') }}/" + {{ $Cases->case_id }};
-            document.getElementById('assignCaseLink').href = "{{ url('add-cases') }}/" + {{ $Cases->case_id }};
+            var caseOverviewButton = document.querySelector('a[href*="live-cases"]');
+            if (caseOverviewButton) {
+                caseOverviewButton.href = caseID ? caseOverviewButton.href.replace('case_id_placeholder', caseID) : 'javascript:void(0);';
+            }
 
-            // You can also perform other actions here based on the selection
-            // For example, update a variable or send an AJAX request
+            var editCasesButton = document.querySelector('a[href*="edit-cases"]');
+            if (editCasesButton) {
+                editCasesButton.href = caseID ? editCasesButton.href.replace('case_id_placeholder', caseID) : 'javascript:void(0);';
+            }
+
+            var deleteCasesButton = document.querySelector('a[href*="delete-cases"]');
+            if (deleteCasesButton) {
+                deleteCasesButton.href = caseID ? deleteCasesButton.href.replace('case_id_placeholder', caseID) : 'javascript:void(0);';
+            }
+
+            var caseoverviewBox = document.getElementById('selectedCaseID');
+            caseoverviewBox.textContent = caseID ? 'Selected Case ID: ' + caseID : 'No Case Selected'; // For Checking lang if nakuha yung ID
         }
+
     </script>
 
 </x-app-layout>

@@ -26,13 +26,15 @@
                         </div>
                     </div>
 
+                    <div id="selectedTeamID"></div>
+
                     <div class="flex flex-col gap-4">
                         <label class="form-label block labelname font-bold mb-2">Teams</label>
                         @php
                             $counter = count($data);
                         @endphp
                         @foreach ($data as $team)
-                            <div class="flex space-x-4">
+                            <div class="flex space-x-4" onclick="selectedTeam(this, {{ $team->id }})">
                                 <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
                                     <div class="flex justify-between items-center">
                                         <div>
@@ -56,21 +58,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- No Hypertext Reference yet -->
-                                <div class="flex flex-col justify-center items-center">
-                                    <a href="{{ route('view-team-members', ['id' => $team->id]) }}" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex-shrink" type="button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2.46-2.46a4.88 4.88 0 014.9-1.227m3.094.45a4.88 4.88 0 014.898 1.227L21 12M9 6a6 6 0 100 12 6 6 0 000-12z" />
-                                        </svg>
-                                    </a>
-                                </div>
                             </div>
                         @endforeach
                     </div>
 
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
-                        <a href="{{ url('detainee-list') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK</a>
+                        <a href="{{ url('view-team-members', ['id' => 'team_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">VIEW TEAM MEMBERS</a>
                         <a href="{{ url('create-team-form') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">CREATE TEAM</a>
+                        <a href="{{ url('detainee-list') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK</a>
                     </div>
 
                 </div>
@@ -78,5 +73,29 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+        function selectedTeam (clickedElement, teamID) {
+            
+            var allCards = document.querySelectorAll('.flex.space-x-4');
+            allCards.forEach(function(card) {
+                if (card !== clickedElement) {
+                    card.classList.remove('selected');
+                }
+            });
+
+            clickedElement.classList.toggle('selected');
+
+            var viewTeamMembersButton = document.querySelector('a[href*="view-team-members"]');
+            if (viewTeamMembersButton) {
+                viewTeamMembersButton.href = teamID ? viewTeamMembersButton.href.replace('team_id_placeholder', teamID) : 'javascript:void(0);';
+            }
+
+            var selectedTeamIDBox = document.getElementById('selectedTeamID');
+            selectedTeamIDBox.textContent = teamID ? 'Selected Team ID: ' + teamID : 'No Team Selected';
+        }
+
+    </script>
     
 </x-app-layout>

@@ -30,7 +30,10 @@
                             @endif
                         </label>
                         @foreach ($case_events as $event)
-                            <div class="flex space-x-4 mb-4">
+
+                            <div id="selectedEventID"></div>
+
+                            <div class="flex space-x-4 mb-4" onclick="selectedEvent(this, {{ $event->id }})">
                                 <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
                                     <div class="flex justify-between items-center">
                                         <div>
@@ -45,25 +48,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex flex-col justify-center items-center">
-                                    <a href="{{ route('edit-event', ['event_id' => $event->id]) }}" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline flex-shrink mb-10" type="button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3v2a1 1 0 001 1h2m4 4v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h7m4-2h2m-2 0a1 1 0 00-1 1v2h2V4a1 1 0 00-1-1z" />
-                                        </svg>
-                                    </a>
-                                    <a href="{{ route('delete-event', ['event_id' => $event->id]) }}" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline flex-shrink" type="button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 8v11a2 2 0 002 2h8a2 2 0 002-2V8m-4 0v-2a2 2 0 00-2-2m-4 2h12" />
-                                        </svg>
-                                    </a>
-                                </div>
                             </div>
                         @endforeach
                     </div>
 
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
                         <a href="{{ route('add-event', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD EVENT</a>
-                        <a href="{{url('cases-list')}}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO CASES LIST</a>
+                        <a href="{{ url('cases-list') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO CASES LIST</a>
+                        <a href="{{ route('edit-event', ['event_id' => 'event_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">EDIT EVENT</a>
+                        <a href="{{ route('delete-event', ['event_id' => 'event_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">DELETE EVENT</a>
                     </div>
 
                 </div>
@@ -71,5 +64,34 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+        function selectedEvent (clickedElement, eventID) {
+
+            var allCards = document.querySelectorAll('.flex.space-x-4.mb-4');
+            allCards.forEach(function(card) {
+                if (card !== clickedElement) {
+                    card.classList.remove('selected');
+                }
+            });
+
+            clickedElement.classList.toggle('selected');
+
+            var editEventButton = document.querySelector('a[href*="edit-event"]');
+            if (editEventButton) {
+                editEventButton.href = eventID ? editEventButton.href.replace('event_id_placeholder', eventID) : 'javascript:void(0);';
+            }
+
+            var deleteEventButton = document.querySelector('a[href*="delete-event"]');
+            if (deleteEventButton) {
+                deleteEventButton.href = eventID ? deleteEventButton.href.replace('event_id_placeholder', eventID) : 'javascript:void(0);';
+            }
+
+            var livecaseBox = document.getElementById('selectedEventID');
+            livecaseBox.textContent = eventID ? 'Selected Event ID: ' + eventID : 'No Event Selected'; // For Checking lang if nakuha yung ID
+        }
+
+    </script>
 
 </x-app-layout>

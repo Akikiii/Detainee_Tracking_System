@@ -23,16 +23,14 @@
                             />
                         </div>
                     </div>
-                
                     <div id="selectedDetaineeId"></div>
-                    
                     <div class="flex flex-col gap-4" >
                         <label class="form-label block labelname font-bold mb-2">Detainees</label>
                         @php
                             $counter = count($data);
                         @endphp
                         @foreach ($data as $detainee)
-                            <div class="flex space-x-4" onclick="selectedID(this, {{ $detainee->detainee_id }})">
+                            <div class="flex space-x-4"onclick="selectedID(this, {{ $detainee->detainee_id }})">
                                 <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
                                     <div class="flex items-center">
                                         <div style="background-color: black; height: 85px; width: 85px; border-radius: 100%;"></div>
@@ -119,7 +117,7 @@
             }
 
             var selectedDetaineeIdBox = document.getElementById('selectedDetaineeId');
-            selectedDetaineeIdBox.textContent = detaineeId ? 'Selected Detainee ID: ' + detaineeId : 'No Detainee Selected'; // For Checking lang if nakuha yung ID
+            selectedDetaineeIdBox.textContent = detaineeId ? 'Selected Detainee ID: ' + detaineeId : 'No Detainee Selected';
 
         }
     </script>
