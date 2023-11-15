@@ -2,7 +2,7 @@
 
     <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
         <!-- Sidebar -->
-        <div class="col-start-1 mt-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-black pt-[1.44rem] pb-[3.72rem] px-[1rem]">
+        <div class="col-start-1 mt-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black pt-[1.44rem] pb-[3.72rem] px-[1rem]">
             @include('profile.partials.sidebar')
         </div>
         

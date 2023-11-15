@@ -15,26 +15,6 @@
                 <h1 class="font-bold text-[1.625rem]">Dashboard</h1>
             </a>
 
-            <div class="sections ml-1">
-                <a href="{{ url('detainee-list') }}" class="flex items-center gap-[0.5rem] mt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="0 0 41 38" fill="none">
-                        <path d="M21.3542 34.8333H11.2594C8.6194 34.8333 6.51955 33.6427 4.63415 31.9779C0.774521 28.5698 7.11147 25.8463 9.52837 24.5125C13.1172 22.5319 17.3171 21.8055 21.3542 22.3332C22.8191 22.5247 24.2457 22.8814 25.625 23.4031" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M28.1875 10.2917C28.1875 14.2267 24.7457 17.4167 20.5 17.4167C16.2543 17.4167 12.8125 14.2267 12.8125 10.2917C12.8125 6.35666 16.2543 3.16669 20.5 3.16669C24.7457 3.16669 28.1875 6.35666 28.1875 10.2917Z" stroke="#141B34" stroke-width="1.5"/>
-                        <path d="M31.6042 34.8333V23.75M25.625 29.2917H37.5833" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                    <p>Assign Attorney</p>
-                </a>
-
-                <a href="{{ route('register.user') }}" class="flex items-center gap-[0.5rem] mt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="0 0 39 40" fill="none">
-                        <path d="M20.3125 33.3332H17.0625C10.9548 33.3332 7.90096 33.3332 5.86212 31.6817C5.53602 31.4175 5.23443 31.1265 4.9608 30.8117C3.25 28.8435 3.25 25.8957 3.25 19.9998C3.25 14.104 3.25 11.1561 4.9608 9.188C5.23443 8.87322 5.53602 8.58209 5.86212 8.31795C7.90096 6.6665 10.9548 6.6665 17.0625 6.6665H21.9375C28.0452 6.6665 31.0991 6.6665 33.1378 8.31795C33.4639 8.58209 33.7656 8.87322 34.0392 9.188C35.489 10.8558 35.7102 13.2272 35.744 17.4998" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M30.0625 33.3332V21.6665M24.375 27.4998H35.75" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M3.25 15H35.75" stroke="#141B34" stroke-width="1.5" stroke-linejoin="round"/>
-                    </svg>
-                    <p>Create Attorney Profile </p>
-                </a>
-            </div>
-
             <div>
                 <h1 class="font-bold text-[1.625rem] mt-3.5">My Profile </h1>
                 <div class="sections ml-1">
@@ -47,7 +27,7 @@
                             <path d="M14.747 20.1389C14.747 20.1389 15.7997 20.1389 16.8525 22.1527C16.8525 22.1527 20.1965 17.118 23.1689 16.1111" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M14.747 34.236C14.747 34.236 15.7997 34.236 16.8525 36.2499C16.8525 36.2499 20.1965 31.2152 23.1689 30.2083" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <p>View my Profile</p>
+                        <p>View My Profile</p>
                     </a>
 
                     <hr class="my-3 border-black">
@@ -59,7 +39,7 @@
                             <path d="M33.6962 4.02783V8.05561M23.1689 4.02783V8.05561M12.6415 4.02783V8.05561" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M14.747 30.2084H23.1689M14.747 20.1389H31.5907" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
                         </svg>
-                        <p>Update my Profile</p>
+                        <p>Update My Profile</p>
                     </a>
                 </div>
             </div>
@@ -67,6 +47,16 @@
             <div>
                 <h1 class="font-bold text-[1.625rem] mt-3.5">Detainee Tracker </h1>
                 <div class="sections ml-1">
+                    <a href="{{ url('detainee-list') }}" class="flex items-center gap-[0.5rem] mt-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="0 0 41 38" fill="none">
+                            <path d="M21.3542 34.8333H11.2594C8.6194 34.8333 6.51955 33.6427 4.63415 31.9779C0.774521 28.5698 7.11147 25.8463 9.52837 24.5125C13.1172 22.5319 17.3171 21.8055 21.3542 22.3332C22.8191 22.5247 24.2457 22.8814 25.625 23.4031" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M28.1875 10.2917C28.1875 14.2267 24.7457 17.4167 20.5 17.4167C16.2543 17.4167 12.8125 14.2267 12.8125 10.2917C12.8125 6.35666 16.2543 3.16669 20.5 3.16669C24.7457 3.16669 28.1875 6.35666 28.1875 10.2917Z" stroke="#141B34" stroke-width="1.5"/>
+                            <path d="M31.6042 34.8333V23.75M25.625 29.2917H37.5833" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <p>Assign Attorney</p>
+                    </a>
+                    <hr class="my-3 border-black">
+
                     <a href="{{ url('add-detainee') }}" class="flex items-center gap-[0.5rem] mt-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="0 0 39 40" fill="none">
                             <path d="M20.3125 33.3334H17.0625C10.9548 33.3334 7.90096 33.3334 5.86212 31.6819C5.53602 31.4177 5.23443 31.1267 4.9608 30.8119C3.25 28.8437 3.25 25.8959 3.25 20.0001C3.25 14.1043 3.25 11.1564 4.9608 9.18825C5.23443 8.87346 5.53602 8.58233 5.86212 8.3182C7.90096 6.66675 10.9548 6.66675 17.0625 6.66675H21.9375C28.0452 6.66675 31.0991 6.66675 33.1378 8.3182C33.4639 8.58233 33.7656 8.87346 34.0392 9.18825C35.489 10.856 35.7102 13.2274 35.744 17.5001" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -89,14 +79,14 @@
                         <p>View Detainee List</p>
                     </a>
                     <hr class="my-3 border-black">
-                    
-                    <a href="{{url('cases-list')}}" class="flex items-center gap-[0.5rem] mt-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="0 0 45 42" fill="none">
-                            <path d="M9.71263 26.7687C7.35467 28.0586 1.17227 30.6925 4.93777 33.9885C6.77719 35.5985 8.82581 36.75 11.4014 36.75H26.0985C28.6742 36.75 30.7228 35.5985 32.5622 33.9885C36.3278 30.6925 30.1453 28.0586 27.7873 26.7687C22.2579 23.7438 15.242 23.7438 9.71263 26.7687Z" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M26.25 12.25C26.25 16.116 22.8921 19.25 18.75 19.25C14.6079 19.25 11.25 16.116 11.25 12.25C11.25 8.384 14.6079 5.25 18.75 5.25C22.8921 5.25 26.25 8.384 26.25 12.25Z" stroke="#141B34" stroke-width="1.5"/>
-                            <path d="M36.5625 12.5V14M36.5625 12.5C35.2069 12.5 34.0125 11.8371 33.312 10.8305M36.5625 12.5C37.9181 12.5 39.1125 11.8371 39.813 10.8305M33.312 10.8305L31.8756 11.75M33.312 10.8305C32.8978 10.2352 32.6563 9.51968 32.6563 8.75C32.6563 7.9804 32.8978 7.26497 33.312 6.66969M39.813 10.8305L41.2494 11.75M39.813 10.8305C40.2272 10.2352 40.4687 9.51968 40.4687 8.75C40.4687 7.9804 40.2272 7.26497 39.813 6.66969M36.5625 5C37.9181 5 39.1127 5.663 39.813 6.66969M36.5625 5C35.2069 5 34.0123 5.663 33.312 6.66969M36.5625 5V3.5M39.813 6.66969L41.25 5.74999M33.312 6.66969L31.875 5.74999" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+
+                    <a href="{{ url('admin', 'Invite_User') }}" class="flex items-center gap-[0.5rem] mt-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="0 0 39 40" fill="none">
+                            <path d="M20.3125 33.3332H17.0625C10.9548 33.3332 7.90096 33.3332 5.86212 31.6817C5.53602 31.4175 5.23443 31.1265 4.9608 30.8117C3.25 28.8435 3.25 25.8957 3.25 19.9998C3.25 14.104 3.25 11.1561 4.9608 9.188C5.23443 8.87322 5.53602 8.58209 5.86212 8.31795C7.90096 6.6665 10.9548 6.6665 17.0625 6.6665H21.9375C28.0452 6.6665 31.0991 6.6665 33.1378 8.31795C33.4639 8.58209 33.7656 8.87322 34.0392 9.188C35.489 10.8558 35.7102 13.2272 35.744 17.4998" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M30.0625 33.3332V21.6665M24.375 27.4998H35.75" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M3.25 15H35.75" stroke="#141B34" stroke-width="1.5" stroke-linejoin="round"/>
                         </svg>
-                        <p>Case View</p>
+                        <p>Invite User</p>
                     </a>
                     <hr class="my-3 border-black">
 
@@ -111,12 +101,35 @@
                         </svg>
                         <p>View Teams</p>
                     </a>
+                    <hr class="my-3 border-black">
+
+                    <a href="{{url('cases-list')}}" class="flex items-center gap-[0.5rem] mt-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="0 0 45 42" fill="none">
+                            <path d="M9.71263 26.7687C7.35467 28.0586 1.17227 30.6925 4.93777 33.9885C6.77719 35.5985 8.82581 36.75 11.4014 36.75H26.0985C28.6742 36.75 30.7228 35.5985 32.5622 33.9885C36.3278 30.6925 30.1453 28.0586 27.7873 26.7687C22.2579 23.7438 15.242 23.7438 9.71263 26.7687Z" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M26.25 12.25C26.25 16.116 22.8921 19.25 18.75 19.25C14.6079 19.25 11.25 16.116 11.25 12.25C11.25 8.384 14.6079 5.25 18.75 5.25C22.8921 5.25 26.25 8.384 26.25 12.25Z" stroke="#141B34" stroke-width="1.5"/>
+                            <path d="M36.5625 12.5V14M36.5625 12.5C35.2069 12.5 34.0125 11.8371 33.312 10.8305M36.5625 12.5C37.9181 12.5 39.1125 11.8371 39.813 10.8305M33.312 10.8305L31.8756 11.75M33.312 10.8305C32.8978 10.2352 32.6563 9.51968 32.6563 8.75C32.6563 7.9804 32.8978 7.26497 33.312 6.66969M39.813 10.8305L41.2494 11.75M39.813 10.8305C40.2272 10.2352 40.4687 9.51968 40.4687 8.75C40.4687 7.9804 40.2272 7.26497 39.813 6.66969M36.5625 5C37.9181 5 39.1127 5.663 39.813 6.66969M36.5625 5C35.2069 5 34.0123 5.663 33.312 6.66969M36.5625 5V3.5M39.813 6.66969L41.25 5.74999M33.312 6.66969L31.875 5.74999" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <p>Case View</p>
+                    </a>
+                    <hr class="my-3 border-black">
+
+                    <a href="{{ url('user-list') }}" class="flex items-center gap-[0.5rem] mt-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="0 0 51 49" fill="none">
+                            <path d="M35.8017 4.02783V8.05561M25.2743 4.02783V8.05561M14.747 4.02783V8.05561" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7.37787 20.139C7.37787 13.4935 7.37787 10.1707 9.53624 8.10625C11.6946 6.04175 15.1685 6.04175 22.1161 6.04175H28.4325C35.3801 6.04175 38.854 6.04175 41.0125 8.10625C43.1708 10.1707 43.1708 13.4935 43.1708 20.139V30.2084C43.1708 36.8539 43.1708 40.1766 41.0125 42.2412C38.854 44.3057 35.3801 44.3057 28.4325 44.3057H22.1161C15.1685 44.3057 11.6946 44.3057 9.53624 42.2412C7.37787 40.1766 7.37787 36.8539 7.37787 30.2084V20.139Z" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M28.4325 32.2222H35.8016" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M28.4325 18.125H35.8016" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M14.747 20.1389C14.747 20.1389 15.7997 20.1389 16.8525 22.1527C16.8525 22.1527 20.1965 17.118 23.1689 16.1111" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14.747 34.236C14.747 34.236 15.7997 34.236 16.8525 36.2499C16.8525 36.2499 20.1965 31.2152 23.1689 30.2083" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p>User List</p>
+                    </a>
                 </div>
             </div>
             
         </div>
 
-        <div class="grid row-start-2 w-full justify-center mt-44">
+        <div class="grid row-start-2 w-full justify-center mt-36">
             <form method="POST" action="{{ route('logout') }}">
             @csrf
                 <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="buttonFormat flex bg-[#cccccc] w-[8.835rem] h-[2.6583rem] justify-center text-center items-center">
