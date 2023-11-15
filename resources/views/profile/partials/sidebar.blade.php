@@ -117,16 +117,19 @@
         </div>
 
         <div class="grid row-start-2 w-full justify-center mt-44">
-            <button class="buttonFormat flex bg-[#cccccc] w-[8.835rem] h-[2.6583rem] justify-center text-center items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="27" viewBox="0 0 25 27" fill="none">
-                    <path d="M4.13678 10.1687C4.13678 7.87827 4.13678 6.73308 4.50663 5.803C4.81557 5.02611 5.30315 4.35927 5.91757 3.87337C6.65313 3.29166 7.64027 3.0868 9.61457 2.67708C11.6675 2.25104 12.694 2.03801 13.4929 2.37749C14.1565 2.65948 14.7156 3.19211 15.0775 3.88689C15.513 4.72326 15.513 5.91409 15.513 8.29576V18.2187C15.513 20.6004 15.513 21.7912 15.0775 22.6276C14.7156 23.3224 14.1565 23.855 13.4929 24.137C12.694 24.4765 11.6675 24.2635 9.61457 23.8374C7.64027 23.4277 6.65313 23.2229 5.91757 22.6411C5.30315 22.1552 4.81557 21.4884 4.50663 20.7115C4.13678 19.7814 4.13678 18.6362 4.13678 16.3459V10.1687Z" stroke="black" stroke-width="1.5"/>
-                    <path d="M15.513 21.8727C17.0098 22.0389 19.0292 22.5503 20.1023 21.0886C20.684 20.2962 20.684 19.0891 20.684 16.6749V9.83993C20.684 7.4257 20.684 6.2186 20.1023 5.42621C19.0292 3.96447 17.0098 4.47585 15.513 4.6421" stroke="black" stroke-width="1.5"/>
-                    <path d="M12.4104 14.3621V12.1526" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M19.6498 21.7935H22.7524" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2.06842 22.0955H5.17101" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span class="ml-2">Sign Out</span>
-            </button>
+            <form method="POST" action="{{ route('logout') }}">
+            @csrf
+                <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="buttonFormat flex bg-[#cccccc] w-[8.835rem] h-[2.6583rem] justify-center text-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="27" viewBox="0 0 25 27" fill="none">
+                        <path d="M4.13678 10.1687C4.13678 7.87827 4.13678 6.73308 4.50663 5.803C4.81557 5.02611 5.30315 4.35927 5.91757 3.87337C6.65313 3.29166 7.64027 3.0868 9.61457 2.67708C11.6675 2.25104 12.694 2.03801 13.4929 2.37749C14.1565 2.65948 14.7156 3.19211 15.0775 3.88689C15.513 4.72326 15.513 5.91409 15.513 8.29576V18.2187C15.513 20.6004 15.513 21.7912 15.0775 22.6276C14.7156 23.3224 14.1565 23.855 13.4929 24.137C12.694 24.4765 11.6675 24.2635 9.61457 23.8374C7.64027 23.4277 6.65313 23.2229 5.91757 22.6411C5.30315 22.1552 4.81557 21.4884 4.50663 20.7115C4.13678 19.7814 4.13678 18.6362 4.13678 16.3459V10.1687Z" stroke="black" stroke-width="1.5"/>
+                        <path d="M15.513 21.8727C17.0098 22.0389 19.0292 22.5503 20.1023 21.0886C20.684 20.2962 20.684 19.0891 20.684 16.6749V9.83993C20.684 7.4257 20.684 6.2186 20.1023 5.42621C19.0292 3.96447 17.0098 4.47585 15.513 4.6421" stroke="black" stroke-width="1.5"/>
+                        <path d="M12.4104 14.3621V12.1526" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.6498 21.7935H22.7524" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2.06842 22.0955H5.17101" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="ml-2">Sign Out</span>
+                </a>
+            </form>
         </div>
 
     </div>
