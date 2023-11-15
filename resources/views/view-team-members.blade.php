@@ -30,21 +30,10 @@
                     
                     
                     <div class="flex flex-row justify-end gap-2.5 mt-10">
-                        <form action="{{ route('add-member') }}" method="post">
-                            @csrf
-
-                            <!-- Display the list of users -->
-                            @isset($users)
-                                <p>Users are set!</p>
-                                @foreach ($users as $user)
-                                    <div>
-                                        <input type="checkbox" name="selected_users[]" value="{{ $user->id }}"> {{ $user->name }}
-                                    </div>
-                                @endforeach
-                            @endisset
-
-                            <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD MEMBERS</button>
-                        </form>
+                    <form action="{{ route('add-member', ['id' => $team->id]) }}" method="post">
+                        @csrf
+                        <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD MEMBERS</button>
+                    </form>
                         <a href="{{ url('view-teams') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO TEAM LIST</a>
                     </div>
                 </div>

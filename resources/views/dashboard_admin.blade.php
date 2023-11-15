@@ -57,6 +57,12 @@
                                     <p class="text-gray-900">View Team</p>
                                 </a>
                             </div>
+
+                            <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
+                                <a href="{{url('user-list')}}">
+                                    <p class="text-gray-900">User List</p>
+                                </a>
+                            </div>
                             
                         </div>
                     </div>

@@ -20,11 +20,7 @@
                                     <p class="text-gray-900">{{ $user->name }}</p>
                                     <p class="text-gray-900">{{ $user->email }}</p>
                                     <div class="flex mt-2">
-                                    <form action="{{ route('save-member', ['userId' => $user->id]) }}" method="post">
-                                        @csrf
-                                        <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-2 px-2">ADD MEMBER</button>
-                                    </form>
-
+                                        <a href="{{ route('delete-user', ['id' => $user->id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-2 px-2">DELETE</a>
                                         <a href="{{ route('show-user', ['id' => $user->id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-2 px-2">VIEW</a>
                                     </div>
                                 </div>

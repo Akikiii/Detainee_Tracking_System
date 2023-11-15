@@ -7,6 +7,7 @@ use App\Http\Controllers\CasesController;
 use App\Http\Controllers\CounselCaseController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -33,7 +34,7 @@ Route::get('/', function () {
     return view('welcome');
 });
     Route::get("auth.register", function(){ return view("auth.register"); })->name('register.user');
-    Route::get("create_detainee", function(){ return view("create_detainee"); })->name('register.detainee'); //?
+    Route::get("create_detainee", function(){ return view("create_detainee"); })->name('register.detainee'); 
     Route::get("add-detainee", function () {
         return view("add-detainee");
     })->name('detainee-list');
@@ -45,6 +46,15 @@ Route::get('/', function () {
     Route::get("Invite_User", function(){ return view("Invite_User"); })->name('invite.user');
     Route::post('/send-email', [MailController::class, 'sendEmail'])->name('send.email');
 });
+
+
+//User List
+
+Route::get('/user/{id}', [UserController::class, 'show'])->name('show-user');
+Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('edit-user');
+Route::get('/user-list', [UserController::class, 'userList'])->name('user-list');
+Route::get('/users/{id}/delete', [UserController::class, 'deleteUser'])->name('delete-user');
+
 
 //Detainee List
 Route::get('detainee-list',[DetaineeProfileController::class, 'index']);
@@ -82,10 +92,11 @@ Route::post('/save-team', [TeamController::class, 'saveTeam'])->name('saveTeam')
 Route::get('/view-team-members/{id}', [TeamController::class , 'viewTeamMembers'])->name('view-team-members');
 
 Route::post('/add-member', [TeamController::class, 'addMember'])->name('add-member');
-Route::post('/save-new-member', [TeamController::class, 'saveNewMember'])->name('save-new-member');
+Route::any('/add-member/{userId}', [TeamController::class, 'saveNewMember'])->name('save-member');
+
     
 
-
+// User List
 
 
 Route::get('/dashboard',    function () {

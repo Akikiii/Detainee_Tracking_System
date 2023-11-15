@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\Member;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
@@ -23,26 +24,38 @@ class TeamController extends Controller
         return view('view-team-members', compact('team'));
     }
     
-    public function saveNewMember(Request $request)
+    public function saveNewMember(Request $request, $userId)
     {
-        // Validate the form data
-        $request->validate([
-            'selected_user' => 'required|exists:users,id',
-        ]);
+        // Retrieve the authenticated user
+        $user = Auth::user();
     
-        // Get the selected user
-        $selectedUserId = $request->input('selected_user');
-        $user = User::find($selectedUserId);
+        // Check if the user is not already a member
+        if (!Member::where('user_id', $user->id)->exists()) {
+            // Check if the specified team_id exists in the teams table
+            if (Team::where('id', $userId)->exists()) {
+                // Create a new Member instance
+                $member = new Member();
+                $member->user_id = $user->id;
+                $member->team_id = $userId; // Assuming you're passing the team ID in the URL
     
-        // Create a new member record
-        Member::create([
-            'user_id' => $user->id,
-            'name' => $user->name,
-        ]);
+                // Add additional details if needed
+                $member->name = $user->name;
     
-        return redirect()->back()->with('success', 'Selected user added successfully');
+                // Save the new member
+                $member->save();
+    
+                // Redirect back with success message or perform any other action
+                return redirect()->back()->with('success', 'User added as a member successfully');
+            } else {
+                // Redirect back with an error message indicating that the team_id is not valid
+                return redirect()->back()->with('error', 'Invalid team_id provided');
+            }
+        } else {
+            // Redirect back with an error message or perform any other action
+            return redirect()->back()->with('error', 'User is already a member');
+        }
     }
-        
+    
     
 
     public function addMember()

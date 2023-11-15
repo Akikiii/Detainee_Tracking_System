@@ -29,7 +29,7 @@ class User extends Authenticatable
         'work_experience',
         'professional_affiliations',
         'cases_handled',
-        'languages_spoken',
+        'language_spoken',
         'office_hours_open',
         'office_hours_close',
 
