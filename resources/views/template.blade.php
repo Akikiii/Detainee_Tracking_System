@@ -16,17 +16,20 @@
     </div>
 </x-app-layout>
 
-                                        <!-- detainee list-->
-                                            <p class="text-left mb-2">
-                                                Assigned Attorney: 
-                                                @if (optional($detainee->counselCaseAssignment)->assigned_by)
-                                                    <strong class="bg-green-500 text-white px-1 py-1 rounded">{{ $detainee->counselCaseAssignment->assigned_by }}</strong>
-                                                @else
-                                                    <strong class="bg-orange-500 text-white px-1 py-1 rounded">None</strong>
-                                                @endif
-                                            </p>
+                        <!-- line 33-37 view-team-members --> 
+                    
+                        <form action="{{ route('add-member', ['team_id' => $team->id]) }}" method="post">
+                            @csrf
+                            <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD MEMBERS</button>
+                        </form>
 
-                                        <!-- create-team -->
-                                        <form action="{{ route('saveTeam') }}" method="post"> 
 
-                                        <a href="{{ url('view-teams') }}" class="buttonFormat border-2 border-[#F8861E] bg-rgba(165, 42, 42, 0) hover:bg-[#F8861E] text-[#F8861E] hover:text-black font-bold py-2 px-4">BACK TO TEAM LIST</a>
+                        <!--add this view user profile -->
+                        <div class="mt-4">
+                        <a href="{{ route('user-list') }}" class="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100">
+                            <svg class="h-6 w-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                            Back    
+                        </a>
+                    </div>

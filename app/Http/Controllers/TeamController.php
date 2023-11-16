@@ -7,9 +7,14 @@ use App\Models\Team;
 use App\Models\Member;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
 class TeamController extends Controller
 {
+
+    public function showUserToAssign($id)
+    {
+        $user = User::findOrFail($id);
+        return view('assign-member', compact('user'));
+    }
     public function index(){
         $data = Team::get();
         return view("view-teams",compact("data"));
@@ -18,51 +23,51 @@ class TeamController extends Controller
         return view('create-team_form');
     }
     public function viewTeamMembers($id)
-    {   
-        $team = Team::find($id);
-    
+    {
+        $team = Team::findOrFail($id);
         return view('view-team-members', compact('team'));
     }
-    
-    public function saveNewMember(Request $request, $userId)
+  
+
+    public function addMember($teamId)
     {
-        // Retrieve the authenticated user
-        $user = Auth::user();
-    
-        // Check if the user is not already a member
-        if (!Member::where('user_id', $user->id)->exists()) {
-            // Check if the specified team_id exists in the teams table
-            if (Team::where('id', $userId)->exists()) {
-                // Create a new Member instance
-                $member = new Member();
-                $member->user_id = $user->id;
-                $member->team_id = $userId; // Assuming you're passing the team ID in the URL
-    
-                // Add additional details if needed
-                $member->name = $user->name;
-    
-                // Save the new member
-                $member->save();
-    
-                // Redirect back with success message or perform any other action
-                return redirect()->back()->with('success', 'User added as a member successfully');
-            } else {
-                // Redirect back with an error message indicating that the team_id is not valid
-                return redirect()->back()->with('error', 'Invalid team_id provided');
-            }
-        } else {
-            // Redirect back with an error message or perform any other action
-            return redirect()->back()->with('error', 'User is already a member');
-        }
+        $team = Team::findOrFail($teamId);
+        $users = User::all();
+        return view('add-member', ['users' => $users, 'team' => $team]);
     }
-    
     
 
-    public function addMember()
+
+    public function AssignMember($team_id)
     {
-        $users = User::all();
-        return view('add-member', ['users' => $users]);
+        // Find the user by ID
+        $user = User::findOrFail($team_id);
+    
+        // Check if the user has a team
+        $team = $user->team;
+    
+        // If the user does not have a team, create a member record without a team_id
+        if (!$team) {
+            Member::create([
+                'user_id' => $user->id,
+                'team_id' => null,
+                'name' => $user->name,
+            ]);
+    
+            return redirect()->route('user-list')->with('success', 'User added as a member without a team.');
+        }
+    
+        // If the user has a team, create a member record with the team_id
+        Member::create([
+            'user_id' => $user->id,
+            'team_id' => $team->id,
+            'name' => $user->name,
+        ]);
+    
+        return redirect()->route('user-list')->with('success', 'User added as a member successfully.');
     }
+    
+
 
     public function saveTeam(Request $request)
     {

@@ -26,6 +26,9 @@ use App\Models\Counsel_Case_Assignment;
 */
 
 
+Route::middleware(['web', 'auth', 'isAdmin'])->group(function () {
+    // Your routes go here
+});
 
 Route::post('/invite/send', [InviteController::class, 'sendInvitation'])->name('invite.send');
 
@@ -54,6 +57,9 @@ Route::get('/user/{id}', [UserController::class, 'show'])->name('show-user');
 Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('edit-user');
 Route::get('/user-list', [UserController::class, 'userList'])->name('user-list');
 Route::get('/users/{id}/delete', [UserController::class, 'deleteUser'])->name('delete-user');
+
+
+
 
 
 //Detainee List
@@ -86,14 +92,14 @@ Route::get('/remove-assignment/{detainee_id}', [CounselCaseController::class, 'r
 
 
 //Team List
-Route::get('view-teams',[TeamController::class,'index']);
+Route::get('view-teams',[TeamController::class,'index'])->name("view-teams");
 Route::get('/create-team-form', [TeamController::class, 'CreateTeam'])->name('create-team-form');
 Route::post('/save-team', [TeamController::class, 'saveTeam'])->name('saveTeam');
-Route::get('/view-team-members/{id}', [TeamController::class , 'viewTeamMembers'])->name('view-team-members');
+Route::get('/view-team-members/{id}', [TeamController::class, 'viewTeamMembers'])->name('view-team-members');
 
-Route::post('/add-member', [TeamController::class, 'addMember'])->name('add-member');
-Route::any('/add-member/{userId}', [TeamController::class, 'saveNewMember'])->name('save-member');
 
+Route::post('/add-member/{team_id}', [TeamController::class, 'addMember'])->name('add-member');
+Route::get('/assign-member/{team_id}', [TeamController::class, 'assignMember'])->name('assign-member');
     
 
 // User List
