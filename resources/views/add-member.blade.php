@@ -15,28 +15,59 @@
                     <div>
                         <!-- Display user list in boxes with edit and delete buttons -->
                         <div class="grid grid-cols-3 gap-4">
-                            @foreach ($users as $user)
-                                <div class="bg-gray-200 p-4 rounded-md">
-                                    <p class="text-gray-900">{{ $user->name }}</p>
-                                    <p class="text-gray-900">{{ $user->email }}</p>
-                                    <div class="flex mt-2">
-                                    <form action="{{ route('save-member', ['userId' => $user->id]) }}" method="post">
-                                        @csrf
-                                        <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-2 px-2">ADD MEMBER</button>
-                                    </form>
 
-                                        <a href="{{ route('show-user', ['id' => $user->id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-2 px-2">VIEW</a>
-                                    </div>
+                            <div id="selectedEventID"></div>
+
+                            @foreach ($users as $user)
+                            <div class="flex flex-col gap-4" onclick="selectedUser(this, {{ $user->id }})">
+                                <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
+                                    <p class="text-gray-900">{{ $user->name }} - {{ $user->email }}</p>
                                 </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>
-                    <!-- Buttons for Actions -->
+                    
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
+                        <form action="{{ route('save-member', ['userId' => 'user_id_placeholder']) }}" method="post">
+                            @csrf
+                            <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD MEMBER</button>
+                        </form>
+                        <a href="{{ url('user', ['id' => 'user_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">VIEW PROFILE</a>
                         <a href="{{ url('dashboard') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+
+        function selectedUser (clickedElement, userID) {
+
+            var allCards = document.querySelectorAll('.flex.flex-col.gap-4');
+            allCards.forEach(function(card) {
+                if (card !== clickedElement) {
+                    card.classList.remove('selected');
+                }
+            });
+
+            clickedElement.classList.toggle('selected');
+
+            var addMemberButton = document.querySelector('a[href*="save-member"]');
+            if (addMemberButton) {
+                addMemberButton.href = userID ? addMemberButton.href.replace('user_id_placeholder', userID) : 'javascript:void(0);';
+            }
+
+            var viewUserButton = document.querySelector('a[href*="user"]');
+            if (viewUserButton) {
+                viewUserButton.href = userID ? viewUserButton.href.replace('user_id_placeholder', userID) : 'javascript:void(0);';
+            }
+
+            var livecaseBox = document.getElementById('selectedEventID');
+            livecaseBox.textContent = userID ? 'Selected User ID: ' + userID : 'No User Selected'; // For Checking lang if nakuha yung ID
+        }
+
+    </script>
+
 </x-app-layout>
