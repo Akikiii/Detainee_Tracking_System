@@ -9,7 +9,7 @@
         </div>
 
         <!-- Dashboard -->
-        <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[8rem] px-[2.84rem] border-black rounded-md mt-[2.38rem]">
+        <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[8rem] px-[2.84rem] border-2 border-black mt-[2.38rem]">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 <!-- class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" -->
@@ -17,8 +17,8 @@
                         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
 
                             <div class="bg-gray-200 p-4 rounded-md w-56 h-56">
-                                <a href="{{ route('register.user') }}">
-                                    <p class="text-gray-900">Create Attorney Profile</p>
+                                <a href="{{ url('admin', 'Invite_User') }}">
+                                    <p class="text-gray-900">Invite User</p>
                                 </a>
                             </div>
 
