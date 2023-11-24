@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+// CaseEvent.php
+
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
-{
-    protected $table = 'case_events';
+{protected $table = 'case_events';
     protected $fillable = [
-        'case_id', 
+        'case_id',
         'event_type',
         'event_date',
         'description',
@@ -18,11 +19,14 @@ class Event extends Model
         'event_outcome',
         'event_notes',
     ];
-    use HasFactory;
 
-    // Define the relationship with the Case model
+    protected $dates = ['event_date', 'created_at', 'updated_at'];
+
+
+    // Define the relationship with the 'cases' table
     public function case()
     {
-        return $this->belongsTo(Cases::class);
+        return $this->belongsTo(Cases::class, 'case_id', 'case_id');
     }
 }
+

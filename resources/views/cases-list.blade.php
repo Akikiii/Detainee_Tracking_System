@@ -79,21 +79,33 @@
                                             <p class="text-left mb-3"><strong>Arrest Report:</strong> {{ $Cases->arrest_report }}</p>
                                             <p class="text-left mb-3"><strong>Testimonies:</strong> {{ $Cases->testimonies }}</p>
                                             <p class="text-left mb-3"><strong>Status:</strong>
-                                                @if ($Cases->status === 'Active')
-                                                    <span class="bg-green-500 text-white px-1 py-1 rounded">Active</span>
-                                                @elseif ($Cases->status === 'Pending')
-                                                    <span class="bg-orange-500 text-white px-1 py-1 rounded">Pending</span>
+                                                @if ($Cases->status === 'Arrest')
+                                                    <span class="bg-green-500 text-white px-1 py-1 rounded">Case Creation/Initial Appearance</span>
+                                                @elseif ($Cases->status === 'Bail Hearing')
+                                                    <span class="bg-orange-500 text-white px-1 py-1 rounded">Bail Hearing</span>
+                                                @elseif ($Cases->status === 'Pretrial')
+                                                    <span class="bg-green-500 text-white px-1 py-1 rounded">Pretrial</span>
+                                                @elseif ($Cases->status === 'Plea')
+                                                    <span class="bg-green-500 text-white px-1 py-1 rounded">Plea Bargaining</span>
+                                                    @elseif ($Cases->status === 'Arraignment')
+                                                    <span class="bg-green-500 text-white px-1 py-1 rounded">Arraignment</span>
+                                                @elseif ($Cases->status === 'Trial')
+                                                    <span class="bg-green-500 text-white px-1 py-1 rounded">Trial</span>
+                                                @elseif ($Cases->status === 'Sentencing')
+                                                    <span class="bg-green-500 text-white px-1 py-1 rounded">Sentencing</span>
+                                                @elseif ($Cases->status === 'Appeal')
+                                                    <span class="bg-green-500 text-white px-1 py-1 rounded">Appeal</span>
                                                 @elseif ($Cases->status === 'Finished')
-                                                    <span class="bg-green-500 text-white px-1 py-1 rounded">Finished</span>
+                                                    <span class="bg-green-500 text-white px-1 py-1 rounded">Finished/Archived</span>
                                                 @else
                                                     <span class="bg-orange-500 text-white px-1 py-1 rounded">Unknown</span>
                                                 @endif
                                             </p>
 
                                             @if ($Cases->assignedDetainee)
-                                                <p class="text-left mb-3">{{ $Cases->assignedDetainee->first_name }} {{ $Cases->assignedDetainee->middle_name }} {{ $Cases->assignedDetainee->last_name }}</p>
+                                                <p class="text-left mb-3"><strong>Assigned Team:</strong></p>
                                             @else
-                                                <p class="text-left mb-3"><strong>No Assigned Detainee</strong></p>
+                                                <p class="text-left mb-3"><strong>No Assigned Team</strong></p>
                                             @endif
                                         </div>
                                     </div>

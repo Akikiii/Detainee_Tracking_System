@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Detainee;
 use App\Models\Cases;
 use App\Models\Event;
 class CasesController extends Controller
@@ -12,8 +13,8 @@ class CasesController extends Controller
         return view('cases-list',compact('data'));
     }
 
-    public function addCases(){
-        return view('add-cases');
+    public function addCases($detainee_id){
+        return view('add-cases', ['detainee_id' => $detainee_id]);
     }
 
     public function caseOverview($id) {
@@ -24,24 +25,23 @@ class CasesController extends Controller
     }
     
     
-    public function saveCases(Request $request){
-
+    public function saveCases(Request $request, $detainee_id){
+        $status = $request->status ?? 'Arrest';
         $combinedRules =[
             'case_id' => 'required',
             'case_name' => 'required',
             'violations' => 'required',
-            'case_created' => 'required',
+            'case_created' => 'required|date',
             'arrest_report' => 'required',
             'testimonies' => 'required',
-            'status' => 'in:Active,Pending,Finished',
+            'status' => 'in: Arrest, Bail, Pretrial, Plea, Trial, Sentencing, Appeal, Finished,Arraignment',
         ];
 
-        
         $request->validate($combinedRules);
-        $status = $request->status ?? 'Active';
         //Save Case Data
         $cases = new Cases();
         $cases->case_id = $request->case_id;
+        $cases->detainee_id = $detainee_id;
         $cases->case_name = $request->case_name; 
         $cases->violations = $request->violations;
         $cases->case_created = $request->case_created;
@@ -56,34 +56,35 @@ class CasesController extends Controller
         $data = Cases::where('case_id','=',$id)->first();
         return view('edit-cases',compact('data'));
     }
+    
 
-    public function updateCases(Request $request){
-        $combinedRules =[
-            'case_id' => 'required',
+    public function updateCases(Request $request, $caseId) {
+        $combinedRules = [
             'case_name' => 'required',
             'violations' => 'required',
             'case_created' => 'required',
             'arrest_report' => 'required',
             'testimonies' => 'required',
-            'status' => 'in:Active,Pending,Finished',
+            'status' => 'in: Arrest, Bail, Pretrial, Plea, Trial, Sentencing, Appeal, Finished,Arraignment  ',
         ];
-
+    
         $request->validate($combinedRules);
-        $id = $request->id;
-
-        $cases = [
-            'case_id' => $request->case_id,
-            'case_name' => $request->case_name,
-            'violations' => $request->violations,
-            'case_created' => $request->case_created,
-            'arrest_report' => $request->arrest_report,
-            'testimonies' => $request->testimonies,
-            'status' => $request->status,
-        ];
-        Cases::where('case_id',$id)->update($cases);
-
-        return redirect()->back()->with('success', 'Case Successfully updated!');
+    
+        // Find the case by ID
+        $case = Cases::findOrFail($caseId);
+    
+        // Update Case Data
+        $case->case_name = $request->case_name;
+        $case->violations = $request->violations;
+        $case->case_created = $request->case_created;
+        $case->arrest_report = $request->arrest_report;
+        $case->testimonies = $request->testimonies;
+        $case->status = $request->status ?? 'Arrest';
+        $case->save();
+    
+        return redirect()->back()->with("success", "Case successfully updated");
     }
+    
 
 
     public function deleteCases($id){

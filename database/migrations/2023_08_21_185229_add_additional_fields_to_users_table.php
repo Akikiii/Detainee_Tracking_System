@@ -8,17 +8,18 @@ class AddAdditionalFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('office_address')->nullable();
-            $table->string('contact_number')->nullable();
+            $table->string('office_address');
+            $table->string('contact_number');
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('education_qualifications')->nullable();
             $table->string('practice_areas')->nullable();
             $table->text('work_experience')->nullable();
             $table->string('professional_affiliations')->nullable();
             $table->text('cases_handled')->nullable();
-            $table->string('language_spoken')->nullable();
+            $table->string('language_spoken');
             $table->time('office_hours_open')->nullable();
             $table->time('office_hours_close')->nullable();
+            $table->string('profile_picture')->nullable();
         });
     }
 

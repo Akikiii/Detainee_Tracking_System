@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('spouse_name');
             $table->string('related_photos');
             $table->text('crime_history');
-            $table->integer('max_detention_period');
             $table->date('detention_begin');
             $table->text('medical_information');
             $table->string('emergency_contact_number');

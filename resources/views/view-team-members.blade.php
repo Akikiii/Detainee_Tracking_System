@@ -30,9 +30,9 @@
                     
                     
                     <div class="flex flex-row justify-end gap-2.5 mt-10">
-                    <form action="{{ route('add-member', ['id' => $team->id]) }}" method="post">
-                        @csrf
-                        <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD MEMBERS</button>
+                    <form action="{{ route('add-member', ['team_id' => $team->id]) }}" method="post">
+                            @csrf
+                            <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD MEMBERS</button>
                     </form>
                         <a href="{{ url('view-teams') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO TEAM LIST</a>
                     </div>

@@ -22,7 +22,7 @@
                     </div>
                     @endif
 
-                    <form method="POST" action="{{url('save-cases')}}">
+                    <form method="POST" action="{{ route('save.cases', ['detainee_id' => $detainee_id]) }}">
                         @csrf
 
                         <div class="grid col-start-3">
@@ -93,19 +93,7 @@
                                 @enderror
                             </div>
 
-                            <div class="grid col-start-3">
-                                <label class="form-label block labelname font-bold mb-2">Status</label>
-                                <select class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name="status">
-                                    <option value="Active">Active</option>
-                                    <option value="Pending" selected>Pending</option>
-                                    <option value="Finished">Finished</option>
-                                </select>
-                                @error('case_created') 
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
+                            
 
                         </div>
 

@@ -51,7 +51,7 @@
                                             @endif
                                             <!-- Assigned Attorney Label still not working -->
                                             <p class="text-left mb-2">
-                                                Assigned Attorney: 
+                                                Assigned Case/s: 
                                                     @if (optional($detainee->counselCaseAssignment)->assigned_by)
                                                     <strong class="bg-green-500 text-white px-1 py-1 rounded">{{ $detainee->counselCaseAssignment->assigned_by }}</strong>
                                                 @else
@@ -70,9 +70,8 @@
                         <a href="{{ url('add-detainee') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD NEW DETAINEE</a>
                         <a href="{{ url('edit-detainee' , ['id' => 'detainee_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">EDIT</a>
                         <a href="{{ url('delete-detainee' , ['id' => 'detainee_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4" onclick="return confirm('Are you sure you want to delete this detainee?')">DELETE</a>
-                        <a href="{{ route('assign-attorney', ['detainee' => 'detainee_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ASSIGN ATTORNEY</a>
                         <a href="{{ url('add-cases', ['id' => 'detainee_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ASSIGN A CASE</a>
-                        <a href="{{ url('detainee-list') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK</a>
+                        <a href="{{ url('dashboard') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK</a>
                     </div>
 
                 </div>

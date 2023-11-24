@@ -218,24 +218,27 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col">
+                        <div class="flex flex-col mt-5">
                             <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Upload Photo (Formal Picture for Display Profile)</p>
                             <div class="grid grid-flow-col gap-10">
                                 <div class="border border-black w-full py-40 px-3 placeholderfont leading-tight focus:outline-none focus:border-black relative text-center">
                                     <span class="block text-black mb-2">Drag & Drop to Upload File</span>
                                     <p class="font-bold">OR</p>
                                     <div class="flex justify-center mt-2">
-                                        <button class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) font-bold py-4 px-4">
+                                        <label for="profile_picture" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) font-bold py-4 px-4">
                                             Browse File
-                                        </button>
+                                        </label>
+                                        <input
+                                            id="profile_picture"
+                                            name="profile_picture"
+                                            class="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer"
+                                            type="file"
+                                        />
                                     </div>
-                                    <input
-                                    class="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer"
-                                    type="file"
-                                    />
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="flex flex-row justify-end items-center gap-2.5 mt-[2.12rem]">
                             <a class="underline text-sm text-black dark:text-black hover:text-gray rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 mr-2" href="{{ route('login') }}">

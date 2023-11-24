@@ -122,16 +122,6 @@
                                 </div>
                                 @enderror
                             </div>
-
-                            <div class="grid col-start-3">
-                                <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Max Detention Period</label>
-                                <input type="text" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" name="max_detention_period" placeholder="Max Detention" value="{{old('max_detention_period')}}">
-                                @error('max_detention_period')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
                         </div>
 
                         <div class="flex flex-col mt-5">

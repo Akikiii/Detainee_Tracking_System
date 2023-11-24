@@ -29,11 +29,11 @@
                     </div>
                     
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
-                        <form action="{{ route('save-member', ['userId' => 'user_id_placeholder']) }}" method="post">
+                        
                             @csrf
                             <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD MEMBER</button>
                         </form>
-                        <a href="{{ url('user', ['id' => 'user_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">VIEW PROFILE</a>
+                        <a href="{{ url('show-user', ['id' => 'user_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">VIEW PROFILE</a>
                         <a href="{{ url('dashboard') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK</a>
                     </div>
                 </div>

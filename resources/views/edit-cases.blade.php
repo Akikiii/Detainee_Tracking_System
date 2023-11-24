@@ -11,7 +11,7 @@
                         {{Session::get('success')}}
                     </div>
                     @endif
-                    <form method="post" action="{{ route('update-cases') }}">
+                    <form method="post" action="{{ url('update-cases/' . $data->case_id) }}">
                         @csrf
                         <div>
                             <label class = 'form-label'>Case Name</label>

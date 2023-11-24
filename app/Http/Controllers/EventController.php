@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Event;
 
@@ -23,7 +24,16 @@ class EventController extends Controller
             'related_entity' => 'required',
             'event_location' => 'required',
             'event_outcome' => 'required',
+            'event_notes' => 'nullable|file|mimes:doc,docx,pdf,jpg,png|max:2048',
         ]);
+
+        $uploadedFile = $request->file('event_notes');
+        if ($uploadedFile) {
+            $fileContents = file_get_contents($uploadedFile->getRealPath());
+        } else {
+            $fileContents = null;
+        }
+
 
         // Create a new event and associate it with the case using the case_id
         Event::create([
@@ -34,16 +44,23 @@ class EventController extends Controller
             'related_entity' => $request->input('related_entity'),
             'event_location' => $request->input('event_location'),
             'event_outcome' => $request->input('event_outcome'),
-            'event_notes' => $request->input('event_notes'),
+            'event_notes' => $fileContents,
         ]);
         return redirect()->route('live-cases', ['id' => $case_id])->with('success', 'Event added successfully');
     }
 
     public function editEvent($event_id)
     {
-        $event = Event::find($event_id);
-        return view('edit-event', compact('event'));
+        // Retrieve the event data based on the event_id
+        $event = Event::findOrFail($event_id);
+    
+        // Pass the $case_id to the view
+        $case_id = $event->case_id;
+        
+        // Return the edit view with the event data and case_id
+        return view('edit-event', compact('event', 'case_id'));
     }
+    
 
     // Update an event
     public function updateEvent(Request $request, $event_id)

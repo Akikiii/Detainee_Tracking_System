@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Http\UploadedFile;
 
 class RegisteredUserController extends Controller
 {
@@ -37,6 +38,7 @@ class RegisteredUserController extends Controller
             'language_spoken' => ['required', 'string'],
             'office_hours_open' => ['required', 'date_format:H:i'],
             'office_hours_close' => ['required', 'date_format:H:i'],
+            'profile_picture' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ]);
 
         $user = User::create([
@@ -54,6 +56,7 @@ class RegisteredUserController extends Controller
             'language_spoken' => $request->language_spoken,
             'office_hours_open' => $request->office_hours_open,
             'office_hours_close' => $request->office_hours_close,
+            'profile_picture' => $this->storeProfilePicture($request->file('profile_picture')),
         ]);
 
         event(new Registered($user));
@@ -62,6 +65,12 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
-
+    private function storeProfilePicture(?UploadedFile $file): ?string
+    {
+        if ($file) {
+            return $file->store('profile_pictures', 'public');
+        }
+        return null;
+    }
     
 }

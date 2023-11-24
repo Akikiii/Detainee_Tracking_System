@@ -45,7 +45,7 @@
                                         <p class="text-left mb-3">Medical Information: {{ $detainee->detaineeDetails->medical_information }}</p>
                                         <p class="text-left mb-3">Related Photos: {{ $detainee->detaineeDetails->related_photos}}</p>
                                         <p class="text-left mb-10">
-                                            Assigned Attorney:
+                                            Assigned Case/s:
                                             @if (optional($counsel_case_assignment)->assigned_by)
                                                 <strong class="bg-green-500 text-white px-1 py-1 rounded">{{ $counsel_case_assignment->assigned_by }}</strong>
                                             @else
