@@ -53,7 +53,7 @@ Route::get('/', function () {
 
 //User List
 
-Route::get('/user/{id}', [UserController::class, 'show'])->name('show-user');
+Route::get('/view-user/{id}', [UserController::class, 'show'])->name('view-user');
 Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('edit-user');
 Route::get('/user-list', [UserController::class, 'userList'])->name('user-list');
 Route::get('/users/{id}/delete', [UserController::class, 'deleteUser'])->name('delete-user');

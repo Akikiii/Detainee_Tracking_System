@@ -130,8 +130,15 @@
                 <div class="ml-4 mr-2" style="background-color:black; height: 65px; width: 65px; border-radius: 100%;"></div>
             </div>
             <div>
-                <div class="navigation-text text-sm" style="text-transform: uppercase;">ATTY. {{ Auth::user()->name }}</div> <!-- -->
-                <div class="navigation-text text-xs text-[#757575]">CHIEF ATTORNEY</div>
+                <div class="navigation-text text-sm" style="text-transform: uppercase;">
+                    {{ Auth::user()->name }}
+                </div>
+
+                <div class="navigation-text text-xs text-[#757575]">
+                    @if(Auth::user()->role == 1)
+                        ADMIN
+                    @endif
+                </div>
             </div>
             
         </div>
