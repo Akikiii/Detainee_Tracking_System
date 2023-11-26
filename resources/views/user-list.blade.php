@@ -18,20 +18,26 @@
 
                 <div class="grid gap-5">
 
-                    <div id="selectedEventID"></div>
+                    <div id="selectedUserID"></div>
 
                     @foreach ($users as $user)
                     <div class="flex flex-col gap-4" onclick="selectedUser(this, {{ $user->id }})">
                         <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
-                            <p class="text-gray-900">{{ $user->name }} - {{ $user->email }}</p>
+                            <div class="flex items-center">
+                                <div style="background-color: black; height: 85px; width: 85px; border-radius: 100%;"></div>
+                                <div class="ml-4">
+                                    <p class="text-left mb-2 font-bold">{{ $user->name }}</p>
+                                    <p class="text-left mb-2">Email: {{ $user->email }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
 
                 <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
-                    <a href="{{ url('user', ['id' => 'user_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">VIEW PROFILE</a>
-                    <a href="{{ route('delete-user', ['id' => 'user_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">DELETE</a>
+                    <a href="{{ url('view-user', ['id' => 'user_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">VIEW PROFILE</a>
+                    <a href="{{ route('delete-user', ['id' => $user->id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">DELETE</a>
                     <a href="{{ url('dashboard') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK</a>
                 </div>
 
@@ -52,18 +58,14 @@
 
             clickedElement.classList.toggle('selected');
 
-            var viewUserButton = document.querySelector('a[href*="user"]');
-            if (viewUserButton) {
-                viewUserButton.href = userID ? viewUserButton.href.replace('user_id_placeholder', userID) : 'javascript:void(0);';
+            var viewUserProfileButton = document.querySelector('a[href*="view-user"]');
+            if (viewUserProfileButton) {
+                viewUserProfileButton.href = userID ? viewUserProfileButton.href.replace('user_id_placeholder', userID) : 'javascript:void(0);';
             }
 
-            var deleteUserButton = document.querySelector('a[href*="delete-user"]');
-            if (deleteUserButton) {
-                deleteUserButton.href = userID ? deleteUserButton.href.replace('user_id_placeholder', userID) : 'javascript:void(0);';
-            }
+            var selectedUserBox = document.getElementById('selectedUserID');
+            selectedUserBox.textContent = userID ? 'Selected User ID: ' + userID : 'No Detainee Selected'; // For Checking lang if nakuha yung ID
 
-            var livecaseBox = document.getElementById('selectedEventID');
-            livecaseBox.textContent = userID ? 'Selected User ID: ' + userID : 'No User Selected'; // For Checking lang if nakuha yung ID
         }
 
     </script>

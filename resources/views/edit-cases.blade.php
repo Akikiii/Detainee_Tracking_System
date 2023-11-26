@@ -60,9 +60,14 @@
                         <div class="md-3">
                             <label class="form-label">Status</label>
                             <select class="form-control" name="status">
-                                <option value="Active">Active</option>
-                                <option value="Pending" selected="{{ old('status') === 'Pending' ? 'selected' : '' }}">Pending</option>
-                                <option value="Finished">Finished</option>
+                                <option value="Arrest" selected="{{ old('status') === 'Arrest' }}">Arrest</option>
+                                <option value="Bail Hearing" selected="{{ old('status') === 'Bail Hearing' }}">Bail Hearing</option>
+                                <option value="Pretrial" selected="{{ old('status') === 'Pretrial' }}">Pretrial</option>
+                                <option value="Plea Bargaining" selected="{{ old('status') === 'Plea Bargaining' }}">Plea Bargaining</option>
+                                <option value="Arraignment" selected="{{ old('status') === 'Arraignment' }}">Arraignment</option>
+                                <option value="Sentencing" selected="{{ old('status') === 'Sentencing' }}">Sentencing</option>
+                                <option value="Appeal" selected="{{ old('status') === 'Appeal' }}">Appeal</option>
+                                <option value="Finished/Archived" selected="{{ old('status') === 'Finished/Archived' }}">Finished/Archived</option>
                             </select>
                             @error('status')
                             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">

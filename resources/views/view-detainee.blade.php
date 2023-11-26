@@ -24,12 +24,18 @@
                                     <div class="ml-10">
                                         <p class="text-left mt-3 mb-3 font-bold">{{ $detainee->last_name }}, {{ $detainee->first_name }} {{ $detainee->middle_name }}</p>
                                         <p class="text-left mb-3">Detainee ID: {{ $detainee['detainee_id'] }}</p>
-                                        <p class="text-left mb-3">Age: {{ $detainee->age }} years old</p>
+                                        <?php
+                                            $detentionStart = new DateTime($detainee->detaineeDetails->detention_begin);
+                                            $currentTime = now();
+                                            $timeDifference = $currentTime->diff($detentionStart);
+                                            $totalDaysServed = $timeDifference->days;
+                                            $remainingHoursServed = $timeDifference->h;
+                                        ?>
                                         @if (isset($detainee->detaineeDetails))
                                             <p class="text-left mb-3">Gender: {{ ucfirst($detainee->detaineeDetails->gender) }}</p>
                                             <p class="text-left mb-3">Offense: {{ $detainee->detaineeDetails->crime_history }}</p>
                                             <p class="text-left mb-3">Start of Detention: {{ $detainee->detaineeDetails->detention_begin }}</p>
-                                            <p class="text-left mb-3">Time Served: {{ $detainee->detaineeDetails->max_detention_period }} hours</p>
+                                            <p class="text-left mb-2">Time Served: {{ $totalDaysServed }} days and {{ $remainingHoursServed }} hours</p>
                                         @else
                                             <p class="text-left mb-3">Offense: N/A</p>
                                             <p class="text-left mb-3">Start of Detention: N/A</p>
@@ -64,11 +70,11 @@
                             @if ($counsel_case_assignment)
                                 <a href="{{ url('remove-assignment/' . $counsel_case_assignment->detainee_id) }}"
                                     class="buttonFormat bg-[#D0B638] hover:bg-yellow-400 font-bold py-3 px-6 rounded"
-                                    onclick="return confirm('Are you sure you want to remove your assignment?')">REMOVE ASSIGNED ATTY TO DETAINEE
+                                    onclick="return confirm('Are you sure you want to remove your assignment?')">REMOVE ASSIGNED TEAM TO DETAINEE
                                 </a>
                             @else
                                 <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">
-                                    ASSIGN ATTORNEY TO DETAINEE
+                                    ASSIGN TEAM TO DETAINEE
                                 </button>
                             @endif
                         </form>

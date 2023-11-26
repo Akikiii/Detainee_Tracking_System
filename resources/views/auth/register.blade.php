@@ -5,14 +5,9 @@
 
         <!-- Canvas -->
         <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
-            
-            <!-- Sidebar -->
-            <div class="col-start-1 mt-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black pt-[1.44rem] pb-[3.72rem] px-[1rem]">
-                @include('profile.partials.sidebar')
-            </div>
 
             <!-- Application Form -->
-            <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-2 border-black mt-[2.38rem]" style="background-image: url('logos/background-with-grid-bw.png'); background-size: contain;">
+            <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-3 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-black rounded-md mt-[2.38rem]" style="background-image: url('logos/background-with-grid-bw.png'); background-size: contain;">
                 <div>
                     <h1 class="text-[1.875rem] uppercase font-bold ibm-plex-mono" style="color: black; text-shadow: 0 0 2px #888888;">Create Attorney Profile</h1>
                     <img class="mt-[1.94rem] mb-[2.31rem]" src="{{ asset('logos/line-bw.png') }}" alt="TVA Line" style="height: 10px;">
@@ -36,6 +31,7 @@
                                 <input id="name" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
                                                 type="text" 
                                                 name="name" 
+                                                placeholder="Enter Full Name"
                                                 :value="old('name')" 
                                                 required autocomplete="name" />
                                                 
@@ -48,7 +44,8 @@
                             <div class="grid grid-flow-col gap-10">
                                 <input id="email" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" 
                                                 type="email" 
-                                                name="email" 
+                                                name="email"
+                                                placeholder="Enter Email Address"
                                                 :value="old('email')" 
                                                 required autocomplete="email" />
 
@@ -82,7 +79,8 @@
                             <div class="grid grid-flow-col gap-10">
                                 <input id="office_address" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" 
                                                 type="text" 
-                                                name="office_address" 
+                                                name="office_address"
+                                                placeholder="Enter Office Address"
                                                 :value="old('office_address')" required />
                                 
                                 <x-input-error :messages="$errors->get('office_address')" class="mt-2" />
@@ -94,7 +92,8 @@
                                 <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Contact Number</p>
                                 <input id="contact_number" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
                                                 type="text" 
-                                                name="contact_number" 
+                                                name="contact_number"
+                                                placeholder="Enter Contact Number"
                                                 :value="old('contact_number')" 
                                                 required />
                             
@@ -120,7 +119,8 @@
                             <div class="grid grid-flow-col gap-10">
                                 <input id="education_qualifications" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
                                                 type="text" 
-                                                name="education_qualifications" 
+                                                name="education_qualifications"
+                                                placeholder="Enter Education Qualifications"
                                                 :value="old('education_qualifications')" 
                                                 required />
                                 
@@ -133,7 +133,8 @@
                             <div class="grid grid-flow-col gap-10">
                                 <input id="practice_areas" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" 
                                                 type="text" 
-                                                name="practice_areas" 
+                                                name="practice_areas"
+                                                placeholder="Enter Practiced Areas"
                                                 :value="old('practice_areas')" 
                                                 required />
                                 
@@ -147,6 +148,7 @@
                                 <input id="work_experience" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
                                                 type="text" 
                                                 name="work_experience" 
+                                                placeholder="Enter Working Experiences"
                                                 :value="old('work_experience')" 
                                                 required />
                             
@@ -155,11 +157,12 @@
                         </div>
 
                         <div class="flex flex-col mt-5">
-                            <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Professional Affiliations</p>
+                            <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Professional Affliations</p>
                             <div class="grid grid-flow-col gap-10">
                                 <input id="professional_affiliations" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
                                                 type="text" 
-                                                name="professional_affiliations" 
+                                                name="professional_affiliations"
+                                                placeholder="Enter Professional Affliations"
                                                 :value="old('professional_affiliations')" 
                                                 required />
                                 
@@ -172,7 +175,8 @@
                             <div class="grid grid-flow-col gap-10">
                                 <input id="cases_handled" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
                                                 type="text" 
-                                                name="cases_handled" 
+                                                name="cases_handled"
+                                                placeholder="Enter Cases Handled"
                                                 :value="old('cases_handled')" 
                                                 required />
                                 
@@ -185,7 +189,8 @@
                             <div class="grid grid-flow-col gap-10">
                                 <input id="language_spoken" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
                                                 type="text" 
-                                                name="language_spoken" 
+                                                name="language_spoken"
+                                                placeholder="Enter Language Spoken" 
                                                 :value="old('language_spoken')" 
                                                 required />
                                 

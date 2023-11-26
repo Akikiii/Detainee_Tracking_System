@@ -18,10 +18,9 @@
                         <div class="grid grid-flow-col gap-10">
                             <input
                                 type="text"
-                                id="searchInput"
                                 class="pl-7 w-[42.9375rem] py-4 px-3 font-bold leading-tight bg-gray-200 focus:outline-none searchBarPlaceHolder"
-                                placeholder="Search for a Detainee (Enter Detainee Name)"
-                                oninput="searchDetainees()"
+                                placeholder="Search for a Detainee (Enter Detainee Name or ID)"
+                                oninput="searchDetainees(this.value)"
                             />
                         </div>
                     </div>
@@ -34,31 +33,28 @@
                             $counter = count($data);
                         @endphp
                         @foreach ($data as $detainee)
-
-                        <?php
-                            $detentionStart = new DateTime($detainee->detaineeDetails->detention_begin);
-                            $currentTime = now();
-                            $timeDifference = $currentTime->diff($detentionStart);
-                            $totalDaysServed = $timeDifference->days;
-                            $remainingHoursServed = $timeDifference->h;
-                        ?>
-
                             <div class="flex space-x-4" onclick="selectedID(this, {{ $detainee->detainee_id }})">
                                 <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
                                     <div class="flex items-center">
                                         <div style="background-color: black; height: 85px; width: 85px; border-radius: 100%;"></div>
                                         <div class="ml-4">
-                                            <p class="text-left mb-2 font-bold">{{ $detainee->first_name }} {{ $detainee->middle_name }} {{ $detainee->last_name }}</p>
+                                            <p class="text-left mb-2 font-bold">{{ $detainee->last_name }}, {{ $detainee->first_name }} {{ $detainee->middle_name }}</p>
+                                            <p class="text-left mb-2">Detainee ID: {{ $detainee->detainee_id }}</p>
+                                            <p class="text-left mb-2">Age: {{ $detainee->age }} years old</p>
                                             @if (isset($detainee->detaineeDetails))
+                                                <p class="text-left mb-2">Gender: {{ ucfirst($detainee->detaineeDetails->gender) }}</p>
+                                                <p class="text-left mb-2">Offense: {{ $detainee->detaineeDetails->crime_history }}</p>
                                                 <p class="text-left mb-2">Start of Detention: {{ $detainee->detaineeDetails->detention_begin }}</p>
-                                                <p class="text-left mb-2">Time Served: {{ $totalDaysServed }} days and {{ $remainingHoursServed }} hours</p>
+                                                <p class="text-left mb-2">Time Served: {{ $detainee->detaineeDetails->max_detention_period }} hours</p>
                                             @else
+                                                <p class="text-left mb-2">Offense: N/A</p>
                                                 <p class="text-left mb-2">Start of Detention: N/A</p>
                                                 <p class="text-left mb-2">Time Served: N/A</p>
                                             @endif
                                             <!-- Assigned Attorney Label still not working -->
-                                            <p class="text-left mb-2">Number of Assigned Cases: 
-                                                @if (optional($detainee->counselCaseAssignment)->assigned_by)
+                                            <p class="text-left mb-2">
+                                                Assigned Attorney: 
+                                                    @if (optional($detainee->counselCaseAssignment)->assigned_by)
                                                     <strong class="bg-green-500 text-white px-1 py-1 rounded">{{ $detainee->counselCaseAssignment->assigned_by }}</strong>
                                                 @else
                                                     <strong class="bg-orange-500 text-white px-1 py-1 rounded">None</strong>
@@ -76,8 +72,9 @@
                         <a href="{{ url('add-detainee') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD NEW DETAINEE</a>
                         <a href="{{ url('edit-detainee' , ['id' => 'detainee_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">EDIT</a>
                         <a href="{{ url('delete-detainee' , ['id' => 'detainee_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4" onclick="return confirm('Are you sure you want to delete this detainee?')">DELETE</a>
+                        <a href="{{ route('assign-attorney', ['detainee' => 'detainee_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ASSIGN ATTORNEY</a>
                         <a href="{{ url('add-cases', ['id' => 'detainee_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ASSIGN A CASE</a>
-                        <a href="{{ url('dashboard') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK</a>
+                        <a href="{{ url('detainee-list') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK</a>
                     </div>
 
                 </div>
@@ -128,20 +125,17 @@
 
         }
 
-        function searchDetainees() {
-            var input = document.getElementById("searchInput").value.toLowerCase();
-
-            var detainees = document.querySelectorAll(".flex.space-x-4");
-
-            detainees.forEach(function (detainee) {
-                var name = detainee.querySelector(".font-bold").textContent.toLowerCase();
-
-                var nameMatch = name.includes(input);
-
-                if (nameMatch) {
-                    detainee.style.display = "flex";
-                } else {
-                    detainee.style.display = "none";
+        function searchDetainees(query) {
+            $.ajax({
+                url: '/search-detainees', // Update the URL to your backend search route
+                type: 'GET',
+                data: { query: query },
+                success: function (data) {
+                    // Update the detainee list with the search results
+                    $('#detaineesList').html(data);
+                },
+                error: function (error) {
+                    console.error('Error searching detainees:', error);
                 }
             });
         }
