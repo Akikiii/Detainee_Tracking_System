@@ -4,7 +4,8 @@
     <div class="grid grid-cols-5 bg-[#D9D9D9] grid-row-4">
         
         <!-- Sidebar -->
-        <div class="col-start-1 mt-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-black pt-[1.44rem] pb-[3.72rem] px-[1rem]">
+        
+        <div class="col-start-1 my-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-black p-[1.44rem] max-w-[600px]">
             @include('profile.partials.sidebar')
         </div>
 

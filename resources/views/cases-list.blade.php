@@ -55,7 +55,7 @@
                         <div class="grid grid-flow-col gap-10">
                             <input
                                 type="text"
-                                class="pl-10 rounded-3xl w-[42.9375rem] py-4 px-3 font-bold leading-tight bg-gray-200 focus:outline-none searchBarPlaceHolder"
+                                class="pl-5 w-[42.9375rem] py-4 font-bold leading-tight bg-gray-200 focus:outline-none searchBarPlaceHolder"
                                 placeholder="Search for a case (Enter Case Name)"
                             />
                         </div>
@@ -89,7 +89,7 @@
 
                                             <p class="text-left mb-3"><strong>Status:
                                                 @if ($Cases->status === 'Arrest')
-                                                    <span style="text-shadow: 0 0 2px #FDE581;">Case Creation/Initial Appearance</span></strong>
+                                                    <span style="text-shadow: 0 0 1px #FDE581;">Case Creation/Initial Appearance</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
@@ -101,7 +101,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
                                                 @elseif ($Cases->status === 'Bail Hearing')
-                                                    <span style="text-shadow: 0 0 2px #FDE581;">Bail Hearing</span></strong>
+                                                    <span style="text-shadow: 0 0 1px #FDE581;">Bail Hearing</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
@@ -113,7 +113,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
                                                 @elseif ($Cases->status === 'Pretrial')
-                                                    <span style="text-shadow: 0 0 2px #FDE581;">Pretrial</span></strong>
+                                                    <span style="text-shadow: 0 0 1px #FDE581;">Pretrial</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -125,7 +125,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
                                                 @elseif ($Cases->status === 'Plea')
-                                                    <span style="text-shadow: 0 0 2px #FDE581;">Plea Bargaining</span></strong>
+                                                    <span style="text-shadow: 0 0 1px #FDE581;">Plea Bargaining</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -137,7 +137,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
                                                 @elseif ($Cases->status === 'Arraignment')
-                                                    <span style="text-shadow: 0 0 2px #FDE581;">Arraignment</span></strong>
+                                                    <span style="text-shadow: 0 0 1px #FDE581;">Arraignment</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -149,7 +149,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
                                                 @elseif ($Cases->status === 'Trial')
-                                                    <span style="text-shadow: 0 0 2px #FDE581;">Trial</span></strong>
+                                                    <span style="text-shadow: 0 0 1px #FDE581;">Trial</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -161,7 +161,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
                                                 @elseif ($Cases->status === 'Sentencing')
-                                                    <span style="text-shadow: 0 0 2px #FDE581;">Sentencing</span></strong>
+                                                    <span style="text-shadow: 0 0 1px #FDE581;">Sentencing</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -173,7 +173,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
                                                 @elseif ($Cases->status === 'Appeal')
-                                                    <span style="text-shadow: 0 0 2px #FDE581;">Appeal</span></strong>
+                                                    <span style="text-shadow: 0 0 1px #FDE581;">Appeal</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -185,7 +185,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
                                                     </div>
                                                 @elseif ($Cases->status === 'Finished')
-                                                    <span style="text-shadow: 0 0 2px #436228;">Finished/Archived</span></strong>
+                                                    <span style="text-shadow: 0 0 1px #436228;">Finished/Archived</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>

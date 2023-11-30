@@ -9,12 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Sarabun&display=swap" rel="stylesheet">
 
 
 
     <style>
         .navigation-text {
-            font-family: 'Press Start 2P', cursive;
+            font-family: 'Bebas Neue', sans-serif;
         }
 
         .placeholder-black::placeholder {
@@ -33,7 +35,7 @@
         }
 
         .circle {
-            width: 63px;
+            width: 40px;
             border-radius: 5rem;
         }
 
@@ -49,8 +51,8 @@
         }
 
         .sections {
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-family: 'Sarabun', sans-serif;
             color: #686576; 
         }
 
@@ -123,28 +125,9 @@
     <!-- Navigation Bar -->
     <div class="w-full bg-white flex items-center justify-between p-5">
         
-        
-        <div class="flex items-center gap-4">
-            <div>
-                <!-- <img class="circle" src="/assets/chief-atty.png" alt="chief attorney pic"> -->
-                <div class="ml-4 mr-2" style="background-color:black; height: 65px; width: 65px; border-radius: 100%;"></div>
-            </div>
-            <div>
-                <div class="navigation-text text-sm" style="text-transform: uppercase;">
-                    {{ Auth::user()->name }}
-                </div>
-
-                <div class="navigation-text text-xs text-[#757575]">
-                    @if(Auth::user()->role == 1)
-                        ADMIN
-                    @endif
-                </div>
-            </div>
-            
-        </div>
 
         <!-- Logo and System Name -->
-        <a class="flex items-center gap-2" href="{{ route('dashboard') }}">
+        <a class="flex items-center gap-1" href="{{ route('dashboard') }}">
             <div>
                 <img class="circle" src="{{ asset('logos/pao-logo-bw.png') }}" alt="PAO Logo">
             </div>
@@ -152,9 +135,52 @@
                 <img class="circle" src="{{ asset('logos/bjmp-logo-bw.png') }}" alt="BJMP Logo">
             </div>
             <div>
-                <div class="navigation-text text-base ml-4 mr-4">DETAINEE TRACKING SYSTEM</div>
+                <div class="navigation-text text-3xl ml-3">DETAINEE TRACKING SYSTEM</div>
             </div>
         </a>
+
+        <div x-data="{ open: false }" class="flex justify-center items-center mr-8">
+            <div @click="open = !open" >
+                <div class="flex justify-center items-center cursor-pointer">
+                    <a class="mr-2 relative flex flex-row items-center h-12 rounded-md hover:bg-gray-100">
+                        <svg width="40" height="40" fill="none" viewBox="0 0 24 24" id="yui_3_17_2_1_1701351524975_36">
+                            <path stroke="Black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M17.25 12V10C17.25 7.1005 14.8995 4.75 12 4.75C9.10051 4.75 6.75 7.10051 6.75 10V12L4.75 16.25H19.25L17.25 12Z"></path>
+                            <path stroke="Black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M9 16.75C9 16.75 9 19.25 12 19.25C15 19.25 15 16.75 15 16.75"></path>
+                        </svg>
+                        @if (isset($Cases))
+                            <span class="absolute top-0 right-0 h-5 w-5 rounded-full text-xs text-white bg-red-600 flex justify-center items-center items">
+                                <span>1</span>
+                            </span>
+                        @else
+                            <span class="absolute top-0 right-0 h-5 w-5 rounded-full text-xs text-white bg-red-600 flex justify-center items-center items">
+                                <span>3</span>
+                            </span>
+                        @endif
+                    </a>
+                </div>
+
+                <div x-show="open" class="absolute right-10 mt-2 bg-white rounded-md shadow-lg overflow-hidden z-20 border-2 border-black" style="width:20rem;">
+                    <div class="py-2">
+                        <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+                            <p class="text-gray-600 text-sm mx-2">
+                                <span class="font-bold" href="#">Blank</span> is currently in the status of <span class="font-bold text-yellow-500" href="#">Pretrial</span> . 2m
+                            </p>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+                            <p class="text-gray-600 text-sm mx-2">
+                                <span class="font-bold" href="#">Blank</span> is currently in the status of <span class="font-bold text-yellow-500" href="#">Bail Hearing</span> . 45m
+                            </p>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+                            <p class="text-gray-600 text-sm mx-2">
+                                <span class="font-bold" href="#">Blank</span> is currently in the status of <span class="font-bold text-yellow-500" href="#">Case Creation/Initial Appearance</span> . 1hr
+                            </p>
+                        </a>
+                    </div>
+                    <a href="#" class="block bg-yellow-600 text-white text-center font-bold py-2">See all pending cases</a>
+                </div>
+            </div>
+        </div>
         
     </div>
 

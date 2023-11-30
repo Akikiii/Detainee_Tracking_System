@@ -1,15 +1,10 @@
 <x-app-layout>
     
     <!-- Canvas -->
-    <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
-
-        <!-- Sidebar -->
-        <div class="col-start-1 mt-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black pt-[1.44rem] pb-[3.72rem] px-[1rem]">
-            @include('profile.partials.sidebar')
-        </div>
+    <div class="flex bg-[#f0f2f5] justify-center">
 
         <!-- Create Detainee Profile -->
-        <div id="part1" class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-2 border-black mt-[2.38rem]" style="background-image: url('logos/background-with-grid-bw.png'); background-size: contain;">
+        <div id="part1" class=" my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-2 border-black mt-[2.38rem]" style="background-image: url('logos/background-with-grid-bw.png'); background-size: contain;">
             <div>
                 <h1 class="text-[1.875rem] uppercase font-bold ibm-plex-mono" style="color: black; text-shadow: 0 0 2px #888888;">Create Detainee Profile</h1>
                 <img class="mt-[1.94rem] mb-[2.31rem]" src="{{ asset('logos/line-bw.png') }}" alt="TVA Line" style="height: 10px;">

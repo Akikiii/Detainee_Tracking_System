@@ -19,22 +19,19 @@
                     <div class="flex flex-col gap-4">
                         <div class="flex space-x-4">
                             <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
-                                <div>
-                                    <div class="ml-4 flex">
-                                        <div style="background-color: black; height: 125px; width: 125px; border-radius: 100%; margin-top: 10px;"></div>
-                                        <div class="ml-10">
-                                            <p class="text-left mt-3 mb-3 font-bold">{{ $user['name']}} </p>
-                                            <p class="text-left mb-3">Email: {{ $user['email']}} </p>
-                                            <p class="text-left mb-3">Office Address: {{ $user['office_address']}} </p>
-                                            <p class="text-left mb-3">Gender: {{ $user['gender']}} </p>
-                                            <p class="text-left mb-3">Education: {{ $user['education_qualifications']}} </p>
-                                            <p class="text-left mb-3">Practice Areas: {{ $user['practice_areas']}} </p>
-                                            <p class="text-left mb-3">Cases Handled: {{ $user['cases_handled']}} </p>
-                                            <p class="text-left mb-3">Language Spoken: {{ $user['language_spoken']}} </p>
-                                            <p class="text-left mb-3">Active Team/s:  </p>
-                                            <p class="text-left mb-3">Office Hours Opening: {{ $user['office_hours_open']}} am</p>
-                                            <p class="text-left mb-3">Office Hours Close: {{ $user['office_hours_close']}} pm</p>
-                                        </div>
+                                <div class="ml-4 flex">
+                                    <div style="background-color: black; height: 200px; width: 200px; border-radius: 100%; margin-top: 10px;"></div>
+                                    <div class="ml-10">
+                                        <p class="text-left mt-3 mb-3 font-bold">{{ $user['name']}} </p>
+                                        <p class="text-left mb-3">Email: {{ $user['email']}} </p>
+                                        <p class="text-left mb-3">Office Address: {{ $user['office_address']}} </p>
+                                        <p class="text-left mb-3">Gender: {{ $user['gender']}} </p>
+                                        <p class="text-left mb-3">Education: {{ $user['education_qualifications']}} </p>
+                                        <p class="text-left mb-3">Practice Areas: {{ $user['practice_areas']}} </p>
+                                        <p class="text-left mb-3">Cases Handled: {{ $user['cases_handled']}} </p>
+                                        <p class="text-left mb-3">Language Spoken: {{ $user['language_spoken']}} </p>
+                                        <p class="text-left mb-3">Office Hours Opening: {{ $user['office_hours_open']}} am</p>
+                                        <p class="text-left mb-3">Office Hours Close: {{ $user['office_hours_close']}} pm</p>
                                     </div>
                                 </div>
                             </div>
