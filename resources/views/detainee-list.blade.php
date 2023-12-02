@@ -130,14 +130,14 @@
 
         function searchDetainees() {
             var input = document.getElementById("searchInput").value.toLowerCase();
-
+            
             var detainees = document.querySelectorAll(".flex.space-x-4");
-
+            
             detainees.forEach(function (detainee) {
                 var name = detainee.querySelector(".font-bold").textContent.toLowerCase();
-
+                
                 var nameMatch = name.includes(input);
-
+                
                 if (nameMatch) {
                     detainee.style.display = "flex";
                 } else {

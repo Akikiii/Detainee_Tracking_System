@@ -94,7 +94,18 @@
                         </div>
 
                         <div class="grid grid-flow-row col-2 gap-10 mt-5">
+                            <!-- Add Birthdate to Database -->
                             <div class="grid col-start-1">
+                                <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Birthdate</label>
+                                <input type="date" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" name="detention_begin" value="{{ old('detention_begin') }}">
+                                @error('detention_begin')
+                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="grid col-start-2">
                                 <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Gender</label>
                                 <select class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" name="gender">
                                     <option value="male">Male</option>
@@ -108,7 +119,7 @@
                             </div>
 
                             <!-- Make It Related To Time -->
-                            <div class="grid col-start-2">
+                            <div class="grid col-start-3">
                                 <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Start of Detention</label>
                                 <input type="date" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" name="detention_begin" value="{{ old('detention_begin') }}">
                                 @error('detention_begin')
@@ -170,7 +181,7 @@
                         </div>
 
                         <!-- FIX TO ADD PHOTOS -->
-                        <div class="flex flex-col mt-5">
+                        <!-- <div class="flex flex-col mt-5">
                             <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Medical Information</label>
                             <div class="flex">
                                 <input type="text" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight mr-2" name="medical_information" placeholder="Input Detainee’s existing allergy and conditions (Upload Medical Documents)" value="{{old('Medical Information')}}">
@@ -186,13 +197,31 @@
                                     <input type="file" class="hidden" />
                                 </label>
                             </div>
+                        </div> -->
+
+                        <div class="flex flex-col mt-5">
+                            <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Violation</label>
+                            <div class="flex">
+                                <input type="text" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" name="related_photos" placeholder="Input the reason for detention here">
+                                @error('related_photos')
+                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                                <!-- <label class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                    </svg>
+                                    <input type="file" class="hidden" />
+                                </label> -->
+                            </div>
                         </div>
 
                         <div class="flex flex-col mt-5">
-                            <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Reason For Detention</label>
+                            <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Detainee’s Crime History</label>
                             <div class="flex">
-                                <input type="text" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight mr-2" name="related_photos" placeholder="Input the reason for detention here (Upload Documents if necessary)">
-                                @error('related_photos')
+                                <input type="text" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight mr-2" name="crime_history" placeholder="Enter detainee’s history of crime here" value="{{old('crime_history')}}">
+                                @error('crime_history')
                                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                     {{$message}}
                                 </div>
@@ -206,19 +235,7 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col mt-5">
-                            <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Detainee’s Crime History</label>
-                            <div class="grid grid-flow-col gap-10">
-                                <input type="text" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" name="crime_history" placeholder="Enter detainee’s history of crime here" value="{{old('crime_history')}}">
-                                @error('crime_history')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col mt-5">
+                        <!-- <div class="flex flex-col mt-5">
                             <p class="block labelname font-bold mb-2">Upload Photo/s (Mugshot, Full-body photo, Injuries, Evidence, Etc.)</p>
                             <div class="grid grid-flow-col gap-10">
                                 <div class="border border-black w-full py-40 px-3 placeholderfont leading-tight focus:outline-none focus:border-black relative text-center">
@@ -235,7 +252,7 @@
                                     />
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
                             <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD DETAINEE</button>

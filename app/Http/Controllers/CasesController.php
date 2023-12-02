@@ -9,7 +9,7 @@ use App\Models\Event;
 class CasesController extends Controller
 {
     public function getCases(){
-        $data = Cases::get();
+        $data = Cases::with('detainee')->get();
         return view('cases-list',compact('data'));
     }
 

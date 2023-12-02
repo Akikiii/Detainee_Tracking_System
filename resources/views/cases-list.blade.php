@@ -15,7 +15,7 @@
                 <img class="mt-[1.94rem] mb-[2.31rem]" src="{{ asset('logos/line-bw.png') }}" alt="TVA Line" style="height: 10px;">
 
                 <div class="grid gap-5">
-                    <form action="" method="GET">
+                    <!-- <form action="" method="GET">
                         <div class="col-md-3">
                             <div class="card shadow mt-3">
                                 <div class="card-header">
@@ -49,14 +49,16 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
                     <div class="flex flex-col">
                         <div class="grid grid-flow-col gap-10">
                             <input
                                 type="text"
-                                class="pl-5 w-[42.9375rem] py-4 font-bold leading-tight bg-gray-200 focus:outline-none searchBarPlaceHolder"
-                                placeholder="Search for a case (Enter Case Name)"
+                                id="searchInput"
+                                class="pl-7 w-[42.9375rem] py-4 px-3 font-bold leading-tight bg-gray-200 focus:outline-none searchBarPlaceHolder"
+                                placeholder="Search for a Detainee (Enter Detainee Name)"
+                                oninput="searchDetainees()"
                             />
                         </div>
                     </div>
@@ -73,7 +75,8 @@
                                 <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
                                     <div class="flex justify-between items-center">
                                         <div>
-                                            <p class="text-left font-bold mb-3">{{ $Cases->case_name}}</p>
+                                            <p class="text-left mb-2 font-bold">{{ $Cases->detainee->first_name }} {{ $Cases->detainee->middle_name }} {{ $Cases->detainee->last_name }}</p>
+                                            <p class="text-left mb-3"><strong>Case Title: </strong> {{ $Cases->case_name}}</p>
                                             <p class="text-left mb-3"><strong>Violation/s:</strong> {{ $Cases->violations }}</p>
                                             <p class="text-left mb-3"><strong>Case Created:</strong> {{ $Cases->case_created }}</p>
                                             <p class="text-left mb-3"><strong>Arrest Report:</strong> {{ $Cases->arrest_report }}</p>
@@ -264,7 +267,25 @@
             }
 
             var caseoverviewBox = document.getElementById('selectedCaseID');
-            caseoverviewBox.textContent = caseID ? 'Selected Case ID: ' + caseID : 'No Case Selected'; // For Checking lang if nakuha yung ID
+            caseoverviewBox.textContent = caseID ? 'Selected Case Number: ' + caseID : 'No Case Selected'; // For Checking lang if nakuha yung ID
+        }
+
+        function searchDetainees() {
+            var input = document.getElementById("searchInput").value.toLowerCase();
+
+            var detainees = document.querySelectorAll(".flex.space-x-4");
+
+            detainees.forEach(function (detainee) {
+                var name = detainee.querySelector(".font-bold").textContent.toLowerCase();
+
+                var nameMatch = name.includes(input);
+
+                if (nameMatch) {
+                    detainee.style.display = "flex";
+                } else {
+                    detainee.style.display = "none";
+                }
+            });
         }
 
     </script>
