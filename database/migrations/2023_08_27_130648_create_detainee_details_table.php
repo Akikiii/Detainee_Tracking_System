@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('detainee_details', function (Blueprint $table) {
             $table->unsignedBigInteger('detainee_id');
             $table->string('gender');
-            $table->string('mother_name');
-            $table->string('father_name');
-            $table->string('spouse_name');
-            $table->string('related_photos');
-            $table->text('crime_history');
+            $table->string('mother_name')->nullable;
+            $table->string('father_name')->nullable;
+            $table->string('spouse_name')->nullable;
+            $table->string('related_photos')->nullable;
+            $table->text('crime_history')->nullable;
             $table->date('detention_begin');
             $table->date('birthday');
-            $table->string('emergency_contact_number');
-            $table->string('emergency_contact_name');
+            $table->string('emergency_contact_number')->nullable;
+            $table->string('emergency_contact_name')->nullablle;
             
             $table->timestamps();
 

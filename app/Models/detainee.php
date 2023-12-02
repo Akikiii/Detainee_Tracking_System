@@ -29,8 +29,8 @@ class Detainee extends Model
     
     public function cases()
     {
-        return $this->hasMany(Cases::class);
-    }
+        return $this->hasMany(Cases::class, 'detainee_id', 'detainee_id');
+    } 
     public function counselCaseAssignment()
     {
         return $this->hasOne(Counsel_Case_Assignment::class, 'detainee_id', 'detainee_id');

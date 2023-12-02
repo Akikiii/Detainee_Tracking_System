@@ -98,7 +98,7 @@
                             <div class="grid col-start-1">
                                 <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Birthdate</label>
                                 <input type="date" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" name="birthday" value="{{ old('birthday') }}">
-                                @error('detention_begin')
+                                @error('birthday')
                                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                     {{ $message }}
                                 </div>
@@ -216,25 +216,6 @@
                                 </label>
                             </div>
                         </div>
-
-                        <!-- <div class="flex flex-col mt-5">
-                            <p class="block labelname font-bold mb-2">Upload Photo/s (Mugshot, Full-body photo, Injuries, Evidence, Etc.)</p>
-                            <div class="grid grid-flow-col gap-10">
-                                <div class="border border-black w-full py-40 px-3 placeholderfont leading-tight focus:outline-none focus:border-black relative text-center">
-                                    <span class="block text-black mb-2">Drag & Drop to Upload File</span>
-                                    <p class="font-bold">OR</p>
-                                    <div class="flex justify-center mt-2">
-                                        <button class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) font-bold py-4 px-4">
-                                            Browse File
-                                        </button>
-                                    </div>
-                                    <input
-                                    class="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer"
-                                    type="file"
-                                    />
-                                </div>
-                            </div>
-                        </div> -->
 
                         <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
                             <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD DETAINEE</button>

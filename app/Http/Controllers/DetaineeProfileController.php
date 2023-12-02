@@ -10,18 +10,14 @@ use App\Models\Counsel_Case_Assignment;
 class DetaineeProfileController extends Controller
 {
     public function index(){
-        $data = Detainee::with('counselCaseAssignment')->get();
+        $data = Detainee::all();
         return view('detainee-list', compact('data'));
     }
     
     public function addDetainee(){
         return view('add-detainee');
     }
-    public function viewDetainee()
-{
-    return view('view-detainee');
-}
-
+   
 
    public function saveDetainee(Request $request){
     $combinedRules = [
@@ -159,12 +155,12 @@ public function updateDetainee(Request $request, $detaineeId) {
     }
 
     //For Viewing
-    public function viewDetails($id) {
-        $assignedAttorney = Counsel_Case_Assignment::where('detainee_id', $id)->first();
-        $detainee = Detainee::with('detaineeDetails')->find($id);
-        return view('assign-attorney', ['detainee' => $detainee, 'counsel_case_assignment' => $assignedAttorney]);
-    }
-    
+        public function viewDetails($id) {
+            $assignedAttorney = Counsel_Case_Assignment::where('detainee_id', $id)->first();
+            $detainee = Detainee::with('detaineeDetails')->find($id);
+            return view('assign-attorney', ['detainee' => $detainee, 'counsel_case_assignment' => $assignedAttorney]);
+        }
+        
 
     public function viewDetails2($id) {
         $assignedAttorney = Counsel_Case_Assignment::where('detainee_id', $id)->first();

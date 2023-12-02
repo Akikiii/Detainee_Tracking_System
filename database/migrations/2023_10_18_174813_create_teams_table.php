@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('counsel_case_assignment', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('team_id');
+            $table->unsignedBigInteger('team_id')->nullable;
             $table->unsignedBigInteger('detainee_id');
             $table->unsignedBigInteger('case_id');
-            $table->string('assigned_group');
+            $table->string('assigned_lawyer');
             $table->date('date_assigned');
             $table->timestamps();
 

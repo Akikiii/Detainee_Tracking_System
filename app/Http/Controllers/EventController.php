@@ -22,9 +22,8 @@ class EventController extends Controller
             'event_date' => 'required|date',
             'description' => 'required',
             'related_entity' => 'required',
-            'event_location' => 'required',
             'event_outcome' => 'required',
-            'event_notes' => 'nullable|file|mimes:doc,docx,pdf,jpg,png|max:2048',
+
         ]);
 
         $uploadedFile = $request->file('event_notes');
@@ -42,9 +41,7 @@ class EventController extends Controller
             'event_date' => $request->input('event_date'),
             'description' => $request->input('description'),
             'related_entity' => $request->input('related_entity'),
-            'event_location' => $request->input('event_location'),
             'event_outcome' => $request->input('event_outcome'),
-            'event_notes' => $fileContents,
         ]);
         return redirect()->route('live-cases', ['id' => $case_id])->with('success', 'Event added successfully');
     }
@@ -71,7 +68,6 @@ class EventController extends Controller
             'event_date' => 'required|date',
             'description' => 'required',
             'related_entity' => 'required',
-            'event_location' => 'required',
             'event_outcome' => 'required',
         ]);
     // Find the event by its ID
@@ -82,9 +78,7 @@ class EventController extends Controller
         $event->event_date = $request->input('event_date');
         $event->description = $request->input('description');
         $event->related_entity = $request->input('related_entity');
-        $event->event_location = $request->input('event_location');
         $event->event_outcome = $request->input('event_outcome');
-        $event->event_notes = $request->input('event_notes');
 
         // Save the updated event
         $event->save();

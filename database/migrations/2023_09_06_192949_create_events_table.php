@@ -15,9 +15,7 @@ class CreateEventsTable extends Migration
             $table->date('event_date'); //Start of event
             $table->text('description');
             $table->string('related_entity');
-            $table->string('event_location');
             $table->string('event_outcome');
-            $table->binary('event_notes')->nullable();
             $table->timestamps();
 
             // Define the foreign key relationship

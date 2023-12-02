@@ -9,7 +9,7 @@ use App\Models\Event;
 class CasesController extends Controller
 {
    public function getCases(){
-        // Fetch all cases
+        // Fetch all cases  
         $cases = Cases::get();
         // Iterate through each case to determine the latest event and update the status
         foreach ($cases as $case) {
@@ -48,8 +48,6 @@ class CasesController extends Controller
             'location' => 'required|in:rtc,mtc',
             'violations' => 'required',
             'case_created' => 'required|date',
-            'arrest_report' => 'required',
-            'testimonies' => 'required',
             'status' => 'in: Arrest, Bail, Pretrial, Plea, Trial, Sentencing, Appeal, Finished,Arraignment',
         ];
 
@@ -62,8 +60,6 @@ class CasesController extends Controller
         $cases->location = $request->location;
         $cases->violations = $request->violations;
         $cases->case_created = $request->case_created;
-        $cases->arrest_report = $request->arrest_report;
-        $cases->testimonies = $request->testimonies;
         $cases->status = $status; 
         $cases->save();
         return redirect()->back()->with("success", "Case sucessfully added");
@@ -81,8 +77,6 @@ class CasesController extends Controller
             'violations' => 'required',
             'location' => 'in: rtc,mtc',
             'case_created' => 'required',
-            'arrest_report' => 'required',
-            'testimonies' => 'required',
             'status' => 'in: Arrest, Bail, Pretrial, Plea, Trial, Sentencing, Appeal, Finished,Arraignment  ',
         ];
     
@@ -96,8 +90,6 @@ class CasesController extends Controller
         $case->violations = $request->violations;
         $case->case_created = $request->case_created;
         $case->location = $request->location;
-        $case->arrest_report = $request->arrest_report;
-        $case->testimonies = $request->testimonies;
         $case->status = $request->status ?? 'Arrest';
         $case->save();
     

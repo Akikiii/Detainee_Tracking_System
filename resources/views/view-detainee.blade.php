@@ -52,12 +52,14 @@
                                         <p class="text-left mb-3">Related Photos: {{ $detainee->detaineeDetails->related_photos}}</p>
                                         <p class="text-left mb-10">
                                             Assigned Case/s:
-                                            @if (optional($counsel_case_assignment)->assigned_by)
-                                                <strong class="bg-green-500 text-white px-1 py-1 rounded">{{ $counsel_case_assignment->assigned_by }}</strong>
-                                            @else
-                                                <strong class="bg-red-500 text-white px-1 py-1 rounded">None</strong>
-                                            @endif
                                         </p>
+                                        <ul>
+                                            @forelse($detainee->cases as $case)
+                                                <li>{{ $case->case_name }}</li>
+                                            @empty
+                                                <li>No assigned cases</li>
+                                            @endforelse
+                                        </ul>                                
                                     </div>
                                 </div>
                             </div>
@@ -70,11 +72,11 @@
                             @if ($counsel_case_assignment)
                                 <a href="{{ url('remove-assignment/' . $counsel_case_assignment->detainee_id) }}"
                                     class="buttonFormat bg-[#D0B638] hover:bg-yellow-400 font-bold py-3 px-6 rounded"
-                                    onclick="return confirm('Are you sure you want to remove your assignment?')">REMOVE ASSIGNED TEAM TO DETAINEE
+                                    onclick="return confirm('Are you sure you want to remove your assignment?')">REMOVE ASSIGNED ATTORNEY TO DETAINEE
                                 </a>
                             @else
                                 <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">
-                                    ASSIGN TEAM TO DETAINEE
+                                    ASSIGN ATTORNEY TO DETAINEE
                                 </button>
                             @endif
                         </form>

@@ -57,13 +57,7 @@
                                                 <p class="text-left mb-2">Time Served: N/A</p>
                                             @endif
                                             <!-- Assigned Attorney Label still not working -->
-                                            <p class="text-left mb-2">Number of Assigned Cases: 
-                                                @if (optional($detainee->counselCaseAssignment)->assigned_by)
-                                                    <strong class="bg-green-500 text-white px-1 py-1 rounded">{{ $detainee->counselCaseAssignment->assigned_by }}</strong>
-                                                @else
-                                                    <strong class="bg-orange-500 text-white px-1 py-1 rounded">None</strong>
-                                                @endif
-                                            </p>
+                                                 <p class="text-left mb-2">Number of Assigned Cases: {{ $detainee->cases->count() }}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -75,28 +75,8 @@
                                 @enderror
                             </div>
 
-                            <div class="grid col-start-2">
-                                <label class="form-label block labelname font-bold mb-2">Arrest Report</label>
-                                <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name='arrest_report' placeholder='Arrest Report'>
-                                @error('arrest_report')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role='alert'>
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-
+                         
                         <div class="grid grid-flow-row col-2 gap-10 mt-5">
-
-                            <div class="grid col-start-1">
-                                <label class="form-label block labelname font-bold mb-2">Testimonies</label>
-                                <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name='testimonies' placeholder='Testimonies'>
-                                @error('violations')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role>
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
 
                             <div class="grid col-start-2">
                                 <label class="form-label block labelname font-bold mb-2">Case Created</label>

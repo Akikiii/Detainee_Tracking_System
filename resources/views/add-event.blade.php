@@ -33,7 +33,7 @@
                                 <label class="form-label block labelname font-bold mb-2">Event Type</label>
                                 <select name="event_type" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black"> 
                                     <option value="Finished">Finished/Archived</option>
-                                    <option value="Finished">Arraignment</option>
+                                    <option value="Arraignment">Arraignment</option>
                                     <option value="Bail">Bail Hearing</option>
                                     <option value="Pretrial">Pre-Trial</option>
                                     <option value="Plea">Plea Bargaining</option>
@@ -84,15 +84,6 @@
                                 @enderror
                             </div>
 
-                            <div class="grid col-start-2">
-                                <label class="form-label block labelname font-bold mb-2">Event Location</label>
-                                <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name="event_location" placeholder="Enter Event Location" value="{{old('event_location')}}">
-                                @error('event_location')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
 
                         </div>
 
@@ -108,17 +99,50 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col mt-5">
-                            <label class="form-label block labelname font-bold mb-2">Event Notes</label>
-                                <label class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                    </svg>
-                                    <input type="file" name="event_notes" />
-                                </label>
+                        <div class="grid grid-flow-row col-2 gap-10">
+                            <div class="grid col-start-1">
+                                <label class="form-label block labelname font-bold mb-2">Mode of Payment</label>
+                                <select name="event_type" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black"> 
+                                    <option value="">Cash</option>
+                                    <option value="">Property</option>
+                                    <option value="">Surety Bond</option>  
+                                </select>
+                                @error('event_type')
+                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
 
+                        <div class="grid col-start-3">
+                                <label class="form-label block labelname font-bold mb-2"> Total Amount of Bail:</label>
+                                <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name="case_id" placeholder="Enter Amount">
+                                @error('case_id')
+                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="grid col-start-3">
+                                <label class="form-label block labelname font-bold mb-2">Paid:</label>
+                                <div class="flex items-center">
+                                    <input type="radio" id="paid" name="paid" value="1">
+                                    <label for="paid" class="ml-2">Yes</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" id="not_paid" name="paid" value="0">
+                                    <label for="not_paid" class="ml-2">No</label>
+                                </div>
+                                @error('paid')
+                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+            
                         <div class="flex flex-row justify-end gap-2.5 mt-10">
                             <button type="submit" class="buttonFormat bg-[#D0B638] hover:bg-yellow-400 font-bold py-3 px-6 rounded">SAVE EVENT</button>
                             <a href="{{ url()->previous() }}" class="buttonFormat bg-[#CCCCCC] hover:bg-[#777777] font-bold py-3 px-4 rounded">BACK</a>

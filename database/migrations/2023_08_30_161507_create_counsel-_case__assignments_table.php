@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('case_id')->nullable();
             $table->foreign('case_id')->references('case_id')->on('cases')->onDelete('cascade'); // Add onDelete cascade
             $table->date('creation_date');
-            $table->text('description')->nullable();
             $table->enum('status', ['active', 'disbanded', 'on_hold']);
             $table->timestamps();
         });
