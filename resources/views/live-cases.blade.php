@@ -14,32 +14,50 @@
 
                 <div class="grid gap-5">
 
-    <div class="timeline-container">
-        <table class="timeline-table">
-            <thead>
-                <tr>
-                    <th>STATUS</th>
-                    <th>EVENT</th>
-                    <th>DESCRIPTION</th>
-                    <th>PLANNED DATE</th>
-                    <!-- Add more columns for other details -->
-                    <th>OTHER SHIT...</th>
-                    <th>DELAYED DAYS</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($case_events as $event)
+                <div class="timeline-container">
+            <table class="timeline-table">
+                <thead>
                     <tr>
-                        <td>{{ $event->status }}</td>
-                        <td>{{ $event->event_type }}</td>
-                        <td>{{ $event->description }}</td>
-                        <td>{{ $event->beginning_of_event }} - {{ $event->end_of_event }}</td>
-                        <!-- Add more cells for other details -->
-                        <td>{{ $event->other_shit }}</td>
-                        <td>{{ $event->delayed_days }}</td>
+                        <th>STATUS</th>
+                        <th>EVENT</th>
+                        <th>DESCRIPTION</th>
+                        <th>PLANNED DATE</th>
+                        <th>EVENT LOCATION</th>
+                        <th>EVENT OUTCOME</th>
+                        <th>DELAYED DAYS</th>
+                        <th>NOTES</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @php
+                        // Sort events by id in descending order
+                        $sortedEvents = $case_events->sortByDesc('id')->values();
+                    @endphp
+
+                    @foreach ($sortedEvents as $index => $event)
+                        <tr>
+                            <td>
+                                @if ($index === 0)
+                                    Ongoing
+                                @else
+                                    @if ($event->id === $sortedEvents[0]->id)
+                                        Ongoing
+                                    @else
+                                        Finished
+                                    @endif
+                                @endif
+                            </td>
+                            <td>{{ $event->event_type }}</td>
+                            <td>{{ $event->description }}</td>
+                            <td>{{ $event->event_date }}</td>
+                            <td>{{ $event->event_location }}</td>
+                            <td>{{ $event->event_outcome }}</td>
+                            <td>{{ $event->delayed_days }}</td>
+                            <td>{{ $event->event_notes }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </x-app-layout>

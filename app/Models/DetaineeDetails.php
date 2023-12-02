@@ -20,7 +20,7 @@ class DetaineeDetails extends Model
         'crime_history',
         'max_detention_period',
         'detention_begin',
-        'medical_information',
+        'birthday',
         'emergency_contact_number',
         'emergency_contact_name',
     ];

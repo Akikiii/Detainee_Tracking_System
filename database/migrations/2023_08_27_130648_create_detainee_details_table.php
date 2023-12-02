@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('related_photos');
             $table->text('crime_history');
             $table->date('detention_begin');
-            $table->text('medical_information');
+            $table->date('birthday');
             $table->string('emergency_contact_number');
             $table->string('emergency_contact_name');
             

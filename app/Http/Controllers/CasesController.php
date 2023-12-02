@@ -8,11 +8,26 @@ use App\Models\Cases;
 use App\Models\Event;
 class CasesController extends Controller
 {
-    public function getCases(){
-        $data = Cases::with('detainee')->get();
-        return view('cases-list',compact('data'));
-    }
+   public function getCases(){
+        // Fetch all cases
+        $cases = Cases::get();
+        // Iterate through each case to determine the latest event and update the status
+        foreach ($cases as $case) {
+            // Fetch the latest event for the case based on both event_date and created_at
+            $latestEvent = Event::where('case_id', $case->case_id)
+                ->orderByDesc('event_date')
+                ->orderByDesc('created_at')
+                ->first();
 
+            // If a latest event is found, update the case status
+            if ($latestEvent) {
+                $case->status = $latestEvent->event_type;
+            }
+        }
+        
+
+        return view('cases-list', compact('cases'));
+    }
     public function addCases($detainee_id){
         return view('add-cases', ['detainee_id' => $detainee_id]);
     }
@@ -30,6 +45,7 @@ class CasesController extends Controller
         $combinedRules =[
             'case_id' => 'required',
             'case_name' => 'required',
+            'location' => 'required|in:rtc,mtc',
             'violations' => 'required',
             'case_created' => 'required|date',
             'arrest_report' => 'required',
@@ -43,6 +59,7 @@ class CasesController extends Controller
         $cases->case_id = $request->case_id;
         $cases->detainee_id = $detainee_id;
         $cases->case_name = $request->case_name; 
+        $cases->location = $request->location;
         $cases->violations = $request->violations;
         $cases->case_created = $request->case_created;
         $cases->arrest_report = $request->arrest_report;
@@ -62,6 +79,7 @@ class CasesController extends Controller
         $combinedRules = [
             'case_name' => 'required',
             'violations' => 'required',
+            'location' => 'in: rtc,mtc',
             'case_created' => 'required',
             'arrest_report' => 'required',
             'testimonies' => 'required',
@@ -77,6 +95,7 @@ class CasesController extends Controller
         $case->case_name = $request->case_name;
         $case->violations = $request->violations;
         $case->case_created = $request->case_created;
+        $case->location = $request->location;
         $case->arrest_report = $request->arrest_report;
         $case->testimonies = $request->testimonies;
         $case->status = $request->status ?? 'Arrest';

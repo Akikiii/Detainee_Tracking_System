@@ -23,6 +23,7 @@ class CreateCasesTable extends Migration
             ->references('detainee_id')
             ->on('detainees')
             ->onDelete('cascade');
+            $table->string("location");
             $table->timestamps();
         });
     }

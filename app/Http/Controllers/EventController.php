@@ -38,7 +38,7 @@ class EventController extends Controller
         // Create a new event and associate it with the case using the case_id
         Event::create([
             'case_id' => $case_id,
-            'event_type' => $request->input('event_type'),
+            'event_type' => $request->input('event_type'), 
             'event_date' => $request->input('event_date'),
             'description' => $request->input('description'),
             'related_entity' => $request->input('related_entity'),

@@ -68,9 +68,11 @@
                     <div class="flex flex-col gap-4">
                         <label class="form-label block labelname font-bold mb-2">Cases</label>
                         @php
-                            $counter = count($data);
+                        $counter = is_countable($cases) ? count($cases) : 0;
                         @endphp
-                        @foreach ($data as $key => $Cases)
+
+                        @foreach ($cases as $key => $Cases)
+                        
                             <div class="flex space-x-4" onclick="selectedCase(this, {{ $Cases->case_id }})">
                                 <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
                                     <div class="flex justify-between items-center">
@@ -79,16 +81,25 @@
                                             <p class="text-left mb-3"><strong>Case Title: </strong> {{ $Cases->case_name}}</p>
                                             <p class="text-left mb-3"><strong>Violation/s:</strong> {{ $Cases->violations }}</p>
                                             <p class="text-left mb-3"><strong>Case Created:</strong> {{ $Cases->case_created }}</p>
-                                            <p class="text-left mb-3"><strong>Arrest Report:</strong> {{ $Cases->arrest_report }}</p>
-                                            <p class="text-left mb-3"><strong>Testimonies:</strong> {{ $Cases->testimonies }}</p>
+                                            <p class="text-left mb-3"><strong>Location:
+                                                @if ($Cases->location === 'mtc')
+                                                <span style="text-shadow: 0 0 1px #FDE581;">Municipal Trial Court</span></strong>
+                                                @elseif ($Cases->location === 'rtc')
+                                                <span style="text-shadow: 0 0 1px #FDE581;">Regional Trial Court</span></strong>
+                                                @else 
+                                                <span style="text-shadow: 0 0 1px #FDE581;">No Location Set</span></strong>
+                                                @endif
+                                            </p>
 
-                                            <p class="text-left mb-3"><strong>Assigned Team:
-                                            @if ($Cases->assignedDetainee)
-                                                
-                                            @else
-                                                No Assigned Team
-                                            @endif
-                                            </strong></p>
+                                            <p class="text-left mb-3"><strong>Assigned Team(s):</strong>
+                                                @if ($Cases->assignedTeams->isNotEmpty())
+                                                    @foreach ($Cases->assignedTeams as $team)
+                                                        {{ $team->team_name }},
+                                                    @endforeach
+                                                @else
+                                                    No Assigned Team
+                                                @endif
+                                            </p>
 
                                             <p class="text-left mb-3"><strong>Status:
                                                 @if ($Cases->status === 'Arrest')
@@ -103,13 +114,13 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
-                                                @elseif ($Cases->status === 'Bail Hearing')
-                                                    <span style="text-shadow: 0 0 1px #FDE581;">Bail Hearing</span></strong>
+                                                @elseif ($Cases->status === 'Bail')
+                                                    <span style="text-shadow: 0 0 2px #FDE581;">Bail Hearing</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>

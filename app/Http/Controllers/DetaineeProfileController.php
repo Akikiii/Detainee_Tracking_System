@@ -39,7 +39,7 @@ class DetaineeProfileController extends Controller
         'related_photos' => 'required',
         'crime_history' => 'required',
         'detention_begin' => 'required',
-        'medical_information' => 'required',
+        'birthday' => 'required',
         'emergency_contact_number' => 'required',
         'emergency_contact_name' => 'required'
     ];
@@ -71,7 +71,7 @@ class DetaineeProfileController extends Controller
     $detaineeDetails->related_photos = $request->related_photos;
     $detaineeDetails->crime_history = $request->crime_history;
     $detaineeDetails->detention_begin = $request->detention_begin;
-    $detaineeDetails->medical_information = $request->medical_information;
+    $detaineeDetails->birthday = $request->birthday;
     $detaineeDetails->emergency_contact_number = $request->emergency_contact_number;
     $detaineeDetails->emergency_contact_name = $request->emergency_contact_name;
     $detaineeDetails->save();
@@ -106,7 +106,7 @@ public function updateDetainee(Request $request, $detaineeId) {
         'related_photos' => 'required',
         'crime_history' => 'required',
         'detention_begin' => 'required',
-        'medical_information' => 'required',
+        'birthday' => 'required',
         'emergency_contact_number' => 'required',
         'emergency_contact_name' => 'required'
     ];
@@ -142,7 +142,7 @@ public function updateDetainee(Request $request, $detaineeId) {
     $detaineeDetails->related_photos = $request->related_photos;
     $detaineeDetails->crime_history = $request->crime_history;
     $detaineeDetails->detention_begin = $request->detention_begin;
-    $detaineeDetails->medical_information = $request->medical_information;
+    $detaineeDetails->birthday = $request->birthday;
     $detaineeDetails->emergency_contact_number = $request->emergency_contact_number;
     $detaineeDetails->emergency_contact_name = $request->emergency_contact_name;
     $detaineeDetails->save();

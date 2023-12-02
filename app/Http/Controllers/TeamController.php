@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\Member;
 use App\Models\User;
+use App\Models\Cases;
+use App\Models\Counsel_Case_Assignment;
 use Illuminate\Support\Facades\Auth;
 class TeamController extends Controller
 {
@@ -70,29 +72,39 @@ class TeamController extends Controller
 
 
     public function saveTeam(Request $request)
-    {
-        $combinedRules = [
+    {   
+        $request->validate([
             'team_name' => 'required',
             'case_id' => 'required',
-            'creation_date' => 'required',
-            'description' => 'required',
-            'status' => 'in:Active,Pending,Finished',
-        ];
-
-        $request->validate($combinedRules);
-        
-        // Save Team Data
-        $team = new Team();
-        $team->team_name = $request->team_name;
-        $team->team_leader_name = $request->user()->name; // Set the current user as team leader
-        $team->case_id = $request->case_id;
-        $team->creation_date = $request->creation_date;
-        $team->description = $request->description;
-        $team->status = $request->status ?? 'Active';
-        $team->save();
-        
-        return redirect()->back()->with("success", "Team successfully added");
+            'creation_date' => 'required|date',
+            'description' => 'nullable',
+            'status' => 'required|in:Active,Disbanded,On Hold',
+        ]);
+    
+        // Create Team
+        $team = Team::create([
+            'team_name' => $request->team_name,
+            'case_id' => $request->case_id, // Add this line to set the case_id
+            'creation_date' => $request->creation_date,
+            'description' => $request->description,
+            'status' => $request->status,
+        ]);
+         
+    
+        // // Find the corresponding detainee_id from the 'cases' table
+        // $detaineeId = Cases::findOrFail($request->case_id)->detainee_id;
+        // $CaseId = 12345;
+        // // Create Counsel Case Assignment
+        // $team->counselCaseAssignment()->create([
+        //     'case_id' => $request->case_id,
+        //     'detainee_id' => $detaineeId, // Provide the necessary detainee_id
+        //     'assigned_group' => $CaseId, // Set assigned_group to team_name
+        //     'date_assigned' => now(), // Set the date_assigned to the current date and time
+        // ]);
+    
+        return redirect()->route('view-teams')->with("success", "Team successfully added");
     }
+    
 
     public function editTeam($id)
     {
