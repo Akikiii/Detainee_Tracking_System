@@ -102,12 +102,12 @@
                         <div class="grid grid-flow-row col-2 gap-10">
                             <div class="grid col-start-1">
                                 <label class="form-label block labelname font-bold mb-2">Mode of Payment</label>
-                                <select name="event_type" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black"> 
+                                <select name="" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black"> 
                                     <option value="">Cash</option>
                                     <option value="">Property</option>
                                     <option value="">Surety Bond</option>  
                                 </select>
-                                @error('event_type')
+                                @error('')
                                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                     {{ $message }}
                                 </div>

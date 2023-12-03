@@ -24,8 +24,6 @@ class CasesController extends Controller
                 $case->status = $latestEvent->event_type;
             }
         }
-        
-
         return view('cases-list', compact('cases'));
     }
     public function addCases($detainee_id){

@@ -37,15 +37,19 @@
                     @foreach ($sortedEvents as $index => $event)
                         <tr>
                             <td>
-                                @if ($index === 0)
+                            @if ($index === 0 && $event->event_type !== 'Finished')
+                                Ongoing
+                            @else
+                                @if ($event->id === $sortedEvents[0]->id && $event->event_type !== 'Finished')
                                     Ongoing
                                 @else
-                                    @if ($event->id === $sortedEvents[0]->id)
-                                        Ongoing
+                                    @if ($event->event_type === 'Finished')
+                                        Finished
                                     @else
                                         Finished
                                     @endif
                                 @endif
+                            @endif
                             </td>
                             <td>{{ $event->event_type }}</td>
                             <td>{{ $event->description }}</td>

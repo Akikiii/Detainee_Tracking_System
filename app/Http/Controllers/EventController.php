@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\Event;
 
 class EventController extends Controller
@@ -18,7 +19,13 @@ class EventController extends Controller
     {
         // Validate the form input
         $request->validate([
-            'event_type' => 'required',
+            'event_type' => [
+                'required',
+                Rule::unique('case_events')->where(function ($query) use ($case_id, $request) {
+                    return $query->where('case_id', $case_id)
+                                 ->where('event_type', $request->input('event_type'));
+                }),
+            ],
             'event_date' => 'required|date',
             'description' => 'required',
             'related_entity' => 'required',
