@@ -76,6 +76,7 @@ Route::get('assign-attorney/{id}',[DetaineeProfileController::class, 'viewDetail
 Route::get('cases-list',[CasesController::class, 'getCases']);
 Route::get('add-cases/{id}',[CasesController::class, 'addCases']);
 Route::get('edit-cases/{id}', [CasesController::class, 'editCases']);   
+Route::get('delete-cases/{id}',[CasesController::class, 'deleteCases']);
 Route::post('update-cases/{caseId}', [CasesController::class, 'updateCases'])->name('update-cases');
 Route::post('save-cases/{detainee_id}', [CasesController::class, 'saveCases'])->name('save.cases');  //Add Cases   
 Route::get('live-cases/{id}', [CasesController::class, 'caseOverview'])->name('live-cases');
@@ -88,8 +89,8 @@ Route::get('delete-event/{event_id}', [EventController::class, 'deleteEvent'])->
 
 
 //Assigned Case
-Route::post('assign-attorney/{detainee}', [CounselCaseController::class, 'assignAttorney'])->name('assign-attorney');
-Route::get('/remove-assignment/{detainee_id}', [CounselCaseController::class, 'removeAssigned'])->name('remove-assignment');
+Route::get('/assign-to-case/{case_id}', [CounselCaseController::class, 'assignToCase'])->name('assignToCase');
+Route::get('/remove-assigned-attorney/{case_id}', [CounselCaseController::class, 'removeAssignedAttorney'])->name('removeAssignedAttorney');
 
 
 //Team List
