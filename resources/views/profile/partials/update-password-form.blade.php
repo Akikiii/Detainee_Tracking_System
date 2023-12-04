@@ -46,7 +46,7 @@
         </div>
 
         <div class="flex flex-row justify-end items-center gap-2.5 mt-[2.12rem]">
-            <button class="buttonFormat col-end-4 w-[6.5rem] h-[2.5rem] bg-[#cccccc] font-bold">
+            <button class="buttonFormat col-end-4 w-[6.5rem] h-[2.5rem] bg-[#cccccc] font-bold hover:bg-black text-black hover:text-white py-4 px-4">
                 {{ __('SAVE') }}
             </button>
 

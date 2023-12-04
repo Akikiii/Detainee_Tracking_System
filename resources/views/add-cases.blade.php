@@ -4,7 +4,7 @@
     <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
 
         <!-- Sidebar -->
-        <div class="col-start-1 mt-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black pt-[1.44rem] pb-[3.72rem] px-[1rem]">
+        <div class="col-start-1 my-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black p-[1.44rem] max-w-[600px]">
             @include('profile.partials.sidebar')
         </div>
 
@@ -25,74 +25,80 @@
                     <form method="POST" action="{{ route('save.cases', ['detainee_id' => $detainee_id]) }}">
                         @csrf
 
-                        <div class="grid col-start-3">
-                                <label class="form-label block labelname font-bold mb-2">Case Number</label>
-                                <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name="case_id" placeholder="Enter Case ID">
-                                @error('case_id')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-
                         <div class="grid grid-flow-row col-2 gap-10">
                             <div class="grid col-start-1">
-                                <label class="form-label block labelname font-bold mb-2">Case Title</label>
-                                <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name='case_name' placeholder='Case Name'>
-                                @error('case_name')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role>
-                                    {{$message}} 
+                                <div class="w-1/2">
+                                    <label class="form-label block labelname font-bold mb-2">Case Title</label>
+                                    <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name='case_name' placeholder='Case Name'>
+                                    @error('case_name')
+                                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role>
+                                        {{$message}} 
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
                             </div>
-
-                            <div class="grid grid-flow-row col-2 gap-10">
-                            <div class="grid col-start-1">
-                                <label class="form-label block labelname font-bold mb-2">Location</label>
-                                <select name="location" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black"> 
-                                    <option value="rtc">Regional Trial Court</option>
-                                    <option value="mtc">Municipal Trial Court</option>
-                                </select>
-                                @error('location')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                            
                         </div>
 
                         <div class="grid grid-flow-row col-2 gap-10 mt-5">
                             <div class="grid col-start-1">
-                                <label class="form-label block labelname font-bold mb-2">Violations</label>
-                                <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name='violations' placeholder='Violations'>
-                                @error('violations')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role>
-                                    {{$message}}
+                                <div class="w-1/6">
+                                    <label class="form-label block labelname font-bold mb-2">Case Number</label>
+                                    <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name="case_id" placeholder="Enter Case Number">
+                                    @error('case_id')
+                                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
                             </div>
-
-                         
-                        <div class="grid grid-flow-row col-2 gap-10 mt-5">
-
-                            <div class="grid col-start-2">
-                                <label class="form-label block labelname font-bold mb-2">Case Created</label>
-                                <input type="date" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name="case_created" placeholder="Case Created" value="{{ old('case_created') }}">
-                                @error('case_created')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-
-                            
-
                         </div>
 
-                        <div class="flex flex-row justify-end gap-2.5 mt-10">
+                        <div class="grid grid-flow-row col-2 gap-10 mt-5">
+                            <div class="grid col-start-1">
+                                <div class="w-1/6">
+                                    <label class="form-label block labelname font-bold mb-2">Case Filed Date</label>
+                                    <input type="date" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name="case_created" placeholder="Case Created" value="{{ old('case_created') }}">
+                                    @error('case_created')
+                                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-flow-row col-2 gap-10 mt-5">
+                            <div class="grid col-start-1">
+                                <div class="w-1/2">
+                                    <label class="form-label block labelname font-bold mb-2">Location</label>
+                                    <select name="location" class="form-control text-black border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black"> 
+                                        <option value="rtc">Regional Trial Court</option>
+                                        <option value="mtc">Municipal Trial Court</option>
+                                    </select>
+                                    @error('location')
+                                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-flow-row col-2 gap-10 mt-5">
+                            <div class="grid col-start-1">
+                                <div class="w-1/2">
+                                    <label class="form-label block labelname font-bold mb-2">Violations</label>
+                                    <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name='violations' placeholder='Violations'>
+                                    @error('violations')
+                                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role>
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row justify-end gap-2.5 mt-20">
                             <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD CASE TO DETAINEE</button>
                             <a href="{{url('detainee-list')}}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO DETAINEE LIST</a>
                             <a href="{{url('cases-list')}}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO CASES LIST</a>

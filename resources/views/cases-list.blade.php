@@ -4,7 +4,7 @@
     <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
 
         <!-- Sidebar -->
-        <div class="col-start-1 mt-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black pt-[1.44rem] pb-[3.72rem] px-[1rem]">
+        <div class="col-start-1 my-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black p-[1.44rem] max-w-[600px]">
             @include('profile.partials.sidebar')
         </div>
 
@@ -56,7 +56,7 @@
                             <input
                                 type="text"
                                 id="searchInput"
-                                class="pl-7 w-[42.9375rem] py-4 px-3 font-bold leading-tight bg-gray-200 focus:outline-none searchBarPlaceHolder"
+                                class="pl-5 w-[42.9375rem] py-4 px-3 leading-tight bg-gray-200 focus:outline-none searchBarPlaceHolder"
                                 placeholder="Search for a Detainee (Enter Detainee Name)"
                                 oninput="searchDetainees()"
                             />
@@ -91,13 +91,13 @@
                                                 @endif
                                             </p>
 
-                                            <p class="text-left mb-3"><strong>Assigned Team(s):</strong>
+                                            <p class="text-left mb-3"><strong>Assigned Attorney:</strong>
                                                 @if ($Cases->assignedTeams->isNotEmpty())
                                                     @foreach ($Cases->assignedTeams as $team)
                                                         {{ $team->team_name }},
                                                     @endforeach
                                                 @else
-                                                    No Assigned Team
+                                                    No Assigned Attorney
                                                 @endif
                                             </p>
 
@@ -120,7 +120,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>

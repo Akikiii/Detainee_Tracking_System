@@ -10,7 +10,7 @@
             <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-3 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-black rounded-md mt-[2.38rem]" style="background-image: url('logos/background-with-grid-bw.png'); background-size: contain;">
                 <div>
                     <h1 class="text-[1.875rem] uppercase font-bold ibm-plex-mono" style="color: black; text-shadow: 0 0 2px #888888;">Create Attorney Profile</h1>
-                    <img class="mt-[1.94rem] mb-[2.31rem]" src="{{ asset('logos/line-bw.png') }}" alt="TVA Line" style="height: 10px;">
+                    <hr class="mt-[1.94rem] mb-[2.31rem]"/>
                     <div class="grid gap-5">
 
                         <!-- Triggers when user successfully added a detainee -->
@@ -26,9 +26,9 @@
                         @endif
 
                         <div class="flex flex-col">
-                            <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Name</p>
+                            <p class="block font-bold mb-2 labelname text-lg">Name</p>
                             <div class="grid grid-flow-col gap-10">
-                                <input id="name" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
+                                <input id="name" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                 type="text" 
                                                 name="name" 
                                                 placeholder="Enter Full Name"
@@ -40,9 +40,9 @@
                         </div>
 
                         <div class="flex flex-col mt-5">
-                            <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Email Address</p>
+                            <p class="block font-bold mb-2 labelname text-lg">Email Address</p>
                             <div class="grid grid-flow-col gap-10">
-                                <input id="email" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" 
+                                <input id="email" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                 type="email" 
                                                 name="email"
                                                 placeholder="Enter Email Address"
@@ -55,8 +55,8 @@
 
                         <div class="grid grid-flow-row col-2 gap-10 mt-5">
                             <div class="grid col-start-1">
-                                <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Password</p>
-                                <input id="password" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" 
+                                <p class="block font-bold mb-2 labelname text-lg">Password</p>
+                                <input id="password" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                 type="password"
                                                 name="password"
                                                 required autocomplete="new-password" />
@@ -64,8 +64,8 @@
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
                             <div class="grid col-start-2">
-                                <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Confirm Password</p>
-                                <input id="password_confirmation" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" 
+                                <p class="block font-bold mb-2 labelname text-lg">Confirm Password</p>
+                                <input id="password_confirmation" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                 type="password"
                                                 name="password_confirmation" 
                                                 required autocomplete="new-password" />
@@ -75,9 +75,9 @@
                         </div>
 
                         <div class="flex flex-col mt-5">
-                            <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Office Address</p>
+                            <p class="block font-bold mb-2 labelname text-lg">Office Address</p>
                             <div class="grid grid-flow-col gap-10">
-                                <input id="office_address" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" 
+                                <input id="office_address" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                 type="text" 
                                                 name="office_address"
                                                 placeholder="Enter Office Address"
@@ -89,8 +89,8 @@
 
                         <div class="grid grid-flow-row col-2 gap-10 mt-5">
                             <div class="grid col-start-1">
-                                <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Contact Number</p>
-                                <input id="contact_number" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
+                                <p class="block font-bold mb-2 labelname text-lg">Contact Number</p>
+                                <input id="contact_number" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                 type="text" 
                                                 name="contact_number"
                                                 placeholder="Enter Contact Number"
@@ -101,8 +101,8 @@
                             </div>
 
                             <div class="grid col-start-2">
-                                <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Gender</p>
-                                <select class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" name="gender">
+                                <p class="block font-bold mb-2 labelname text-lg">Gender</p>
+                                <select class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black"  name="gender">
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                 </select>
@@ -115,9 +115,9 @@
                         </div>
 
                         <div class="flex flex-col mt-5">
-                            <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Education and Qualifications</p>
+                            <p class="block font-bold mb-2 labelname text-lg">Education and Qualifications</p>
                             <div class="grid grid-flow-col gap-10">
-                                <input id="education_qualifications" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
+                                <input id="education_qualifications" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                 type="text" 
                                                 name="education_qualifications"
                                                 placeholder="Enter Education Qualifications"
@@ -129,9 +129,9 @@
                         </div>
 
                         <div class="flex flex-col mt-5">
-                            <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Practice Areas</p>
+                            <p class="block font-bold mb-2 labelname text-lg">Practice Areas</p>
                             <div class="grid grid-flow-col gap-10">
-                                <input id="practice_areas" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" 
+                                <input id="practice_areas" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                 type="text" 
                                                 name="practice_areas"
                                                 placeholder="Enter Practiced Areas"
@@ -143,9 +143,9 @@
                         </div>
 
                         <div class="flex flex-col mt-5">
-                            <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Work Experience</p>
+                            <p class="block font-bold mb-2 labelname text-lg">Work Experience</p>
                             <div class="grid grid-flow-col gap-10">
-                                <input id="work_experience" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
+                                <input id="work_experience" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                 type="text" 
                                                 name="work_experience" 
                                                 placeholder="Enter Working Experiences"
@@ -157,9 +157,9 @@
                         </div>
 
                         <div class="flex flex-col mt-5">
-                            <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Professional Affliations</p>
+                            <p class="block font-bold mb-2 labelname text-lg">Professional Affliations</p>
                             <div class="grid grid-flow-col gap-10">
-                                <input id="professional_affiliations" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
+                                <input id="professional_affiliations" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                 type="text" 
                                                 name="professional_affiliations"
                                                 placeholder="Enter Professional Affliations"
@@ -171,9 +171,9 @@
                         </div>
 
                         <div class="flex flex-col mt-5">
-                            <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Cases Handled</p>
+                            <p class="block font-bold mb-2 labelname text-lg">Cases Handled</p>
                             <div class="grid grid-flow-col gap-10">
-                                <input id="cases_handled" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
+                                <input id="cases_handled" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                 type="text" 
                                                 name="cases_handled"
                                                 placeholder="Enter Cases Handled"
@@ -185,9 +185,9 @@
                         </div>
 
                         <div class="flex flex-col mt-5">
-                            <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Language Spoken</p>
+                            <p class="block font-bold mb-2 labelname text-lg">Language Spoken</p>
                             <div class="grid grid-flow-col gap-10">
-                                <input id="language_spoken" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
+                                <input id="language_spoken" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                 type="text" 
                                                 name="language_spoken"
                                                 placeholder="Enter Language Spoken" 
@@ -200,8 +200,8 @@
 
                         <div class="grid grid-flow-row col-2 gap-10 mt-5">
                             <div class="grid col-start-1">
-                                <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Office Hours (Opening)</p>
-                                    <input id="office_hours_open" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
+                                <p class="block font-bold mb-2 labelname text-lg">Office Hours (Opening)</p>
+                                    <input id="office_hours_open" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                     type="time" 
                                                     name="office_hours_open" 
                                                     :value="old('office_hours_open')" 
@@ -211,8 +211,8 @@
                                     <x-input-error :messages="$errors->get('office_hours_open')" class="mt-2" />
                             </div>
                             <div class="grid col-start-2">
-                                <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Office Hours (Closing)</p>
-                                    <input id="office_hours_close" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
+                                <p class="block font-bold mb-2 labelname text-lg">Office Hours (Closing)</p>
+                                    <input id="office_hours_close" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" 
                                                     type="time" 
                                                     name="office_hours_close" 
                                                     :value="old('office_hours_close')" 
@@ -224,7 +224,7 @@
                         </div>
 
                         <div class="flex flex-col mt-5">
-                            <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Upload Photo (Formal Picture for Display Profile)</p>
+                            <p class="block font-bold mb-2 labelname text-lg">Upload Photo (Formal Picture for Display Profile)</p>
                             <div class="grid grid-flow-col gap-10">
                                 <div class="border border-black w-full py-40 px-3 placeholderfont leading-tight focus:outline-none focus:border-black relative text-center">
                                     <span class="block text-black mb-2">Drag & Drop to Upload File</span>

@@ -5,7 +5,7 @@
         
         <!-- Sidebar -->
         
-        <div class="col-start-1 my-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-black p-[1.44rem] max-w-[600px]">
+        <div class="col-start-1 my-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black p-[1.44rem] max-w-[600px]">
             @include('profile.partials.sidebar')
         </div>
 

@@ -15,9 +15,9 @@
                         <div class="flex flex-col">
 
                             <div class="flex flex-col">
-                                <p class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Email</p>
+                                <p class="block font-bold mb-2 labelname text-lg">Email</p>
                                 <div class="w-1/2">
-                                    <input id="email" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"
+                                    <input id="email" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black"
                                                     type="email"
                                                     name="email"
                                                     :value="old('email')"
@@ -30,8 +30,8 @@
                             <div class="grid grid-flow-row col-2 gap-10 mt-5">
                                 <div class="grid col-start-1">
                                     <div class="w-1/6">
-                                        <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Select Role:</label>
-                                        <select name="user_role" id="user_role" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" >
+                                        <label class="block font-bold mb-2 labelname text-lg">Select Role:</label>
+                                        <select name="user_role" id="user_role" class="form-control text-black border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black">
                                             <option value="Admin">Admin</option>
                                             <option value="Lawyer">Normal User</option>
                                         </select>
@@ -49,7 +49,7 @@
                         <!-- ASK USER CURRENT PASSWORD FOR RECONFIRMATION (Future to add) -->
 
                         <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
-                            <button type="submit" class="buttonFormat border-2 border-black bg-black hover:bg-[#aaaab2] text-white hover:text-black font-bold py-4 px-4">
+                            <button type="submit" class="buttonFormat border-2 border-black bg-black hover:bg-[#aaaab2] text-white font-bold py-4 px-4">
                                 SEND TO USER
                             </button>
                         </div>

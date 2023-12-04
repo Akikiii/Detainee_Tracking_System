@@ -4,14 +4,14 @@
     <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
 
         <!-- Sidebar -->
-        <div class="col-start-1 mt-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black pt-[1.44rem] pb-[3.72rem] px-[1rem]">
+        <div class="col-start-1 my-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black p-[1.44rem] max-w-[600px]">
             @include('profile.partials.sidebar')
         </div>
 
         <!-- View Teams -->
         <div class="col-start-2 my-[2.36rem] mx-[3rem] col-span-4 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-2 border-black mt-[2.38rem]" style="background-image: url('logos/background-with-grid-bw.png'); background-size: contain;">
             <div>
-                <h1 class="text-[1.875rem] uppercase font-bold ibm-plex-mono" style="color: black; text-shadow: 0 0 2px #888888;">TEAMS LIST AND DETAILS</h1>
+                <h1 class="text-[1.875rem] uppercase font-bold ibm-plex-mono" style="color: red; text-shadow: 0 0 2px #888888;">TEAMS LIST AND DETAILS | FEATURE NOT YET AVAILABLE</h1>
                 <img class="mt-[1.94rem] mb-[2.31rem]" src="{{ asset('logos/line-bw.png') }}" alt="TVA Line" style="height: 10px;">
 
                 <div class="grid gap-5">
@@ -20,7 +20,7 @@
                         <div class="grid grid-flow-col gap-10">
                             <input
                                 type="text"
-                                class="pl-10 rounded-3xl w-[42.9375rem] py-4 px-3 font-bold leading-tight bg-gray-200 focus:outline-none searchBarPlaceHolder"
+                                class="pl-5 w-[42.9375rem] py-4 px-3 leading-tight bg-gray-200 focus:outline-none searchBarPlaceHolder"
                                 placeholder="Search for a team (Enter Team Name)"
                             />
                         </div>
@@ -29,7 +29,7 @@
                     <div id="selectedTeamID"></div>
 
                     <div class="flex flex-col gap-4">
-                        <label class="form-label block labelname font-bold mb-2">Teams</label>
+                        <!-- <label class="form-label block labelname font-bold mb-2">Teams</label> -->
                         @php
                             $counter = count($data);
                         @endphp

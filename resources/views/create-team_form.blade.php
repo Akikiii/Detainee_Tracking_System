@@ -4,7 +4,7 @@
     <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
 
         <!-- Sidebar -->
-        <div class="col-start-1 mt-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black pt-[1.44rem] pb-[3.72rem] px-[1rem]">
+        <div class="col-start-1 my-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black p-[1.44rem] max-w-[600px]">
             @include('profile.partials.sidebar')
         </div>
 
@@ -33,8 +33,8 @@
                         <div class="grid grid-flow-row col-2 gap-10">
                             <div class="grid col-start-1">
                                 <div class="w-1/2">
-                                    <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Team Name:</label>
-                                    <input type="text" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"  name='team_name' placeholder='Input the name of the team' />
+                                    <label class="form-label block labelname font-bold mb-2">Team Name:</label>
+                                    <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name='team_name' placeholder='Input the name of the team' />
                                     @error('team_name')
                                     <div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 relative' role></div>
                                     {{ $message }}
@@ -46,8 +46,8 @@
                         <div class="grid grid-flow-row col-2 gap-10 mt-5">
                             <div class="grid col-start-1">
                                 <div class="w-1/6">
-                                    <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Case ID</label>
-                                    <input type="text" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"  name='case_id' placeholder='Case ID'>
+                                    <label class="form-label block labelname font-bold mb-2">Case ID</label>
+                                    <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name='case_id' placeholder='Case ID'>
                                     @error('case_id')
                                     <div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative' role></div>
                                     {{ $message }}
@@ -59,8 +59,8 @@
                         <div class="grid grid-flow-row col-2 gap-10 mt-5">
                             <div class="grid col-start-1">
                                 <div class="w-1/6">
-                                    <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Creation Date:</label>
-                                    <input type="date" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"  name='creation_date' value="{{ date('Y-m-d') }}" onfocus="this.style.color='black'" onblur="this.style.color='#F8861E'">
+                                    <label class="form-label block labelname font-bold mb-2">Creation Date:</label>
+                                    <input type="date" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name='creation_date' value="{{ date('Y-m-d') }}" onfocus="this.style.color='black'" onblur="this.style.color='#F8861E'">
                                     @error('creation_date')
                                     <div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative' role='alert'>
                                         {{ $message }}
@@ -73,8 +73,8 @@
                         <div class="grid grid-flow-row col-2 gap-10 mt-5">
                             <div class="grid col-start-1">
                                 <div class="w-full">
-                                    <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Description:</label>
-                                    <input type="text" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight"  name='description' placeholder='Description'>
+                                    <label class="form-label block labelname font-bold mb-2">Description:</label>
+                                    <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black"  name='description' placeholder='Description'>
                                     @error('description')
                                     <div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative' role></div>
                                     {{ $message }}
@@ -86,8 +86,8 @@
                         <div class="grid grid-flow-row col-2 gap-10 mt-5">
                             <div class="grid col-start-1">
                                 <div class="w-1/6">
-                                    <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Status:</label>
-                                    <select name="status" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight" >
+                                    <label class="form-label block labelname font-bold mb-2">Status:</label>
+                                    <select name="status" class="form-control text-black border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black">
                                         <option value="Active">Active</option>
                                         <option value="Disbanded">Disbanded</option>
                                         <option value="On Hold">On Hold</option>

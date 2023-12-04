@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Sarabun&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
 
 
 
@@ -68,7 +69,7 @@
         input[type=text], input[type=date], input[type=email], input[type=password], textarea {
             background-color: rgba(165, 42, 42, 0);
             color: black;
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: 'Nunito', sans-serif;
         }
 
         /* input[type="date"]::-webkit-calendar-picker-indicator {

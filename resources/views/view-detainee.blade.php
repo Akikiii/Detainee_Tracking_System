@@ -4,7 +4,7 @@
     <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
 
         <!-- Sidebar -->
-        <div class="col-start-1 mt-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black pt-[1.44rem] pb-[3.72rem] px-[1rem]">
+        <div class="col-start-1 my-[2.36rem] h-screen col-span-1 bg-[#FFFFFF] border-2 border-black p-[1.44rem] max-w-[600px]">
             @include('profile.partials.sidebar')
         </div>
 
@@ -48,18 +48,16 @@
                                         <p class="text-left mb-3">Spouse's Name: {{ $detainee->detaineeDetails->spouse_name}}</p>
                                         <p class="text-left mb-3">Emergency Contact's Name: {{ $detainee->detaineeDetails->emergency_contact_name }}</p>
                                         <p class="text-left mb-3">Emergency Contact's Number: {{ $detainee->detaineeDetails->emergency_contact_number }}</p>
-                                        <p class="text-left mb-3">Medical Information: {{ $detainee->detaineeDetails->medical_information }}</p>
-                                        <p class="text-left mb-3">Related Photos: {{ $detainee->detaineeDetails->related_photos}}</p>
+                                        <!-- <p class="text-left mb-3">Medical Information: {{ $detainee->detaineeDetails->medical_information }}</p>
+                                        <p class="text-left mb-3">Related Photos: {{ $detainee->detaineeDetails->related_photos}}</p> -->
                                         <p class="text-left mb-10">
                                             Assigned Case/s:
-                                        </p>
-                                        <ul>
                                             @forelse($detainee->cases as $case)
                                                 <li>{{ $case->case_name }}</li>
                                             @empty
                                                 <li>No assigned cases</li>
                                             @endforelse
-                                        </ul>                                
+                                        </p>                           
                                     </div>
                                 </div>
                             </div>
