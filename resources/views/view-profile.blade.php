@@ -31,7 +31,7 @@
                                             <p class="text-left mb-3">Practice Areas: {{ $user['practice_areas']}} </p>
                                             <p class="text-left mb-3">Cases Handled: {{ $user['cases_handled']}} </p>
                                             <p class="text-left mb-3">Language Spoken: {{ $user['language_spoken']}} </p>
-                                            <p class="text-left mb-3">Active Team/s:  </p>
+                                            <!-- <p class="text-left mb-3">Active Team/s:  </p> -->
                                             <p class="text-left mb-3">Office Hours Opening: {{ $user['office_hours_open']}} am</p>
                                             <p class="text-left mb-3">Office Hours Close: {{ $user['office_hours_close']}} pm</p>
                                         </div>

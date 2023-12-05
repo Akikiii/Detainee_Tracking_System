@@ -100,13 +100,13 @@
                                                     No Assigned Attorney
                                                 @endif
                                             </p>
+                                            
 
                                             <p class="text-left mb-3"><strong>Status:
-                                                @if ($Cases->status === 'Arrest')
-                                                    <span style="text-shadow: 0 0 1px #FDE581;">Case Creation/Initial Appearance</span></strong>
+                                                @if ($Cases->status === 'Arraignment')
+                                                    <span style="text-shadow: 0 0 1px #FDE581;">Arraignment</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
@@ -124,7 +124,6 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
                                                 @elseif ($Cases->status === 'Pretrial')
                                                     <span style="text-shadow: 0 0 1px #FDE581;">Pretrial</span></strong>
@@ -132,7 +131,6 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
@@ -148,24 +146,10 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                    </div>
-                                                @elseif ($Cases->status === 'Arraignment')
-                                                    <span style="text-shadow: 0 0 1px #FDE581;">Arraignment</span></strong>
-                                                    <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
                                                 @elseif ($Cases->status === 'Trial')
                                                     <span style="text-shadow: 0 0 1px #FDE581;">Trial</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -177,7 +161,6 @@
                                                 @elseif ($Cases->status === 'Sentencing')
                                                     <span style="text-shadow: 0 0 1px #FDE581;">Sentencing</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -195,13 +178,11 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
                                                     </div>
                                                 @elseif ($Cases->status === 'Finished')
                                                     <span style="text-shadow: 0 0 1px #436228;">Finished/Archived</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>

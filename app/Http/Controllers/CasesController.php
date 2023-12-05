@@ -8,7 +8,7 @@ use App\Models\Cases;
 use App\Models\Event;
 class CasesController extends Controller
 {
-   public function getCases(){
+    public function getCases(){
         // Fetch all cases  
         $cases = Cases::get();
         // Iterate through each case to determine the latest event and update the status

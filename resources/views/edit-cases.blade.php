@@ -66,7 +66,7 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-flow-row col-2 gap-10 mt-5">
+                        <!-- <div class="grid grid-flow-row col-2 gap-10 mt-5">
                             <div class="grid col-start-1">
                                 <div class="w-1/6">
                                     <label class="form-label block labelname font-bold mb-2">Status:</label>
@@ -87,7 +87,7 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="flex flex-row justify-end gap-2.5 mt-[7.12rem]">
                             <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">UPDATE CASE TO DETAINEE</button>
