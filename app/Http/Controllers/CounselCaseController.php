@@ -54,10 +54,10 @@ class CounselCaseController extends Controller
     return redirect()->back()->with('success', 'Case assigned successfully.');
 }
 
-public function removeAssignedAttorney($caseId)
+public function removeAssignedAttorney($case_id)
 {
     // Retrieve the case
-    $case = Cases::findOrFail($caseId);
+    $case = Cases::findOrFail($case_id);
 
     // Detach the assigned attorney
     $case->assignedAttorney()->detach();
@@ -65,5 +65,6 @@ public function removeAssignedAttorney($caseId)
     // Redirect back with success message
     return redirect()->back()->with('success', 'Assigned attorney removed successfully.');
 }
+
 
 }

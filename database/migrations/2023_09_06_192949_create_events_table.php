@@ -10,12 +10,14 @@ class CreateEventsTable extends Migration
     {
         Schema::create('case_events', function (Blueprint $table) {
             $table->id(); // Use 'id' as the primary key
-            $table->unsignedBigInteger('case_id'); // Foreign key to reference cases table
+            $table->unsignedBigInteger('case_id'); // Foreign key to reeference cases table
             $table->string('event_type'); //Types of event
             $table->date('event_date'); //Start of event
             $table->text('description');
             $table->string('related_entity');
             $table->string('event_outcome');
+            $table->string('verdict')->nullable();
+            $table->string('bail_confirmation')->nullable();
             $table->timestamps();
 
             // Define the foreign key relationship

@@ -95,11 +95,12 @@
 
 
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
-                        @if ($case->assignedAttorney)
-                            <a href="{{ route('removeAssignedAttorney', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">REMOVE ASSIGN ATTORNEY</a>
+                        @if ($case->assignedAttorney()->count() > 0)
+                            <a href="{{ route('removeAssignedAttorney', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">REMOVE ASSIGNED ATTORNEY</a>
                         @else
                             <a href="{{ route('assignToCase', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ASSIGN ATTORNEY TO CASE</a>
                         @endif
+                    </div>
 
                         @php
                             // Get the latest event for the current $case->case_id

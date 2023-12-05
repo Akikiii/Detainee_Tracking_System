@@ -35,5 +35,17 @@ class Detainee extends Model
     {
         return $this->hasOne(Counsel_Case_Assignment::class, 'detainee_id', 'detainee_id');
     }
+    // Detainee.php
+  // Detainee.php
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'detainee_id');
+    }
+
+    public function bails()
+    {
+        return $this->hasMany(Bail::class, 'detainee_id');
+    }
+
 
 }

@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Event;
+use App\Models\Bail;
+use App\Models\Detainee;
+use App\Models\Cases;
+
+
 
 class EventController extends Controller
 {
@@ -16,54 +21,66 @@ class EventController extends Controller
     } 
 
     public function saveEvent(Request $request, $case_id)
-    {
-        // Validate the form input
+{
+    $bailConfirmation = $request->input('bail_confirmation');
+    $request->validate([
+        'event_type' => [
+            'required',
+            Rule::unique('case_events')->where(function ($query) use ($case_id, $request) {
+                return $query->where('case_id', $case_id)
+                    ->where('event_type', $request->input('event_type'));
+            }),
+        ],
+        'event_date' => 'required|date',
+        'verdict' => 'required|in:guilty,not_guilty,no_contest',
+        'description' => 'required',
+        'related_entity' => 'required',
+        'event_outcome' => 'required',
+        'bail_confirmation' => 'required|in:paid,not_paid', 
+    ]);
+
+    $uploadedFile = $request->file('event_notes');
+    $fileContents = $uploadedFile ? file_get_contents($uploadedFile->getRealPath()) : null;
+
+    $case = Cases::with('detainee')->findOrFail($case_id);
+
+    // Check if the event type is "Bail"
+    if ($request->input('event_type') === 'Bail') {
+        // Validate and process the Bail fields
         $request->validate([
-            'event_type' => [
-                'required',
-                Rule::unique('case_events')->where(function ($query) use ($case_id, $request) {
-                    return $query->where('case_id', $case_id)
-                                 ->where('event_type', $request->input('event_type'));
-                }),
-            ],
-            'event_date' => 'required|date',
-            'description' => 'required',
-            'related_entity' => 'required',
-            'event_outcome' => 'required',
-
+            'bail_type' => 'required',
+            'amount' => 'required|numeric',
         ]);
 
-        $uploadedFile = $request->file('event_notes');
-        if ($uploadedFile) {
-            $fileContents = file_get_contents($uploadedFile->getRealPath());
-        } else {
-            $fileContents = null;
-        }
-
-
-        // Create a new event and associate it with the case using the case_id
-        Event::create([
+        // Create a new Bail record
+        $bail = new Bail([
+            'detainee_id' => $case->detainee_id,
             'case_id' => $case_id,
-            'event_type' => $request->input('event_type'), 
-            'event_date' => $request->input('event_date'),
-            'description' => $request->input('description'),
-            'related_entity' => $request->input('related_entity'),
-            'event_outcome' => $request->input('event_outcome'),
+            'bail_type' => $request->input('bail_type'),
+            'amount' => $request->input('amount'),
         ]);
-        return redirect()->route('live-cases', ['id' => $case_id])->with('success', 'Event added successfully');
+
+        // Save the Bail record
+        if (!$bail->save()) {
+            dd('Failed to save Bail');
+        }
     }
 
-    public function editEvent($event_id)
-    {
-        // Retrieve the event data based on the event_id
-        $event = Event::findOrFail($event_id);
-    
-        // Pass the $case_id to the view
-        $case_id = $event->case_id;
-        
-        // Return the edit view with the event data and case_id
-        return view('edit-event', compact('event', 'case_id'));
-    }
+    // Create a new Event record
+    Event::create([
+        'case_id' => $case_id,
+        'event_type' => $request->input('event_type'),
+        'event_date' => $request->input('event_date'),
+        'description' => $request->input('description'),
+        'bail_confirmation' => $bailConfirmation,
+        'related_entity' => $request->input('related_entity'),
+        'event_outcome' => $request->input('event_outcome'),
+        'verdict' => $request->input('verdict'),
+    ]);
+
+    return redirect()->route('live-cases', ['id' => $case_id])->with('success', 'Event added successfully');
+}
+
     
 
     // Update an event

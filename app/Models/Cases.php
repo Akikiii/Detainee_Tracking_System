@@ -13,6 +13,12 @@ class Cases extends Model
     public function assignedTeams() {
         return $this->belongsToMany(Team::class, 'Counsel_Case_Assignment', 'case_id', 'team_id');
     }
+
+    public function assignedAttorney()
+    {
+        return $this->belongsToMany(User::class, 'Counsel_Case_Assignment', 'case_id', 'assigned_lawyer');
+    }
+
     
     public function detainee() {
         return $this->belongsTo(Detainee::class, 'detainee_id');

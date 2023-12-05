@@ -99,12 +99,31 @@
                             </div>
                         </div>
 
+                        <div class="grid grid-flow-row col-2 gap-10 mt-5" id="bailConfirmation" >
+                            <div class="grid col-start-1">
+                                    <div class="w-1/6">
+                                        <label class="block font-bold mb-2 labelname text-lg">Paid or Not Paid:</label>
+                                        <select name="bail_confirmation"  class="form-control text-black border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black"> 
+                                            <option value="paid">Paid</option>
+                                            <option value="not_paid">Not Paid</option>
+                                        </select>
+                                        @error('bail_confirmation')
+                                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                         <div class="grid grid-flow-row col-2 gap-10 mt-5" id="bailAmount" style="display: none;">
                             <div class="grid col-start-1">
                                 <div class="w-2/5">
                                     <label class="block font-bold mb-2 labelname text-lg"> Total Amount of Bail:</label>
-                                    <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name="case_id" placeholder="Enter Amount">
-                                    @error('case_id')
+                                    <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name="amount" placeholder="Enter Amount">
+                                    @error('amount')
                                     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                         {{$message}}
                                     </div>
@@ -117,12 +136,12 @@
                             <div class="grid col-start-1">
                                 <div class="w-1/6">
                                     <label class="block font-bold mb-2 labelname text-lg">Bail Type</label>
-                                    <select name="" class="form-control text-black border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black"> 
-                                        <option value="">Cash Bail</option>
-                                        <option value="">Property Bond</option>
-                                        <option value="">Surety Bond</option>  
+                                    <select name="bail_type" class="form-control text-black border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black"> 
+                                        <option value="Cash">Cash Bail</option>
+                                        <option value="Property">Property Bond</option>
+                                        <option value="Surety">Surety Bond</option>  
                                     </select>
-                                    @error('')
+                                    @error('bail_type')
                                     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                         {{ $message }}
                                     </div>
@@ -131,36 +150,18 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-flow-row col-2 gap-10 mt-5" id="bailConfirmation" style="display: none;">
-                            <div class="main flex overflow-hidden select-none">
-                                <div class="buttonFormat py-3 my-auto px-5 bg-black text-white text-sm font-semibold mr-3">PAID:</div>
-                                <label class="flex radio p-2 cursor-pointer">
-                                    <input class="my-auto transform scale-90" type="radio" id="paid" name="paid" value="1"/>
-                                    <div for="paid" class="title ml-2"> Yes</div>
-                                </label>
-
-                                <label class="flex radio p-2 cursor-pointer">
-                                    <input class="my-auto transform scale-90" type="radio" id="not_paid" name="paid" value="0"/>
-                                    <div for="not_paid" class="title ml-2">No</div>
-                                </label>
-
-                                @error('paid')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
+                        
 
                         <div class="grid grid-flow-row col-2 gap-10 mt-5" id="verdict" style="display: none;">
                             <div class="grid col-start-1">
                                 <div class="w-1/6">
                                     <label class="block font-bold mb-2 labelname text-lg">Verdict</label>
-                                    <select name="" class="form-control text-black border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black"> 
-                                        <option value="">Guilty</option>
-                                        <option value="">Not Guilty</option>
+                                    <select name="verdict"  class="form-control text-black border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black"> 
+                                        <option value="guilty">Guilty</option>
+                                        <option value="not_guilty">Not Guilty</option>
+                                        <option value="no_c ontest">No Contest</option>
                                     </select>
-                                    @error('')
+                                    @error('verdict')
                                     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                         {{ $message }}
                                     </div>
@@ -183,37 +184,42 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var bailSections = document.getElementById("bailSections");
-            var eventTypeSelect = document.getElementById("event_type");
+    document.addEventListener("DOMContentLoaded", function() {
+    //var bailConfirmation = document.getElementById("bailConfirmation"); // Update ID
+    var bailAmount = document.getElementById("bailAmount"); // Update ID
+    var bailType = document.getElementById("bailType"); // Update ID
+    var verdict = document.getElementById("verdict"); // Update ID
+    var eventTypeSelect = document.getElementById("event_type");
 
-            toggleBailSections(eventTypeSelect.value);
+    toggleBailSections(eventTypeSelect.value);
 
-            eventTypeSelect.addEventListener("change", function() {
-                toggleBailSections(this.value);
-            });
+    eventTypeSelect.addEventListener("change", function() {
+        toggleBailSections(this.value);
+    });
 
-            function toggleBailSections(selectedEventType) {
-                if (selectedEventType === "Bail") {
-                    bailAmount.style.display = "block";
-                    bailType.style.display = "block";
-                    bailConfirmation.style.display = "block";
-                    verdict.style.display = "none";
-                }
-                else if (selectedEventType === "Arraignment") {
-                    verdict.style.display = "block";
-                    bailAmount.style.display = "none";
-                    bailType.style.display = "none";
-                    bailConfirmation.style.display = "none";
-                } 
-                else {
-                    bailAmount.style.display = "none";
-                    bailType.style.display = "none";
-                    bailConfirmation.style.display = "none";
-                    verdict.style.display = "none";
-                }
-            }
-        });
-    </script>
+    function toggleBailSections(selectedEventType) {
+        if (selectedEventType === "Bail") {
+            bailAmount.style.display = "block";
+            bailType.style.display = "block";
+            bailConfirmation.style.display = "block";
+            verdict.style.display = "none";
+        }
+        else if (selectedEventType === "Arraignment") {
+            verdict.style.display = "block";
+            bailAmount.style.display = "none";
+            bailType.style.display = "none";
+            //bailConfirmation.style.display = "none";
+        } 
+        else {
+            bailAmount.style.display = "none";
+            bailType.style.display = "none";
+            //bailConfirmation.style.display = "none";
+            verdict.style.display = "none";
+        }
+    }
+});
+
+</script>
+
 
 </x-app-layout>

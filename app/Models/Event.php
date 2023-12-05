@@ -14,9 +14,11 @@ class Event extends Model
         'event_type',
         'event_date',
         'description',
+        'verdict',
         'related_entity',
         'event_location',
         'event_outcome',
+        'bail_confirmation',
         'event_notes',
     ];
 
@@ -28,5 +30,11 @@ class Event extends Model
     {
         return $this->belongsTo(Cases::class, 'case_id', 'case_id');
     }
+    // Event.php
+    public function detainee()
+    {
+        return $this->belongsTo(Detainee::class, 'detainee_id');
+    }
+
 }
 
