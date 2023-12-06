@@ -28,7 +28,7 @@
                                 <div class="ml-4">
                                     <p class="text-left mb-2 font-bold">{{ $user->name }}</p>
                                     <p class="text-left mb-2">Email: {{ $user->email }}</p>
-                                    <p class="text-left mb-2">Number of Cases Handled: {/{ user->cases->count() }}</p>
+                                    <p class="text-left mb-2">Number of Cases Handled: {{ $user->assignedCases->count() }}</p>
                                 </div>
                             </div>
                         </div>

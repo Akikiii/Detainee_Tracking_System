@@ -8,6 +8,7 @@ use App\Http\Controllers\CounselCaseController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -51,6 +52,8 @@ Route::get('/', function () {
     Route::post('/send-email', [MailController::class, 'sendEmail'])->name('send.email');
 });
 
+//OVERVIEW DASHBOARD
+Route::get('/dashboard/overview', [DashboardController::class, 'overview'])->name('dashboard.overview');
 
 //User List
 

@@ -16,13 +16,13 @@
                         <span class="ml-2 text-sm tracking-wide truncate">Dashboard</span>
                     </a>
 
-                    <a href="{{ url('detainee-list') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-gray-800 pr-6">
+                    <a href="{{ route('dashboard.overview') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-gray-800 pr-6">
                         <span class="inline-flex justify-center items-center ml-4">
                             <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
                                 <path stroke="Black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 8h6m-3 3V5m-6-.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0ZM5 11h3a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"/>
                             </svg>
                         </span>
-                        <span class="ml-2 text-sm tracking-wide truncate">Assign Attorney</span>
+                        <span class="ml-2 text-sm tracking-wide truncate">System Overview</span>
                     </a>
 
                     
