@@ -72,139 +72,149 @@
                     @endphp
 
                     @foreach ($cases as $key => $case)
-                        <div class="flex space-x-4" onclick="selectedCase(this, {{ $case->case_id }})">
-                    
-                            <p class="text-left mb-3">Assigned Attorneys:</p>
+                    <div class="flex space-x-4" onclick="selectedCase(this, {{ $case->case_id }})">
+                        <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-left mb-2 font-bold">{{ $case->detainee->first_name }} {{ $case->detainee->middle_name }} {{ $case->detainee->last_name }}</p>
+                                    <p class="text-left mb-3"><strong>Case Title: </strong> {{ $case->case_name}}</p>
+                                    <p class="text-left mb-3"><strong>Violation/s:</strong> {{ $case->violations }}</p>
+                                    <p class="text-left mb-3"><strong>Case Created:</strong> {{ $case->case_created }}</p>
+                                    <p class="text-left mb-3"><strong>Location:
+                                        @if ($case->location === 'mtc')
+                                        <span style="text-shadow: 0 0 1px #FDE581;">Municipal Trial Court</span></strong>
+                                        @elseif ($case->location === 'rtc')
+                                        <span style="text-shadow: 0 0 1px #FDE581;">Regional Trial Court</span></strong>
+                                        @else 
+                                        <span style="text-shadow: 0 0 1px #FDE581;">No Location Set</span></strong>
+                                        @endif
+                                    </p>
+                                    @php
+                                        $assignedAttorneys = $case->assignedAttorney;
+                                    @endphp
+                                    <p class="text-left mb-3"><strong>Assigned Attorney:
+                                        @if ($assignedAttorneys->isNotEmpty())
+                                            @foreach ($assignedAttorneys as $attorney)
+                                                {{ $attorney->name }}
+                                            @endforeach
+                                        @else
+                                            None
+                                        @endif
+                                        </strong>
+                                    </p>
 
-                            @php
-                                $assignedAttorneys = $case->assignedAttorney;
-                            @endphp
-
-                            @if ($assignedAttorneys->isNotEmpty())
-                                @foreach ($assignedAttorneys as $attorney)
-                                    <strong class="bg-green-500 text-white px-1 py-1 rounded mb-6">{{ $attorney->name }}</strong>
-                                @endforeach
-                            @else
-                                <strong class="bg-orange-500 text-white px-1 py-1 rounded mb-6">None</strong>
-                            @endif
-
-                                
-
-                                            <p class="text-left mb-3"><strong>Status:
-                                                @if ($case->status === 'Arraignment')
-                                                    <span style="text-shadow: 0 0 1px #FDE581;">Arraignment</span></strong>
-                                                    <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                    </div>
-                                                @elseif ($case->status === 'Bail')
-                                                    <span style="text-shadow: 0 0 2px #FDE581;">Bail Hearing</span></strong>
-                                                    <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                    </div>
-                                                @elseif ($case->status === 'Pretrial')
-                                                    <span style="text-shadow: 0 0 1px #FDE581;">Pretrial</span></strong>
-                                                    <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                    </div>
-                                                @elseif ($case->status === 'Plea')
-                                                    <span style="text-shadow: 0 0 1px #FDE581;">Plea Bargaining</span></strong>
-                                                    <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                    </div>
-                                                @elseif ($case->status === 'Trial')
-                                                    <span style="text-shadow: 0 0 1px #FDE581;">Trial</span></strong>
-                                                    <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                    </div>
-                                                @elseif ($case->status === 'Sentencing')
-                                                    <span style="text-shadow: 0 0 1px #FDE581;">Sentencing</span></strong>
-                                                    <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                    </div>
-                                                @elseif ($case->status === 'Appeal')
-                                                    <span style="text-shadow: 0 0 1px #FDE581;">Appeal</span></strong>
-                                                    <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
-                                                    </div>
-                                                @elseif ($case->status === 'Finished')
-                                                    <span style="text-shadow: 0 0 1px #436228;">Finished/Archived</span></strong>
-                                                    <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
-                                                    </div>
-                                                @else
-                                                    <span style="text-shadow: 0 0 2px #FDE581;">Unknown</span></strong>
-                                                    <div class="flex max-w-xs space-x-3">
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                        <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
-                                                    </div>
-                                                @endif
-                                            </p>
-                                            
-                                            <div class="p-4 space-y-2">
-                                                
+                                    <p class="text-left mb-3"><strong>Status:
+                                        @if ($case->status === 'Arraignment')
+                                            <span style="text-shadow: 0 0 1px #FDE581;">Arraignment</span></strong>
+                                            <div class="flex max-w-xs space-x-3">
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                             </div>
+                                        @elseif ($case->status === 'Bail')
+                                            <span style="text-shadow: 0 0 2px #FDE581;">Bail Hearing</span></strong>
+                                            <div class="flex max-w-xs space-x-3">
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                            </div>
+                                        @elseif ($case->status === 'Pretrial')
+                                            <span style="text-shadow: 0 0 1px #FDE581;">Pretrial</span></strong>
+                                            <div class="flex max-w-xs space-x-3">
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                            </div>
+                                        @elseif ($case->status === 'Plea')
+                                            <span style="text-shadow: 0 0 1px #FDE581;">Plea Bargaining</span></strong>
+                                            <div class="flex max-w-xs space-x-3">
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                            </div>
+                                        @elseif ($case->status === 'Trial')
+                                            <span style="text-shadow: 0 0 1px #FDE581;">Trial</span></strong>
+                                            <div class="flex max-w-xs space-x-3">
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                            </div>
+                                        @elseif ($case->status === 'Sentencing')
+                                            <span style="text-shadow: 0 0 1px #FDE581;">Sentencing</span></strong>
+                                            <div class="flex max-w-xs space-x-3">
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                            </div>
+                                        @elseif ($case->status === 'Appeal')
+                                            <span style="text-shadow: 0 0 1px #FDE581;">Appeal</span></strong>
+                                            <div class="flex max-w-xs space-x-3">
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
+                                            </div>
+                                        @elseif ($case->status === 'Finished')
+                                            <span style="text-shadow: 0 0 1px #436228;">Finished/Archived</span></strong>
+                                            <div class="flex max-w-xs space-x-3">
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
+                                            </div>
+                                        @else
+                                            <span style="text-shadow: 0 0 2px #FDE581;">Unknown</span></strong>
+                                            <div class="flex max-w-xs space-x-3">
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                                <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
+                                            </div>
+                                        @endif
+                                    </p>
 
-                                            
-                                        </div>
-                                    </div>
+                                    <div class="py-5"></div>
+
+                                        
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
                     </div>
+                    @endforeach
 
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
                         <a href="{{ url('live-cases', ['id' => 'case_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">CASE OVERVIEW</a>

@@ -31,41 +31,40 @@
                             <div class="grid col-start-1">
                                 <div class="w-1/6">
                                     <label class="block font-bold mb-2 labelname text-lg">Event Type</label>
-                                    <!-- <select name="event_type" id="event_type" class="form-control border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black"> -->
-                                        <!-- @isset($event)
-                                            @if($event->verdict == 'Guilty')
+                                    <select name="event_type" id="event_type" class="form-control border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black">
+                                        @isset($event)
+                                            @if($event->verdict == 'guilty')
                                                 <option value="Plea">Plea Bargaining</option>
                                                 <option value="Trial">Trial</option>
                                                 <option value="Sentencing">Sentencing</option>
                                                 <option value="Appeal">Appeal</option>
                                                 <option value="Finished">Finished/Archived</option>
-                                            @elseif($event->verdict == 'No Contest')
-                                                <option value="Sentencing">Sentencing</option>
-                                                <option value="Appeal">Appeal</option>
-                                                <option value="Finished">Finished/Archived</option>
-                                            @else
-                                                <option value="Arraignment">Arraignment</option>
-                                                <option value="Bail">Bail Hearing</option>
-                                                <option value="Pretrial">Pre-Trial</option>
-                                                <option value="Plea">Plea Bargaining</option>
-                                                <option value="Trial">Trial</option>
+                                            @elseif($event->verdict == 'no_contest')
                                                 <option value="Sentencing">Sentencing</option>
                                                 <option value="Appeal">Appeal</option>
                                                 <option value="Finished">Finished/Archived</option>
                                             @endif
-                                        @endisset -->
-                                        <select name="event_type" id="event_type" class="form-control border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black">
-                                                <option value="Arraignment">Arraignment</option>
-                                                <option value="Bail">Bail Hearing</option>
-                                                <option value="Pretrial">Pre-Trial</option>
-                                                <option value="Plea">Plea Bargaining</option>
-                                                <option value="Trial">Trial</option>
-                                                <option value="Sentencing">Sentencing</option>
-                                                <option value="Appeal">Appeal</option>
-                                                <option value="Finished">Finished/Archived</option>
+                                        @else
+                                            <option value="Arraignment">Arraignment</option>
+                                            <option value="Bail">Bail Hearing</option>
+                                            <option value="Pretrial">Pre-Trial</option>
+                                            <option value="Plea">Plea Bargaining</option>
+                                            <option value="Trial">Trial</option>
+                                            <option value="Sentencing">Sentencing</option>
+                                            <option value="Appeal">Appeal</option>
+                                            <option value="Finished">Finished/Archived</option>
+                                        @endisset
                                     </select>
-        
-                                    </select>
+                                    <!-- <select name="event_type" id="event_type" class="form-control border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black">
+                                            <option value="Arraignment">Arraignment</option>
+                                            <option value="Bail">Bail Hearing</option>
+                                            <option value="Pretrial">Pre-Trial</option>
+                                            <option value="Plea">Plea Bargaining</option>
+                                            <option value="Trial">Trial</option>
+                                            <option value="Sentencing">Sentencing</option>
+                                            <option value="Appeal">Appeal</option>
+                                            <option value="Finished">Finished/Archived</option>
+                                    </select> -->
                                     @error('event_type')
                                     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                         {{ $message }}
