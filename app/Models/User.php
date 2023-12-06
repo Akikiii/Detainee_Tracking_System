@@ -59,4 +59,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function assignedCases()
+    {
+        return $this->belongsToMany(Cases::class, 'Counsel_Case_Assignment', 'assigned_lawyer', 'case_id');
+    }
 }

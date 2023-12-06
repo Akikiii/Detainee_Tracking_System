@@ -15,10 +15,9 @@ class Cases extends Model
     }
 
     public function assignedAttorney()
-    {
-        return $this->belongsToMany(User::class, 'Counsel_Case_Assignment', 'case_id', 'assigned_lawyer');
-    }
-
+{
+    return $this->belongsToMany(User::class, 'Counsel_Case_Assignment', 'case_id', 'assigned_lawyer');
+}
     
     public function detainee() {
         return $this->belongsTo(Detainee::class, 'detainee_id');

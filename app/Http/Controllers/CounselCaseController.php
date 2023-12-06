@@ -51,7 +51,7 @@ class CounselCaseController extends Controller
 
     // You can add any additional logic or redirect the user as needed
 
-    return redirect()->back()->with('success', 'Case assigned successfully.');
+    return redirect()->back()->with(['case' => $case, 'success' => 'Case assigned successfully.']);
 }
 
 public function removeAssignedAttorney($case_id)

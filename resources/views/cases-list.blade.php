@@ -66,41 +66,32 @@
                     <div id="selectedCaseID"></div>
 
                     <div class="flex flex-col gap-4">
-                        <label class="form-label block labelname font-bold mb-2">Cases</label>
-                        @php
+                    <label class="form-label block labelname font-bold mb-2">Cases</label>
+                    @php
                         $counter = is_countable($cases) ? count($cases) : 0;
-                        @endphp
+                    @endphp
 
-                        @foreach ($cases as $key => $Cases)
-                        
-                            <div class="flex space-x-4" onclick="selectedCase(this, {{ $Cases->case_id }})">
-                                <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
-                                    <div class="flex justify-between items-center">
-                                        <div>
-                                            <p class="text-left mb-2 font-bold">{{ $Cases->detainee->first_name }} {{ $Cases->detainee->middle_name }} {{ $Cases->detainee->last_name }}</p>
-                                            <p class="text-left mb-3"><strong>Case Title: </strong> {{ $Cases->case_name}}</p>
-                                            <p class="text-left mb-3"><strong>Violation/s:</strong> {{ $Cases->violations }}</p>
-                                            <p class="text-left mb-3"><strong>Case Created:</strong> {{ $Cases->case_created }}</p>
-                                            <p class="text-left mb-3"><strong>Location:
-                                                @if ($Cases->location === 'mtc')
-                                                <span style="text-shadow: 0 0 1px #FDE581;">Municipal Trial Court</span></strong>
-                                                @elseif ($Cases->location === 'rtc')
-                                                <span style="text-shadow: 0 0 1px #FDE581;">Regional Trial Court</span></strong>
-                                                @else 
-                                                <span style="text-shadow: 0 0 1px #FDE581;">No Location Set</span></strong>
-                                                @endif
-                                            </p>
-                                                Assigned Attorney:
-                                                @if (optional($Cases->counselCaseAssignment)->assigned_by)
-                                                    <strong class="bg-green-500 text-white px-1 py-1 rounded mb-6">{{ $Cases->counselCaseAssignment->assigned_by }}</strong>
-                                                @else
-                                                    <strong class="bg-orange-500 text-white px-1 py-1 rounded mb-6">None</strong>
-                                                @endif
+                    @foreach ($cases as $key => $case)
+                        <div class="flex space-x-4" onclick="selectedCase(this, {{ $case->case_id }})">
+                    
+                            <p class="text-left mb-3">Assigned Attorneys:</p>
+
+                            @php
+                                $assignedAttorneys = $case->assignedAttorney;
+                            @endphp
+
+                            @if ($assignedAttorneys->isNotEmpty())
+                                @foreach ($assignedAttorneys as $attorney)
+                                    <strong class="bg-green-500 text-white px-1 py-1 rounded mb-6">{{ $attorney->name }}</strong>
+                                @endforeach
+                            @else
+                                <strong class="bg-orange-500 text-white px-1 py-1 rounded mb-6">None</strong>
+                            @endif
 
                                 
 
                                             <p class="text-left mb-3"><strong>Status:
-                                                @if ($Cases->status === 'Arraignment')
+                                                @if ($case->status === 'Arraignment')
                                                     <span style="text-shadow: 0 0 1px #FDE581;">Arraignment</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
@@ -111,7 +102,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
-                                                @elseif ($Cases->status === 'Bail')
+                                                @elseif ($case->status === 'Bail')
                                                     <span style="text-shadow: 0 0 2px #FDE581;">Bail Hearing</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -122,7 +113,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
-                                                @elseif ($Cases->status === 'Pretrial')
+                                                @elseif ($case->status === 'Pretrial')
                                                     <span style="text-shadow: 0 0 1px #FDE581;">Pretrial</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -133,7 +124,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
-                                                @elseif ($Cases->status === 'Plea')
+                                                @elseif ($case->status === 'Plea')
                                                     <span style="text-shadow: 0 0 1px #FDE581;">Plea Bargaining</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -144,7 +135,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
-                                                @elseif ($Cases->status === 'Trial')
+                                                @elseif ($case->status === 'Trial')
                                                     <span style="text-shadow: 0 0 1px #FDE581;">Trial</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -155,7 +146,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
-                                                @elseif ($Cases->status === 'Sentencing')
+                                                @elseif ($case->status === 'Sentencing')
                                                     <span style="text-shadow: 0 0 1px #FDE581;">Sentencing</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -166,7 +157,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#CA9614]"></span>
                                                     </div>
-                                                @elseif ($Cases->status === 'Appeal')
+                                                @elseif ($case->status === 'Appeal')
                                                     <span style="text-shadow: 0 0 1px #FDE581;">Appeal</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
@@ -177,7 +168,7 @@
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#99B927]"></span>
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#FDE581]"></span>
                                                     </div>
-                                                @elseif ($Cases->status === 'Finished')
+                                                @elseif ($case->status === 'Finished')
                                                     <span style="text-shadow: 0 0 1px #436228;">Finished/Archived</span></strong>
                                                     <div class="flex max-w-xs space-x-3">
                                                         <span class="w-12 h-2 rounded-sm dark:bg-[#436228]"></span>
