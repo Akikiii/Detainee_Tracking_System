@@ -43,6 +43,14 @@
                                                 <option value="Sentencing">Sentencing</option>
                                                 <option value="Appeal">Appeal</option>
                                                 <option value="Finished">Finished/Archived</option>
+                                            @elseif($event->verdict == 'not_guilty')
+                                                <option value="Bail">Bail Hearing</option>
+                                                <option value="Pretrial">Pre-Trial</option>
+                                                <option value="Plea">Plea Bargaining</option>
+                                                <option value="Trial">Trial</option>
+                                                <option value="Sentencing">Sentencing</option>
+                                                <option value="Appeal">Appeal</option>
+                                                <option value="Finished">Finished/Archived</option>
                                             @endif
                                         @else
                                             <option value="Arraignment">Arraignment</option>

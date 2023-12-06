@@ -46,8 +46,8 @@
                             <div class="flex space-x-4" onclick="selectedID(this, {{ $detainee->detainee_id }})">
                                 <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
                                     <div class="flex items-center">
-                                        <div style="background-color: black; height: 85px; width: 85px; border-radius: 100%;"></div>
-                                        <div class="ml-4">
+                                        <!-- <div style="background-color: black; height: 85px; width: 85px; border-radius: 100%;"></div> -->
+                                        <div class=>
                                             <p class="text-left mb-2 font-bold">{{ $detainee->first_name }} {{ $detainee->middle_name }} {{ $detainee->last_name }}</p>
                                             @if (isset($detainee->detaineeDetails))
                                                 <p class="text-left mb-2">Start of Detention: {{ $detainee->detaineeDetails->detention_begin }}</p>

@@ -94,6 +94,11 @@
             background-position: right center; */
         }
 
+        .cropA { 
+            -webkit-clip-path: polygon(0 , 100% 0%, 80% 100%, 0% 100%);
+            /* clip-path: polygon(0 0, 100% 0, 100% 66%, 0% 100%); */
+        }
+
         /* select:focus {
             color: black;
         } */
