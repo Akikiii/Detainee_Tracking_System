@@ -140,18 +140,9 @@
             </div>
         </a>
 
-        <!-- DITO KOY -->
-        @php
-            $counter = is_countable($cases) ? count($cases) : 0;
-        @endphp
+        
 
-        @foreach ($cases as $key => $case)
-        <div>
-            <p><strong>Case Title: </strong> {{ $case->case_name}}</p>
-        </div>
-        @endforeach
-
-        <div x-data="{ open: false }" class="flex justify-center items-center mr-8">
+        <!-- <div x-data="{ open: false }" class="flex justify-center items-center mr-8">
             <div @click="open = !open" >
                 <div class="flex justify-center items-center cursor-pointer">
                     <a class="mr-2 relative flex flex-row items-center h-12 rounded-md hover:bg-gray-100">
@@ -192,7 +183,7 @@
                     <a href="{{url('cases-list')}}" class="block bg-yellow-600 text-white text-center font-bold py-2">See All Pending Cases</a>
                 </div>
             </div>
-        </div>
+        </div> -->
         
     </div>
 
