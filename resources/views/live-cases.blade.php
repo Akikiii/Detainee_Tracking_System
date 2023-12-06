@@ -88,6 +88,9 @@
                                         <td class="px-3 py-2">
                                             {{ $event->event_outcome }}
                                         </td>
+                                        <td class="px-3 py-2">
+                                            <a href="{{ route('view-event', ['event_id' => $event->id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-1 px-2">View Event</a>
+                                        </td>
                                     </tr>
                                 </tbody>
                                 @endforeach
