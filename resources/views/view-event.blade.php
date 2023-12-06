@@ -26,6 +26,21 @@
                                         @if(isset($event))
                                             <p class="text-[1.875rem] mb-3"><strong>Case Title: </strong> {{ $event->case->case_name}}</p>
                                             <p class="text-left mb-3"><strong>Event Type:</strong> {{ $event->event_type }}</p>
+                                            @if ($event->event_type == 'Bail')
+                                                <p class="text-left mb-3"><strong>Bail Amount: </strong>{{ optional($event->bail)->amount}}</p>
+                                                <p class="text-left mb-3"><strong>Bail Status: </strong>{{ ucfirst($event->bail_confirmation) }}</p>
+                                                <p class="text-left mb-3"><strong>Bail Type: </strong>{{optional($event->bail)->bail_type}}</p>
+                                            @elseif ($event->event_type == 'Arraignment')
+                                                <p class="text-left mb-3"><strong>Verdict: </strong>
+                                                    @if ($event->verdict == 'guilty')
+                                                        Guilty
+                                                    @elseif ($event->verdict == 'not_guilty')
+                                                        Not Guilty
+                                                    @elseif ($event->verdict == 'no_contest')
+                                                        No Contest
+                                                    @endif
+                                                </p>
+                                            @endif
                                             <p class="text-left mb-3"><strong>Event Date:</strong> {{ $event->event_date }}</p>
                                             <p class="text-left mb-3"><strong>Event Location:</strong> 
                                                 @if($event->case->location == 'rtc')
@@ -47,7 +62,7 @@
                     </div>
 
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
-                        <a href="{{url('previous')}}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO EVENT TIMELINE</a>
+                        <a href="{{ url()->previous() }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO EVENT TIMELINE</a>
                     </div>
 
                 </div>
@@ -55,22 +70,5 @@
             
         </div>
 
-    </div>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <h3 class="text-lg font-semibold mb-4">Event Information</h3>
-
-                @if(isset($event))
-                    <p><strong>Event Type:</strong> {{ $event->event_type }}</p>
-                    <p><strong>Event Date:</strong> {{ $event->event_date }}</p>
-                    <p><strong>Description:</strong> {{ $event->description }}</p>
-                
-                @else
-                    <p>No event found.</p>
-                @endif
-            </div>
-        </div>
     </div>
 </x-app-layout>

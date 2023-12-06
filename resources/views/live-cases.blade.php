@@ -70,7 +70,15 @@
                                                     <p class="text-gray-400"> Bail Amount: {{ optional($event->bail)->amount}} | Bail Status: {{ ucfirst($event->bail_confirmation) }} | Bail Type: {{optional($event->bail)->bail_type}} </p>
                                                 @elseif ($event->event_type == 'Arraignment')
                                                     {{ $event->event_type }}
-                                                    <p class="text-gray-400">Verdict: {{ ucfirst($event->verdict) }}</p>
+                                                    <p class="text-gray-400">Verdict:
+                                                        @if ($event->verdict == 'guilty')
+                                                            Guilty
+                                                        @elseif ($event->verdict == 'not_guilty')
+                                                            Not Guilty
+                                                        @elseif ($event->verdict == 'no_contest')
+                                                            No Contest
+                                                        @endif
+                                                    </p>
                                                 @else
                                                     {{ $event->event_type }}
                                                 @endif
@@ -86,12 +94,12 @@
                                                 @endif
                                             </td>
                                             <td class="px-3 py-2">
-                                                {{ $event->description }}
+                                                {{ Illuminate\Support\Str::limit($event->description, $limit = 30, $end = '...') }}
                                             </td>
                                             <td class="px-3 py-2">
                                                 {{ $event->event_outcome }}
                                             </td>
-                                            <td class="flex gap-2 px-3 py-2">
+                                            <td class="flex gap-2 px-3 py-3">
                                                 <a href="{{ route('view-event', ['event_id' => $event->id]) }}">
                                                     <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Black" viewBox="0 0 20 14">
                                                         <path stroke="Black" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>

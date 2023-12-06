@@ -20,7 +20,7 @@
                         <div class="flex space-x-4">
                             <div class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative">
                                 <div class="ml-4 flex">
-                                    <div style="background-color: black; height: 125px; width: 125px; border-radius: 100%; margin-top: 10px;"></div>
+                                    <!-- <div style="background-color: black; height: 125px; width: 125px; border-radius: 100%; margin-top: 10px;"></div> -->
                                     <div class="ml-10">
                                         <p class="text-left mt-3 mb-3 font-bold">{{ $detainee->last_name }}, {{ $detainee->first_name }} {{ $detainee->middle_name }}</p>
                                         <p class="text-left mb-3">Detainee ID: {{ $detainee['detainee_id'] }}</p>
