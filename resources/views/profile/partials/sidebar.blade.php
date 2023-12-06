@@ -18,8 +18,10 @@
 
                     <a href="{{ route('dashboard.overview') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-gray-800 pr-6">
                         <span class="inline-flex justify-center items-center ml-4">
-                            <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
-                                <path stroke="Black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 8h6m-3 3V5m-6-.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0ZM5 11h3a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"/>
+                            <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path stroke="None" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 15a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/>
+                                <path stroke="Black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 5h-8a2 2 0 0 0-2 2v11H5a1 1 0 0 0 0 2h14a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2Zm-4 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm0 9a3 3 0 1 1 0-5.999A3 3 0 0 1 14 17Z"/>
+                                <path stroke="Black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 9H2V2h16v1c.65.005 1.289.17 1.86.48A.971.971 0 0 0 20 3V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h4V9Z"/>
                             </svg>
                         </span>
                         <span class="ml-2 text-sm tracking-wide truncate">System Overview</span>
