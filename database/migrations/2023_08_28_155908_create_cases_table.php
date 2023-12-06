@@ -14,7 +14,6 @@ class CreateCasesTable extends Migration
         Schema::create('cases', function (Blueprint $table) {
             $table->unsignedBigInteger('case_id')->index(); //Supposedly this is auto incrementing but for security purposes
             $table->string('case_name');
-            $table->string('violations')->nullable;
             $table->string('case_created');
             $table->unsignedBigInteger('detainee_id');
             $table->foreign('detainee_id')

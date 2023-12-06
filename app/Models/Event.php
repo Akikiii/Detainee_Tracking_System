@@ -20,6 +20,7 @@ class Event extends Model
         'event_outcome',
         'bail_confirmation',
         'event_notes',
+        'updated_by',
     ];
 
     protected $dates = ['event_date', 'created_at', 'updated_at'];

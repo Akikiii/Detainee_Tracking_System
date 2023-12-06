@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\CommentController;
 use App\Mail\InviteUser;
 use App\Models\Counsel_Case_Assignment;
 
@@ -105,7 +106,8 @@ Route::post('/add-member/{team_id}', [TeamController::class, 'addMember'])->name
 Route::get('/assign-member/{team_id}', [TeamController::class, 'assignMember'])->name('assign-member');
     
 
-// User List
+// Comment Box
+Route::post('/post-comment/{case_id}/{event_id}', [CommentController::class, 'store'])->name('post-comment');
 
 
 Route::get('/dashboard',    function () {

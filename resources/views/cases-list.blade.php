@@ -78,7 +78,6 @@
                                 <div>
                                     <p class="text-left mb-2 font-bold">{{ $case->detainee->first_name }} {{ $case->detainee->middle_name }} {{ $case->detainee->last_name }}</p>
                                     <p class="text-left mb-3"><strong>Case Title: </strong> {{ $case->case_name}}</p>
-                                    <p class="text-left mb-3"><strong>Violation/s:</strong> {{ $case->violations }}</p>
                                     <p class="text-left mb-3"><strong>Case Created:</strong> {{ $case->case_created }}</p>
                                     <p class="text-left mb-3"><strong>Location:
                                         @if ($case->location === 'mtc')

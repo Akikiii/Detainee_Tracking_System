@@ -44,7 +44,6 @@ class CasesController extends Controller
             'case_id' => 'required',
             'case_name' => 'required',
             'location' => 'required|in:rtc,mtc',
-            'violations' => 'required',
             'case_created' => 'required|date',
             'status' => 'in: Arrest, Bail, Pretrial, Plea, Trial, Sentencing, Appeal, Finished,Arraignment',
         ];
@@ -56,7 +55,6 @@ class CasesController extends Controller
         $cases->detainee_id = $detainee_id;
         $cases->case_name = $request->case_name; 
         $cases->location = $request->location;
-        $cases->violations = $request->violations;
         $cases->case_created = $request->case_created;
         $cases->status = $status; 
         $cases->save();
@@ -72,7 +70,6 @@ class CasesController extends Controller
     public function updateCases(Request $request, $caseId) {
         $combinedRules = [
             'case_name' => 'required',
-            'violations' => 'required',
             'location' => 'in: rtc,mtc',
             'case_created' => 'required',
             'status' => 'in: Arrest, Bail, Pretrial, Plea, Trial, Sentencing, Appeal, Finished,Arraignment  ',
@@ -85,7 +82,6 @@ class CasesController extends Controller
     
         // Update Case Data
         $case->case_name = $request->case_name;
-        $case->violations = $request->violations;
         $case->case_created = $request->case_created;
         $case->location = $request->location;
         $case->status = $request->status ?? 'Arrest';

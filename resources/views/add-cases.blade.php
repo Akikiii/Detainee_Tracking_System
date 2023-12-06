@@ -83,21 +83,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="grid grid-flow-row col-2 gap-10 mt-5">
-                            <div class="grid col-start-1">
-                                <div class="w-1/2">
-                                    <label class="form-label block labelname font-bold mb-2">Violations</label>
-                                    <input type="text" class="form-control text-black border border-black rounded w-full py-4 px-3 placeholderfont text-lg leading-tight focus:outline-none focus:border-black" name='violations' placeholder='Violations'>
-                                    @error('violations')
-                                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role>
-                                        {{$message}}
-                                    </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-
+                        
                         <div class="flex flex-row justify-end gap-2.5 mt-20">
                             <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD CASE TO DETAINEE</button>
                             <a href="{{url('detainee-list')}}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO DETAINEE LIST</a>

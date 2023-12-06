@@ -9,18 +9,22 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('case_events', function (Blueprint $table) {
-            $table->id(); // Use 'id' as the primary key
-            $table->unsignedBigInteger('case_id'); // Foreign key to reeference cases table
-            $table->string('event_type'); //Types of event
-            $table->date('event_date'); //Start of event
+            $table->id();
+            $table->unsignedBigInteger('case_id');
+            $table->string('event_type');
+            $table->date('event_date');
             $table->text('description');
             $table->string('related_entity');
             $table->string('event_outcome');
             $table->string('verdict')->nullable();
             $table->string('bail_confirmation')->nullable();
+
+            // Use foreign() instead of foreignId() for unsignedBigInteger columns
+            $table->unsignedBigInteger('updated_by')->default(auth()->id());
+            $table->foreign('updated_by')->references('id')->on('users');
+
             $table->timestamps();
 
-            // Define the foreign key relationship
             $table->foreign('case_id')->references('case_id')->on('cases')->onDelete('cascade');
         });
     }
