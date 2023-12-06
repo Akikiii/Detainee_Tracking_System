@@ -65,19 +65,6 @@
                     </div>
 
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
-                    <form action="{{ route('assign-attorney', ['detainee' => $detainee->detainee_id]) }}" method="post">
-                            @csrf
-                            @if ($counsel_case_assignment)
-                                <a href="{{ url('remove-assignment/' . $counsel_case_assignment->detainee_id) }}"
-                                    class="buttonFormat bg-[#D0B638] hover:bg-yellow-400 font-bold py-3 px-6 rounded"
-                                    onclick="return confirm('Are you sure you want to remove your assignment?')">REMOVE ASSIGNED ATTORNEY TO DETAINEE
-                                </a>
-                            @else
-                                <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">
-                                    ASSIGN ATTORNEY TO DETAINEE
-                                </button>
-                            @endif
-                        </form>
                         <a href="{{url('detainee-list')}}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK</a>
                     </div>
 

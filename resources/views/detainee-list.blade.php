@@ -58,6 +58,8 @@
                                             @endif
                                             <!-- Assigned Attorney Label still not working -->
                                                 <p class="text-left mb-2">Number of Assigned Cases: {{ $detainee->cases->count() }}</p>
+                                                <p class="text-left mb-2">
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

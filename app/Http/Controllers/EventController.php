@@ -16,9 +16,12 @@ class EventController extends Controller
 {
     public function addEventForm($case_id)
     {
-        // Load the view for adding a new event, passing the case_id for reference
-        return view('add-event', compact('case_id'));
-    } 
+        // Retrieve the event data if it exists
+        $event = Event::where('case_id', $case_id)->first();
+
+        // Load the view for adding a new event, passing the case_id and event data
+        return view('add-event', compact('case_id', 'event'));
+    }
 
     public function saveEvent(Request $request, $case_id)
 {

@@ -60,13 +60,17 @@
                                             @endif
                                         @endif
                                         </td>
+                                        
                                         <td class="px-3 py-2">
-                                            @if($event->event_type == 'Bail')
+                                            @if ($event->event_type == 'Bail')
                                                 Bail Hearing
+                                                <p class="text-gray-400">Bail Amount: | Bail Status: {{ ucfirst($event->bail_confirmation) }} | Bail Type: </p>
+                                            @elseif ($event->event_type == 'Arraignment')
+                                                {{ $event->event_type }}
+                                                <p class="text-gray-400">Verdict: {{ ucfirst($event->verdict) }}</p>
                                             @else
                                                 {{ $event->event_type }}
                                             @endif
-                                            <p class="text-gray-400">Paid: Cash Bail</p>
                                         </td>
                                         <td class="px-3 py-2">
                                             {{ $event->event_date }}
@@ -92,28 +96,24 @@
                         </div>
                     </div>
                     
-
-
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
                         @if ($case->assignedAttorney()->count() > 0)
                             <a href="{{ route('removeAssignedAttorney', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">REMOVE ASSIGNED ATTORNEY</a>
                         @else
                             <a href="{{ route('assignToCase', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ASSIGN ATTORNEY TO CASE</a>
                         @endif
-                    </div>
 
                         @php
                             // Get the latest event for the current $case->case_id
                             $latestEvent = $sortedEvents->firstWhere('case.case_id', $case->case_id);
                         @endphp
-
                         @if (!$latestEvent || $latestEvent->event_type !== 'Finished')
                             <a href="{{ route('add-event', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD EVENT</a>
                         @endif
                         
                         <a href="{{ url('cases-list') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO CASES LIST</a>
                         <a href="{{ route('edit-event', ['event_id' => 'event_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">EDIT EVENT</a>
-                        <a href="{{ route('delete-event', ['event_id' => 'event_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">DELETE EVENT</a>    
+                        <a href="{{ route('delete-event', ['event_id' => 'event_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">DELETE EVENT</a>     
                     </div>
 
                 </div>

@@ -178,7 +178,7 @@
                             </p>
                         </a>
                     </div>
-                    <a href="#" class="block bg-yellow-600 text-white text-center font-bold py-2">See all pending cases</a>
+                    <a href="{{url('cases-list')}}" class="block bg-yellow-600 text-white text-center font-bold py-2">See All Pending Cases</a>
                 </div>
             </div>
         </div>

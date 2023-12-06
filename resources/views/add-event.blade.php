@@ -24,23 +24,37 @@
 
                     <form method="POST" action="{{ route('save-event', ['case_id' => $case_id]) }}"  enctype="multipart/form-data">
                         @csrf
-
+                        
                         <!-- Add the hidden input field for case_id -->
                         <input type="hidden" name="case_id" value="{{ $case_id }}">
-
                         <div class="grid grid-flow-row col-2 gap-10">
                             <div class="grid col-start-1">
                                 <div class="w-1/6">
                                     <label class="block font-bold mb-2 labelname text-lg">Event Type</label>
                                     <select name="event_type" id="event_type" class="form-control border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black">
-                                        <option value="Arraignment">Arraignment</option>
-                                        <option value="Bail">Bail Hearing</option>
-                                        <option value="Pretrial">Pre-Trial</option>
-                                        <option value="Plea">Plea Bargaining</option>
-                                        <option value="Trial">Trial</option>
-                                        <option value="Sentencing">Sentencing</option>
-                                        <option value="Appeal">Appeal</option>
-                                        <option value="Finished">Finished/Archived</option>
+                                        @isset($event)
+                                            @if($event->verdict == 'Guilty')
+                                                <!-- Add options based on the condition -->
+                                                <option value="Plea">Plea Bargaining</option>
+                                                <option value="Trial">Trial</option>
+                                                <option value="Sentencing">Sentencing</option>
+                                                <option value="Appeal">Appeal</option>
+                                                <option value="Finished">Finished/Archived</option>
+                                            @elseif($event->verdict == 'No Contest')
+                                                <option value="Sentencing">Sentencing</option>
+                                                <option value="Appeal">Appeal</option>
+                                                <option value="Finished">Finished/Archived</option>
+                                            @else
+                                                <option value="Arraignment">Arraignment</option>
+                                                <option value="Bail">Bail Hearing</option>
+                                                <option value="Pretrial">Pre-Trial</option>
+                                                <option value="Plea">Plea Bargaining</option>
+                                                <option value="Trial">Trial</option>
+                                                <option value="Sentencing">Sentencing</option>
+                                                <option value="Appeal">Appeal</option>
+                                                <option value="Finished">Finished/Archived</option>
+                                            @endif
+                                        @endisset
                                     </select>
                                     @error('event_type')
                                     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -157,9 +171,9 @@
                                 <div class="w-1/6">
                                     <label class="block font-bold mb-2 labelname text-lg">Verdict</label>
                                     <select name="verdict"  class="form-control text-black border border-black rounded w-full py-4 px-3 input[type=text] text-base leading-tight focus:outline-none focus:border-black"> 
-                                        <option value="guilty">Guilty</option>
-                                        <option value="not_guilty">Not Guilty</option>
-                                        <option value="no_c ontest">No Contest</option>
+                                        <option value="Guilty">Guilty</option>
+                                        <option value="Not Guilty">Not Guilty</option>
+                                        <option value="No Contest">No Contest</option>
                                     </select>
                                     @error('verdict')
                                     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -184,42 +198,42 @@
     </div>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    //var bailConfirmation = document.getElementById("bailConfirmation"); // Update ID
-    var bailAmount = document.getElementById("bailAmount"); // Update ID
-    var bailType = document.getElementById("bailType"); // Update ID
-    var verdict = document.getElementById("verdict"); // Update ID
-    var eventTypeSelect = document.getElementById("event_type");
+        document.addEventListener("DOMContentLoaded", function() {
+            //var bailConfirmation = document.getElementById("bailConfirmation"); // Update ID
+            var bailAmount = document.getElementById("bailAmount"); // Update ID
+            var bailType = document.getElementById("bailType"); // Update ID
+            var verdict = document.getElementById("verdict"); // Update ID
+            var eventTypeSelect = document.getElementById("event_type");
 
-    toggleBailSections(eventTypeSelect.value);
+            toggleBailSections(eventTypeSelect.value);
 
-    eventTypeSelect.addEventListener("change", function() {
-        toggleBailSections(this.value);
-    });
+            eventTypeSelect.addEventListener("change", function() {
+                toggleBailSections(this.value);
+        });
 
-    function toggleBailSections(selectedEventType) {
-        if (selectedEventType === "Bail") {
-            bailAmount.style.display = "block";
-            bailType.style.display = "block";
-            bailConfirmation.style.display = "block";
-            verdict.style.display = "none";
-        }
-        else if (selectedEventType === "Arraignment") {
-            verdict.style.display = "block";
-            bailAmount.style.display = "none";
-            bailType.style.display = "none";
-            //bailConfirmation.style.display = "none";
-        } 
-        else {
-            bailAmount.style.display = "none";
-            bailType.style.display = "none";
-            //bailConfirmation.style.display = "none";
-            verdict.style.display = "none";
-        }
-    }
-});
+        function toggleBailSections(selectedEventType) {
+                if (selectedEventType === "Bail") {
+                    bailAmount.style.display = "block";
+                    bailType.style.display = "block";
+                    bailConfirmation.style.display = "block";
+                    verdict.style.display = "none";
+                }
+                else if (selectedEventType === "Arraignment") {
+                    verdict.style.display = "block";
+                    bailAmount.style.display = "none";
+                    bailType.style.display = "none";
+                    bailConfirmation.style.display = "none";
+                } 
+                else {
+                    bailAmount.style.display = "none";
+                    bailType.style.display = "none";
+                    bailConfirmation.style.display = "none";
+                    verdict.style.display = "none";
+                }
+            }
+        });
 
-</script>
+    </script>
 
 
 </x-app-layout>

@@ -90,8 +90,14 @@
                                                 <span style="text-shadow: 0 0 1px #FDE581;">No Location Set</span></strong>
                                                 @endif
                                             </p>
+                                            Assigned Attorney:
+                                            @if (optional($Cases->counselCaseAssignment)->assigned_by)
+                                                <strong class="bg-green-500 text-white px-1 py-1 rounded mb-6">{{ $Cases->counselCaseAssignment->assigned_by }}</strong>
+                                            @else
+                                                <strong class="bg-orange-500 text-white px-1 py-1 rounded mb-6">None</strong>
+                                            @endif
 
-                                            <p class="text-left mb-3"><strong>Assigned Attorney:</strong>
+                                            <!-- <p class="text-left mb-3"><strong>Assigned Attorney:</strong>
                                                 @if ($Cases->assignedTeams->isNotEmpty())
                                                     @foreach ($Cases->assignedTeams as $team)
                                                         {{ $team->team_name }},
@@ -99,7 +105,7 @@
                                                 @else
                                                     No Assigned Attorney
                                                 @endif
-                                            </p>
+                                            </p> -->
                                             
 
                                             <p class="text-left mb-3"><strong>Status:
