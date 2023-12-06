@@ -64,7 +64,7 @@
                                         <td class="px-3 py-2">
                                             @if ($event->event_type == 'Bail')
                                                 Bail Hearing
-                                                <p class="text-gray-400">Bail Amount: | Bail Status: {{ ucfirst($event->bail_confirmation) }} | Bail Type: </p>
+                                                <p class="text-gray-400"> Bail Amount:{{ optional($event->bail)->amount}}| Bail Status: {{ ucfirst($event->bail_confirmation) }} | Bail Type: {{optional($event->bail)->bail_type}} </p>
                                             @elseif ($event->event_type == 'Arraignment')
                                                 {{ $event->event_type }}
                                                 <p class="text-gray-400">Verdict: {{ ucfirst($event->verdict) }}</p>

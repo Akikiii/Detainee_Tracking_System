@@ -36,5 +36,9 @@ class Event extends Model
         return $this->belongsTo(Detainee::class, 'detainee_id');
     }
 
+    public function bail()
+{
+    return $this->hasOne(Bail::class, 'case_id', 'case_id');
+}
 }
 
