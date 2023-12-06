@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Event;
@@ -14,6 +15,14 @@ use App\Models\Cases;
 
 class EventController extends Controller
 {
+
+    public function viewEvent($event_id)
+    {
+        // Find the event by its ID
+        $event = Event::find($event_id);
+        // Pass the event data to the view
+        return View::make('view-event', compact('event'));
+    }
     public function addEventForm($case_id)
     {
         // Retrieve the event data if it exists
@@ -96,23 +105,54 @@ class EventController extends Controller
             'description' => 'required',
             'related_entity' => 'required',
             'event_outcome' => 'required',
+            'bail_confirmation' => 'required|in:paid,not_paid',
         ]);
-    // Find the event by its ID
+    
+        // Find the event by its ID
         $event = Event::find($event_id);
-
+    
         // Update event properties
         $event->event_type = $request->input('event_type');
         $event->event_date = $request->input('event_date');
         $event->description = $request->input('description');
         $event->related_entity = $request->input('related_entity');
         $event->event_outcome = $request->input('event_outcome');
-
+        $event->bail_confirmation = $request->input('bail_confirmation');
+    
         // Save the updated event
         $event->save();
-
+    
+        // Check if the event type is "Bail"
+        if ($request->input('event_type') === 'Bail') {
+            // Validate and update the Bail fields
+            $request->validate([
+                'bail_type' => 'required',
+                'amount' => 'required|numeric',
+            ]);
+    
+            // Check if a related Bail record exists
+            $bail = Bail::where('event_id', $event->id)->first();
+    
+            if ($bail) {
+                // Update the existing Bail record
+                $bail->bail_type = $request->input('bail_type');
+                $bail->amount = $request->input('amount');
+                $bail->save();
+            } else {
+                // Create a new Bail record
+                Bail::create([
+                    'detainee_id' => $event->case->detainee_id,
+                    'case_id' => $event->case_id,
+                    'event_id' => $event->id,
+                    'bail_type' => $request->input('bail_type'),
+                    'amount' => $request->input('amount'),
+                ]);
+            }
+        }
+    
         return redirect()->route('live-cases', ['case_id' => $event->case_id])->with('success', 'Event updated successfully');
     }
-        // Delete an event
+    
         public function deleteEvent($event_id)
         {
             // Find the event by its ID

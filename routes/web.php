@@ -80,12 +80,13 @@ Route::get('delete-cases/{id}',[CasesController::class, 'deleteCases']);
 Route::post('update-cases/{caseId}', [CasesController::class, 'updateCases'])->name('update-cases');
 Route::post('save-cases/{detainee_id}', [CasesController::class, 'saveCases'])->name('save.cases');  //Add Cases   
 Route::get('live-cases/{id}', [CasesController::class, 'caseOverview'])->name('live-cases');
+
 Route::get('add-event/{case_id}', [EventController::class, 'addEventForm'])->name('add-event');
 Route::post('save-event/{case_id}', [EventController::class, 'saveEvent'])->name('save-event');
 Route::post('/update-event/{event}',[EventController::class,'updateEvent'])->name('update-event');
 Route::get('edit-event/{event_id}', [EventController::class, 'editEvent'])->name('edit-event');
 Route::get('delete-event/{event_id}', [EventController::class, 'deleteEvent'])->name('delete-event');
-
+Route::get('/view-event/{event_id}', [EventController::class, 'viewEvent'])->name('view-event');
 
 
 //Assigned Case
