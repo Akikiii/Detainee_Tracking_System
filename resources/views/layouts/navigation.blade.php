@@ -140,6 +140,17 @@
             </div>
         </a>
 
+        <!-- DITO KOY -->
+        @php
+            $counter = is_countable($cases) ? count($cases) : 0;
+        @endphp
+
+        @foreach ($cases as $key => $case)
+        <div>
+            <p><strong>Case Title: </strong> {{ $case->case_name}}</p>
+        </div>
+        @endforeach
+
         <div x-data="{ open: false }" class="flex justify-center items-center mr-8">
             <div @click="open = !open" >
                 <div class="flex justify-center items-center cursor-pointer">
