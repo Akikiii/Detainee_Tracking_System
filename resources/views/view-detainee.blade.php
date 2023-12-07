@@ -30,6 +30,11 @@
                                             $timeDifference = $currentTime->diff($detentionStart);
                                             $totalDaysServed = $timeDifference->days;
                                             $remainingHoursServed = $timeDifference->h;
+
+                                            $birthday = new DateTime($detainee->detaineeDetails->birthday);
+                                            $timeDifferenceBirthday = $currentTime->diff($birthday);
+                                            $totalMonthsAge = $timeDifferenceBirthday->y * 12 + $timeDifferenceBirthday->m;
+                                            $remainingDaysAge = $timeDifferenceBirthday->d;
                                         ?>
                                         @if (isset($detainee->detaineeDetails))
                                             <p class="text-left mb-3"><strong>Gender: </strong>{{ ucfirst($detainee->detaineeDetails->gender) }}</p>
@@ -37,15 +42,22 @@
                                             <p class="text-left mb-3"><strong>Start of Detention: </strong>{{ $detainee->detaineeDetails->detention_begin }}</p>
                                             <p class="text-left mb-2">
                                                 <strong>Time Served: </strong>
-                                                {{ floor($totalDaysServed / 365) }} year/s, 
-                                                {{ $totalDaysServed % 365 }} day/s, 
-                                                and {{ $remainingHoursServed }} hour/s
+                                                {{ floor($totalDaysServed / 365) }} years, 
+                                                {{ $totalDaysServed % 365 }} days, 
+                                                and {{ $remainingHoursServed }} hours
                                             </p>
                                         @else
                                             <p class="text-left mb-3"><strong>Offense: </strong>N/A</p>
                                             <p class="text-left mb-3"><strong>Start of Detention: </strong>N/A</p>
                                             <p class="text-left mb-3"><strong>Time Served: </strong>N/A</p>
                                         @endif
+                                        <p class="text-left mb-3"><strong>Birthdate: </strong>{{ $detainee->detaineeDetails->birthday }}</p>
+                                        <p class="text-left mb-2">
+                                            <strong>Age: </strong>
+                                            {{ floor($totalMonthsAge / 12) }} years, 
+                                            {{ $totalMonthsAge % 12 }} months, 
+                                            and {{ $remainingDaysAge }} days old
+                                        </p>
                                         <p class="text-left mb-3"><strong>Email Address: </strong>{{ $detainee['email_address'] }}</p>
                                         <p class="text-left mb-3"><strong>Home Address: </strong>{{ $detainee['home_address'] }}</p>
                                         <p class="text-left mb-3"><strong>Mother's Name: </strong>{{ $detainee->detaineeDetails->mother_name }}</p>

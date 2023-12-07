@@ -129,21 +129,21 @@
                     
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
                         @php
-                            // Get the latest event for the current $case->case_id
-                            $latestEvent = $sortedEvents->firstWhere('case.case_id', $case->case_id);
-                        @endphp
-
-                        @if (!$latestEvent || $latestEvent->event_type !== 'Finished')
-                            <a href="{{ route('add-event', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD EVENT</a>
-                        @endif
-
-                        @php
                             $assignedAttorney = $case->assignedAttorney->first();
                             $authUserId = auth()->user()->id;
                             $isAdmin = auth()->user()->isAdmin(); // Make sure you have isAdmin method in your User model
                         @endphp
 
                         @if ($assignedAttorney && ($authUserId === $assignedAttorney->id || $isAdmin))
+                            @php
+                                // Get the latest event for the current $case->case_id
+                                $latestEvent = $sortedEvents->firstWhere('case.case_id', $case->case_id);
+                            @endphp
+
+                            @if (!$latestEvent || $latestEvent->event_type !== 'Finished')
+                                <a href="{{ route('add-event', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD EVENT</a>
+                            @endif
+                            
                             <a href="{{ route('removeAssignedAttorney', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">REMOVE ASSIGNED ATTORNEY</a>
                             
                         @elseif (!$assignedAttorney)
