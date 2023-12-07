@@ -36,7 +36,7 @@ class DetaineeProfileController extends Controller
         'related_photos' => 'required', //Violations not related_photos
         'crime_history' => 'required|string',
         'detention_begin' => 'required|date|before_or_equal:today',
-        'birthday' => 'required|date|before_or_equal:today',
+        'birthday' => 'required|date|before_or_equal:' . now()->subYears(15)->format('Y-m-d'),
         'emergency_contact_number' => 'required|numeric|digits:11',
         'emergency_contact_name' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:30',
     ];
@@ -79,15 +79,17 @@ class DetaineeProfileController extends Controller
     
 
 public function editDetainee($id) {
-    // Assuming you are retrieving the detainee by ID from the database
+    // Assuming you are retrieving the detainee and detainee details by ID from the database
     $detainee = Detainee::findOrFail($id);
+    $detaineeDetails = DetaineeDetails::where('detainee_id', $id)->first();
 
-    // Pass the $detainee and $id to the view
-    return view('edit-detainee', ['detainee' => $detainee, 'detaineeId' => $id]);
+    // Pass the $detainee, $detaineeDetails, and $id to the view
+    return view('edit-detainee', ['detainee' => $detainee, 'detaineeDetails' => $detaineeDetails, 'detaineeId' => $id]);
 }
 
     
 public function updateDetainee(Request $request, $detaineeId) {
+
     $combinedRules = [
         'first_name' => 'required|string|alpha|max:30',
         'last_name' => 'required|string|alpha|max:30',
@@ -103,7 +105,7 @@ public function updateDetainee(Request $request, $detaineeId) {
         'related_photos' => 'required',
         'crime_history' => 'required|string',
         'detention_begin' => 'required|date|before_or_equal:today',
-        'birthday' => 'required|date|before_or_equal:today',
+        'birthday' => 'required|date|before_or_equal:' . now()->subYears(15)->format('Y-m-d'),
         'emergency_contact_number' => 'required|numeric|digits:11',
         'emergency_contact_name' => 'required|string|alpha|max:255',
     ];
@@ -144,8 +146,16 @@ public function updateDetainee(Request $request, $detaineeId) {
     $detaineeDetails->emergency_contact_name = $request->emergency_contact_name;
     $detaineeDetails->save();
     
-    return redirect()->back()->with("success", 'Detainee and Details Updated Successfully');
+    if ($detainee->wasChanged() && $detaineeDetails->wasChanged()) {
+        // Changes were made and saved successfully
+        return redirect()->back()->with("success", 'Detainee and Details Updated Successfully');
+        
+    } else {
+        // No changes were made or there was an issue with saving
+        return redirect()->back()->with("error", 'Detainee and Details Update Failed');
+    }
 }
+
 
 
     

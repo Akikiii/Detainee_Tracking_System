@@ -50,7 +50,7 @@ class EventController extends Controller
                         ->where('event_type', $request->input('event_type'));
                 }),
             ],
-            'event_date' => 'required|date|before_or_equal:today',
+            'event_date' => 'required|date|',
             'verdict' => 'required|in:guilty,not_guilty,no_contest',
             'description' => 'required',
             'related_entity' => 'required|string|regex:/^[^\d]+$/',
