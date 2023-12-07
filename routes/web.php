@@ -57,7 +57,7 @@ Route::get('/', function () {
     
 
 
-     Route::prefix('AttorneyInvite')->middleware(['auth','admin'])->group(function () {
+     Route::prefix('admin')->middleware(['auth','admin'])->group(function () {
         // Routes that require both authentication and admin role
         Route::get("Invite_User", function () {
             return view("Invite_User");
