@@ -32,7 +32,7 @@ class DetaineeProfileController extends Controller
         'gender' => 'required|in:Male,Female',
         'mother_name' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:30',
         'father_name' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:30',
-        'spouse_name' => 'nullable|string|alpha|max:255',
+        'spouse_name' => 'nullable|string|regex:/^[a-zA-Z\s]+$/|max:30',
         'related_photos' => 'required', //Violations not related_photos
         'crime_history' => 'required|string',
         'detention_begin' => 'required|date|before_or_equal:today',
