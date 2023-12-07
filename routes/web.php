@@ -48,7 +48,7 @@ Route::get('/', function () {
     Route::get('view-profile', [ProfileController::class, 'viewDetails'])->name('view.profile')->middleware('auth');
     
         
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/admin/add-user/{caseId}', [CounselCaseController::class, 'showAddUserForm'])
             ->name('admin.showAddUserForm');
         Route::post('/admin/add-user/{caseId}', [CounselCaseController::class, 'addUser'])
@@ -57,7 +57,7 @@ Route::get('/', function () {
     
 
 
-     Route::prefix('AttorneyInvite')->middleware(['auth'])->group(function () {
+     Route::prefix('AttorneyInvite')->middleware(['auth','admin'])->group(function () {
         // Routes that require both authentication and admin role
         Route::get("Invite_User", function () {
             return view("Invite_User");
