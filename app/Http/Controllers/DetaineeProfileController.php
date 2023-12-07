@@ -22,23 +22,23 @@ class DetaineeProfileController extends Controller
 
    public function saveDetainee(Request $request){
     $combinedRules = [
-        'first_name' => 'required|string|alpha|max:30',
-        'last_name' => 'required|string|alpha|max:30',
-        'middle_name' => 'required|string|alpha|max:30',
+        'first_name' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:30',
+        'last_name' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:30',
+        'middle_name' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:30',
         'email_address' => 'required|email|max:255',
         'home_address' => 'required|string|max:255',
         'contact_number' => 'required|numeric|digits:11',
         'detainee_id' => 'required|integer|max:9999999|unique:detainees,detainee_id|',
         'gender' => 'required|in:Male,Female',
-        'mother_name' => 'required|string|alpha|max:255',
-        'father_name' => 'required|string|alpha|max:255',
+        'mother_name' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:30',
+        'father_name' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:30',
         'spouse_name' => 'nullable|string|alpha|max:255',
         'related_photos' => 'required', //Violations not related_photos
         'crime_history' => 'required|string',
         'detention_begin' => 'required|date|before_or_equal:today',
         'birthday' => 'required|date|before_or_equal:today',
         'emergency_contact_number' => 'required|numeric|digits:11',
-        'emergency_contact_name' => 'required|string|alpha|max:255',
+        'emergency_contact_name' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:30',
     ];
     $request->validate($combinedRules);
 
