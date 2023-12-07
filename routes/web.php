@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\CommentController;
 use App\Mail\InviteUser;
+use App\Models\Cases;
 use App\Models\Counsel_Case_Assignment;
 
 /*
@@ -46,12 +47,24 @@ Route::get('/', function () {
 
     Route::get('view-profile', [ProfileController::class, 'viewDetails'])->name('view.profile')->middleware('auth');
     
-     //Add controller for admin 
-    Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
-    Route::get("Invite_User", function(){ return view("Invite_User"); })->name('invite.user');
-    Route::post('/send-email', [MailController::class, 'sendEmail'])->name('send.email');
-});
+        
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/admin/add-user/{caseId}', [CounselCaseController::class, 'showAddUserForm'])
+            ->name('admin.showAddUserForm');
+        Route::post('/admin/add-user/{caseId}', [CounselCaseController::class, 'addUser'])
+            ->name('admin.addUser');
+    });
+    
 
+
+     Route::prefix('AttorneyInvite')->middleware(['auth'])->group(function () {
+        // Routes that require both authentication and admin role
+        Route::get("Invite_User", function () {
+            return view("Invite_User");
+        })->name('invite.user');
+    
+        Route::post('/send-email', [MailController::class, 'sendEmail'])->name('send.email');
+    });
 //OVERVIEW DASHBOARD
 Route::get('/dashboard/overview', [DashboardController::class, 'overview'])->name('dashboard.overview');
 
@@ -77,9 +90,9 @@ Route::get('delete-detainee/{id}',[DetaineeProfileController::class, 'deleteDeta
 Route::get('assign-attorney/{id}',[DetaineeProfileController::class, 'viewDetails']);
 
 //Cases List
-Route::get('cases-list',[CasesController::class, 'getCases']);
+Route::get('cases-list', [CasesController::class, 'getCases'])->name('cases-list');
 Route::get('add-cases/{id}',[CasesController::class, 'addCases']);
-Route::get('edit-cases/{id}', [CasesController::class, 'editCases']);   
+Route::get('edit-cases/{id}', [CasesController::class, 'editCases']);
 Route::get('delete-cases/{id}',[CasesController::class, 'deleteCases']);
 Route::post('update-cases/{caseId}', [CasesController::class, 'updateCases'])->name('update-cases');
 Route::post('save-cases/{detainee_id}', [CasesController::class, 'saveCases'])->name('save.cases');  //Add Cases   

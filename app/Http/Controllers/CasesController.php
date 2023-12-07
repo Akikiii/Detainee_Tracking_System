@@ -41,11 +41,11 @@ class CasesController extends Controller
     public function saveCases(Request $request, $detainee_id){
         $status = $request->status ?? 'Arrest';
         $combinedRules =[
-            'case_id' => 'required',
-            'case_name' => 'required',
+            'case_id' => 'required|integer|max:9999999|unique:cases,case_id|',
+            'case_name' => 'required|max:50',
             'location' => 'required|in:rtc,mtc',
-            'case_created' => 'required|date',
-            'status' => 'in: Arrest, Bail, Pretrial, Plea, Trial, Sentencing, Appeal, Finished,Arraignment',
+            'case_created' => 'required|date|before_or_equal:today',
+            'status' => 'in:Arrest,Bail,Pretrial,Plea,Trial,Sentencing,Appeal,Finished,Arraignment',
         ];
 
         $request->validate($combinedRules);
@@ -69,10 +69,9 @@ class CasesController extends Controller
 
     public function updateCases(Request $request, $caseId) {
         $combinedRules = [
-            'case_name' => 'required',
-            'location' => 'in: rtc,mtc',
-            'case_created' => 'required',
-            'status' => 'in: Arrest, Bail, Pretrial, Plea, Trial, Sentencing, Appeal, Finished,Arraignment  ',
+            'case_name' => 'required|max:50',
+            'location' => 'required|in:rtc,mtc',
+            'case_created' => 'required|date|before_or_equal:today',
         ];
     
         $request->validate($combinedRules);
@@ -84,7 +83,6 @@ class CasesController extends Controller
         $case->case_name = $request->case_name;
         $case->case_created = $request->case_created;
         $case->location = $request->location;
-        $case->status = $request->status ?? 'Arrest';
         $case->save();
     
         return redirect()->back()->with("success", "Case successfully updated");

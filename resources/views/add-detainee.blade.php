@@ -108,8 +108,8 @@
                             <div class="grid col-start-2">
                                 <label class="block font-bold mb-2 labelname text-lg">Gender</label>
                                 <select class="form-control border border-black rounded w-full py-4 px-3 input[type=text] text-lg leading-tight focus:outline-none focus:border-black" name="gender">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
                                 </select>
                                 @error('gender')
                                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">

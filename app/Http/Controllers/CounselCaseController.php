@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Counsel_Case_Assignment;
 use App\Models\Cases;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;  
 
 class CounselCaseController extends Controller
@@ -64,6 +66,37 @@ public function removeAssignedAttorney($case_id)
 
     // Redirect back with success message
     return redirect()->back()->with('success', 'Assigned attorney removed successfully.');
+}
+public function showAddUserForm($caseId)
+{
+    $existingUsers = User::all();
+
+    // You can add any additional logic or view data as needed
+
+    return view('add_user_form', ['caseId' => $caseId, 'existingUsers' => $existingUsers]);
+}
+
+public function addUser(Request $request, $caseId)
+{
+    $request->validate([
+        'user_id' => 'required|exists:users,id',
+    ]);
+
+    $userId = $request->input('user_id');
+
+    // Get the detainee_id from the related Cases model
+    $detaineeId = Cases::where('case_id', $caseId)->value('detainee_id');
+
+    // Create a new Counsel_Case_Assignment record
+    $assignment = new Counsel_Case_Assignment();
+    $assignment->case_id = $caseId;
+    $assignment->assigned_lawyer = $userId;
+    $assignment->detainee_id = $detaineeId;
+    $assignment->date_assigned = now();
+    $assignment->team_id = null;
+    $assignment->save();
+
+    return redirect()->route('cases-list')->with('success', 'User added to the case successfully');
 }
 
 

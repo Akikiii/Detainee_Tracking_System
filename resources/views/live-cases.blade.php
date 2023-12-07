@@ -99,23 +99,25 @@
                                             <td class="px-3 py-2">
                                                 {{ $event->event_outcome }}
                                             </td>
+                                            <td class="px-3 py-2">
+                                            {{ $event->updater->name }}
+                                            </td>
+                                            <!-- Checks if user is not admin or not assigned -->
                                             <td class="flex gap-2 px-3 py-3">
-                                                <a href="{{ route('view-event', ['event_id' => $event->id]) }}">
-                                                    <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Black" viewBox="0 0 20 14">
-                                                        <path stroke="Black" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
-                                                    </svg>
-                                                </a>
-                                                <!-- <a href="{{ route('edit-event', ['event_id' => $event->id]) }}">
-                                                    <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Black" stroke="Black" viewBox="0 0 20 18">
-                                                        <path d="M12.687 14.408a3.01 3.01 0 0 1-1.533.821l-3.566.713a3 3 0 0 1-3.53-3.53l.713-3.566a3.01 3.01 0 0 1 .821-1.533L10.905 2H2.167A2.169 2.169 0 0 0 0 4.167v11.666A2.169 2.169 0 0 0 2.167 18h11.666A2.169 2.169 0 0 0 16 15.833V11.1l-3.313 3.308Zm5.53-9.065.546-.546a2.518 2.518 0 0 0 0-3.56 2.576 2.576 0 0 0-3.559 0l-.547.547 3.56 3.56Z"/>
-                                                        <path d="M13.243 3.2 7.359 9.081a.5.5 0 0 0-.136.256L6.51 12.9a.5.5 0 0 0 .59.59l3.566-.713a.5.5 0 0 0 .255-.136L16.8 6.757 13.243 3.2Z"/>
-                                                    </svg>
-                                                </a>
-                                                <a href="{{ route('delete-event', ['event_id' => $event->id]) }}">
-                                                    <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Black" stroke="Black" viewBox="0 0 18 20">
-                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
-                                                    </svg>
-                                                </a> -->
+                                                @php
+                                                    $authUserId = auth()->user()->id;
+                                                    $isUserAssigned = $case->assignedAttorney->isNotEmpty() && $authUserId === $case->assignedAttorney->first()->id;
+                                                    $isAdmin = auth()->user()->isAdmin(); // Add a method isAdmin() in your User model to check if the user is an admin.
+                                                @endphp
+
+                                                @if ($isAdmin || $isUserAssigned)
+                                                    <a href="{{ route('view-event', ['event_id' => $event->id]) }}">
+                                                        <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Black" viewBox="0 0 20 14">
+                                                            <path stroke="Black" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
+                                                        </svg>
+                                                    </a>
+                                                @endif
+                                              
                                             </td>
                                         </tr>
                                     </tbody>
@@ -126,22 +128,31 @@
                     </div>
                     
                     <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
-                        @if ($case->assignedAttorney()->count() > 0)
-                            <a href="{{ route('removeAssignedAttorney', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">REMOVE ASSIGNED ATTORNEY</a>
-                        @else
-                            <a href="{{ route('assignToCase', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ASSIGN ATTORNEY TO CASE</a>
-                        @endif
-
-                        <!-- <a href="{{ url('view-event', ['id' => 'event_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">VIEW EVENT</a> -->
-                        
                         @php
-                            // Get the latest event for the current $case->case_id
-                            $latestEvent = $sortedEvents->firstWhere('case.case_id', $case->case_id);
+                            $assignedAttorney = $case->assignedAttorney->first();
+                            $authUserId = auth()->user()->id;
+                            $isAdmin = auth()->user()->isAdmin(); // Make sure you have isAdmin method in your User model
                         @endphp
-                        @if (!$latestEvent || $latestEvent->event_type !== 'Finished')
-                            <a href="{{ route('add-event', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD EVENT</a>
+
+                        @if ($assignedAttorney && ($authUserId === $assignedAttorney->id || $isAdmin))
+                            <a href="{{ route('removeAssignedAttorney', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">REMOVE ASSIGNED ATTORNEY</a>
+                            @php
+                                // Get the latest event for the current $case->case_id
+                                $latestEvent = $sortedEvents->firstWhere('case.case_id', $case->case_id);
+                            @endphp
+
+                            @if (!$latestEvent || $latestEvent->event_type !== 'Finished')
+                                <a href="{{ route('add-event', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD EVENT</a>
+                            @endif
+                        @elseif (!$assignedAttorney)
+                            <a href="{{ route('assignToCase', ['case_id' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ASSIGN ATTORNEY TO CASE</a>
+                            @if ($isAdmin)
+                                <a href="{{ route('admin.showAddUserForm', ['caseId' => $case->case_id]) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">ADD USER</a>
+                            @endif
                         @endif
-                        
+                    </div>
+
+                                            
                         <a href="{{ url('cases-list') }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">BACK TO CASES LIST</a>
                         <!-- <a href="{{ route('edit-event', ['event_id' => 'event_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">EDIT EVENT</a>
                         <a href="{{ route('delete-event', ['event_id' => 'event_id_placeholder']) }}" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">DELETE EVENT</a>      -->

@@ -62,10 +62,11 @@
                             @foreach($detainee->cases as $case)
                             <div class="space-x-4 px-14 mb-10"> 
                                 <div>
-                                    <a href="{{ url('live-cases', ['id' => 'case_id_placeholder']) }}" class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative mb-4 hover:bg-gray-100">
+                                <a href="{{ url('live-cases', ['id' => $case->case_id]) }}" class="flex flex-row border border-black border rounded py-4 px-4 w-full leading-tight focus:outline-none focus:border-black relative mb-4 hover:bg-gray-100">
                                         <div>
                                             <li class="text-left mb-3"><strong>{{ $case->case_name }}</strong></li>
                                             <p class="text-left mb-3">
+                                                
                                                 <strong>Status:
                                                 @if ($case->status === 'Arraignment')
                                                     <span style="text-shadow: 0 0 1px #FDE581;">Arraignment</span></strong>
@@ -170,7 +171,8 @@
                                                 @endif
                                                 </strong>
                                             </p>
-                                            <p class="text-left ml-4"></p>
+                                            <p class="text-left ml-4"></p>  
+                                            
                                         </div>
                                     </a>
                                 </div>

@@ -4,8 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -36,6 +36,7 @@ class User extends Authenticatable
         'language_spoken',
         'office_hours_open',
         'office_hours_close',
+        'role',
 
         
     ];
@@ -59,9 +60,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
     public function assignedCases()
     {
         return $this->belongsToMany(Cases::class, 'Counsel_Case_Assignment', 'assigned_lawyer', 'case_id');
     }
+    public function isAdmin()
+    {
+        return $this->role === 1;
+    }
+    
 }

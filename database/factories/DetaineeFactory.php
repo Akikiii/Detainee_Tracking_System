@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Detainee;
+use Illuminate\Database\Eloquent\Factories\Factory; 
 
 class DetaineeFactory extends Factory
 {

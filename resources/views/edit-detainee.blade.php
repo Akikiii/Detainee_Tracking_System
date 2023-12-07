@@ -102,8 +102,8 @@
                             <div class="grid col-start-1">
                                 <label class="block font-bold mb-2 labelname text-lg">Gender</label>
                                 <select class="form-control text-black border border-black rounded w-full py-4 px-3 input[type=text] text-lg leading-tight focus:outline-none focus:border-black" name="gender" >
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
                                 </select>
                                 @error('gender')
                                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -174,24 +174,7 @@
                             @enderror
                         </div>
 
-                        <!-- FIX TO ADD PHOTOS -->
-                        <!-- <div class="flex flex-col mt-5">
-                            <label class="form-label block labelname font-bold mb-2" style="color: black; text-shadow: 0 0 1px #888888;">Medical Information</label>
-                            <div class="flex">
-                                <input type="text" class="form-control text-black border-2 border-black w-full py-4 px-3 text-lg leading-tight mr-2" name="medical_information" placeholder="Input Detainee’s existing allergy and conditions (Upload Medical Documents)" value="{{$detainee->detaineeDetails->medical_information}}">
-                                @error('medical_information')
-                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                                <label class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                    </svg>
-                                    <input type="file" class="hidden" />
-                                </label>
-                            </div>
-                        </div> -->
+                       
 
                         <div class="flex flex-col mt-5">
                             <label class="block font-bold mb-2 labelname text-lg">Violation</label>
@@ -203,12 +186,7 @@
                                 </div>
                                 @enderror
 
-                                <!-- <label class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                    </svg>
-                                    <input type="file" class="hidden" />
-                                </label> -->
+                      
                             </div>
                         </div>
 
@@ -221,33 +199,8 @@
                                     {{$message}}
                                 </div>
                                 @enderror
-                                <label class="bg-gray-500 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                    </svg>
-                                    <input type="file" class="hidden" />
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- <div class="flex flex-col mt-5">
-                            <p class="block labelname font-bold mb-2">Upload Photo/s (Mugshot, Full-body photo, Injuries, Evidence, Etc.)</p>
-                            <div class="grid grid-flow-col gap-10">
-                                <div class="border border-black w-full py-40 px-3 placeholderfont leading-tight focus:outline-none focus:border-black relative text-center">
-                                    <span class="block text-black mb-2">Drag & Drop to Upload File</span>
-                                    <p class="font-bold">OR</p>
-                                    <div class="flex justify-center mt-2">
-                                        <button class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) font-bold py-4 px-4">
-                                            Browse File
-                                        </button>
-                                    </div>
-                                    <input
-                                    class="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer"
-                                    type="file"
-                                    />
-                                </div>
-                            </div>
-                        </div> -->
+                    
+                    
 
                         <div class="flex flex-row justify-end gap-2.5 mt-[3.12rem]">
                             <button type="submit" class="buttonFormat border-2 border-black bg-rgba(165, 42, 42, 0) hover:bg-black text-black hover:text-white font-bold py-4 px-4">SAVE CHANGES</button>

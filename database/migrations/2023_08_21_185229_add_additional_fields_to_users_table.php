@@ -16,7 +16,7 @@ class AddAdditionalFieldsToUsersTable extends Migration
             $table->text('work_experience')->nullable();
             $table->string('professional_affiliations')->nullable();
             $table->text('cases_handled')->nullable();
-            $table->string('language_spoken');
+            $table->string('language_spoken')->nullable();
             $table->time('office_hours_open')->nullable();
             $table->time('office_hours_close')->nullable();
             $table->string('profile_picture')->nullable();

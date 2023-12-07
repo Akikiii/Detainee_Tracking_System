@@ -50,10 +50,10 @@ class EventController extends Controller
                         ->where('event_type', $request->input('event_type'));
                 }),
             ],
-            'event_date' => 'required|date',
+            'event_date' => 'required|date|before_or_equal:today',
             'verdict' => 'required|in:guilty,not_guilty,no_contest',
             'description' => 'required',
-            'related_entity' => 'required',
+            'related_entity' => 'required|string|regex:/^[^\d]+$/',
             'event_outcome' => 'required',
             'bail_confirmation' => 'required|in:paid,not_paid',
         ]);
@@ -109,10 +109,10 @@ class EventController extends Controller
     {
         // Validate the form input
         $request->validate([
-            'event_type' => 'required',
-            'event_date' => 'required|date',
+            'event_date' => 'required|date|before_or_equal:today',
+            'verdict' => 'required|in:guilty,not_guilty,no_contest',
             'description' => 'required',
-            'related_entity' => 'required',
+            'related_entity' => 'required|string|regex:/^[^\d]+$/',
             'event_outcome' => 'required',
             'bail_confirmation' => 'required|in:paid,not_paid',
         ]);

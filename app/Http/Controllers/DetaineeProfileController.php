@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Detainee;
 use App\Models\DetaineeDetails;
 use App\Models\Counsel_Case_Assignment;
+use App\Models\Event;
 class DetaineeProfileController extends Controller
 {
     public function index(){
@@ -21,23 +22,23 @@ class DetaineeProfileController extends Controller
 
    public function saveDetainee(Request $request){
     $combinedRules = [
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'middle_name' => 'required',
-        'email_address' => 'required|email',
-        'home_address' => 'required',
-        'contact_number' => 'required',
-        'detainee_id' => 'required',
-        'gender' => 'required',
-        'mother_name' => 'required',
-        'father_name' => 'required',
-        'spouse_name' => 'nullable',
-        'related_photos' => 'required',
-        'crime_history' => 'required',
-        'detention_begin' => 'required',
-        'birthday' => 'required',
-        'emergency_contact_number' => 'required',
-        'emergency_contact_name' => 'required'
+        'first_name' => 'required|string|alpha|max:30',
+        'last_name' => 'required|string|alpha|max:30',
+        'middle_name' => 'required|string|alpha|max:30',
+        'email_address' => 'required|email|max:255',
+        'home_address' => 'required|string|max:255',
+        'contact_number' => 'required|numeric|digits:11',
+        'detainee_id' => 'required|integer|max:9999999|unique:detainees,detainee_id|',
+        'gender' => 'required|in:Male,Female',
+        'mother_name' => 'required|string|alpha|max:255',
+        'father_name' => 'required|string|alpha|max:255',
+        'spouse_name' => 'nullable|string|alpha|max:255',
+        'related_photos' => 'required', //Violations not related_photos
+        'crime_history' => 'required|string',
+        'detention_begin' => 'required|date|before_or_equal:today',
+        'birthday' => 'required|date|before_or_equal:today',
+        'emergency_contact_number' => 'required|numeric|digits:11',
+        'emergency_contact_name' => 'required|string|alpha|max:255',
     ];
     $request->validate($combinedRules);
 
@@ -88,23 +89,23 @@ public function editDetainee($id) {
     
 public function updateDetainee(Request $request, $detaineeId) {
     $combinedRules = [
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'middle_name' => 'required',
-        'email_address' => 'required|email',
-        'home_address' => 'required',
-        'contact_number' => 'required',
-        'detainee_id' => 'required',
-        'gender' => 'required',
-        'mother_name' => 'required',
-        'father_name' => 'required',
-        'spouse_name' => 'nullable',
+        'first_name' => 'required|string|alpha|max:30',
+        'last_name' => 'required|string|alpha|max:30',
+        'middle_name' => 'required|string|alpha|max:30',
+        'email_address' => 'required|email|max:255',
+        'home_address' => 'required|string|max:255',
+        'contact_number' => 'required|numeric|digits:11',
+        'detainee_id' => 'required|integer|max:9999999',
+        'gender' => 'required|in:Male,Female',
+        'mother_name' => 'required|string|alpha|max:255',
+        'father_name' => 'required|string|alpha|max:255',
+        'spouse_name' => 'nullable|string|alpha|max:255',
         'related_photos' => 'required',
-        'crime_history' => 'required',
-        'detention_begin' => 'required',
-        'birthday' => 'required',
-        'emergency_contact_number' => 'required',
-        'emergency_contact_name' => 'required'
+        'crime_history' => 'required|string',
+        'detention_begin' => 'required|date|before_or_equal:today',
+        'birthday' => 'required|date|before_or_equal:today',
+        'emergency_contact_number' => 'required|numeric|digits:11',
+        'emergency_contact_name' => 'required|string|alpha|max:255',
     ];
     
     $request->validate($combinedRules);
@@ -162,10 +163,27 @@ public function updateDetainee(Request $request, $detaineeId) {
         }
         
 
-    public function viewDetails2($id) {
-        $assignedAttorney = Counsel_Case_Assignment::where('detainee_id', $id)->first();
-        $detainee = Detainee::with('detaineeDetails')->find($id);
-        return view('view-detainee', ['detainee' => $detainee, 'counsel_case_assignment' => $assignedAttorney]);
-    }
+        public function viewDetails2($id) {
+            $assignedAttorney = Counsel_Case_Assignment::where('detainee_id', $id)->first();
+            $detainee = Detainee::with('detaineeDetails')->find($id);
+        
+            // Iterate through each case to determine its latest event and update the status
+            foreach ($detainee->cases as $case) {
+                // Fetch the latest event for the case based on both event_date and created_at
+                $latestEvent = Event::where('case_id', $case->case_id)
+                    ->orderByDesc('event_date')
+                    ->orderByDesc('created_at')
+                    ->first();
+        
+                // If a latest event is found, update the case status
+                if ($latestEvent) {
+                    $case->status = $latestEvent->event_type;
+                }
+            }
+        
+            return view('view-detainee', ['detainee' => $detainee, 'counsel_case_assignment' => $assignedAttorney]);
+        }
+        
+        
     
 }

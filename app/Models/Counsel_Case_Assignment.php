@@ -26,5 +26,6 @@ class Counsel_Case_Assignment extends Model
     {
         return $this->belongsTo(Detainee::class, 'detainee_id');
     }
+        
 }
 

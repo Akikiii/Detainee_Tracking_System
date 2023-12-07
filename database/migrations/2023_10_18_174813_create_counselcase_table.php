@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -6,7 +7,6 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     *  this is not counsel case
      * Run the migrations.
      */
     public function up(): void
@@ -21,15 +21,16 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
-            $table->foreign('detainee_id')->references('detainee_id')->on('detainees');
-            $table->foreign('case_id')->references('case_id')->on('cases');
+            $table->foreign('detainee_id')->references('detainee_id')->on('detainees')->onDelete('cascade');
+            $table->foreign('case_id')->references('case_id')->on('cases')->onDelete('cascade');
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('counsel_case_assignment');
     }
 };

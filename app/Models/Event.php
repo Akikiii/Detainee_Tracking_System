@@ -41,5 +41,9 @@ class Event extends Model
 {
     return $this->hasOne(Bail::class, 'case_id', 'case_id');
 }
+public function updater()
+{
+    return $this->belongsTo(User::class, 'updated_by');
+}
 }
 
