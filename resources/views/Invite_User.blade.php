@@ -3,7 +3,7 @@
     <!-- Canvas -->
     <div class="grid grid-cols-5 bg-[#f0f2f5] grid-row-4">
 
-        <!-- Update Profile -->
+        <!-- Invite User -->
         <div class="col-start-2 my-[19rem] mx-[3rem] col-span-3 bg-[#FFFFFF] py-[2.81rem] px-[2.84rem] border-black rounded-md mt-[2.38rem]" style="background-image: url('logos/background-with-grid-bw.png'); background-size: contain;">
             <div>
                 <h1 class="text-[1.875rem] uppercase font-bold ibm-plex-mono" style="color: black; text-shadow: 0 0 2px #888888;">Invite User</h1>
@@ -58,6 +58,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 
 </x-app-layout>

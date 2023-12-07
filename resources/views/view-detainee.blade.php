@@ -35,7 +35,12 @@
                                             <p class="text-left mb-3"><strong>Gender: </strong>{{ ucfirst($detainee->detaineeDetails->gender) }}</p>
                                             <p class="text-left mb-3"><strong>Offense: </strong>{{ $detainee->detaineeDetails->crime_history }}</p>
                                             <p class="text-left mb-3"><strong>Start of Detention: </strong>{{ $detainee->detaineeDetails->detention_begin }}</p>
-                                            <p class="text-left mb-2"><strong>Time Served: </strong>{{ $totalDaysServed }} days and {{ $remainingHoursServed }} hours</p>
+                                            <p class="text-left mb-2">
+                                                <strong>Time Served: </strong>
+                                                {{ floor($totalDaysServed / 365) }} year/s, 
+                                                {{ $totalDaysServed % 365 }} day/s, 
+                                                and {{ $remainingHoursServed }} hour/s
+                                            </p>
                                         @else
                                             <p class="text-left mb-3"><strong>Offense: </strong>N/A</p>
                                             <p class="text-left mb-3"><strong>Start of Detention: </strong>N/A</p>

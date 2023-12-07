@@ -51,7 +51,12 @@
                                             <p class="text-left mb-2 font-bold">{{ $detainee->first_name }} {{ $detainee->middle_name }} {{ $detainee->last_name }}</p>
                                             @if (isset($detainee->detaineeDetails))
                                                 <p class="text-left mb-2">Start of Detention: {{ $detainee->detaineeDetails->detention_begin }}</p>
-                                                <p class="text-left mb-2">Time Served: {{ $totalDaysServed }} days and {{ $remainingHoursServed }} hours</p>
+                                                <p class="text-left mb-2">
+                                                    Time Served: 
+                                                    {{ floor($totalDaysServed / 365) }} year/s, 
+                                                    {{ $totalDaysServed % 365 }} day/s, 
+                                                    and {{ $remainingHoursServed }} hour/s
+                                                </p>
                                             @else
                                                 <p class="text-left mb-2">Start of Detention: N/A</p>
                                                 <p class="text-left mb-2">Time Served: N/A</p>

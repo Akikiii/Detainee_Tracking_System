@@ -56,6 +56,10 @@
                                             </p>
                                             <p class="text-left mb-3"><strong>Description:</strong> {{ $event->description }}</p>
                                             <p class="text-left mb-3"><strong>Event Outcome:</strong> {{ $event->event_outcome }}</p>
+                                            <p class="text-left mb-10"><strong>Related Entity:</strong> {{ $event->related_entity }}</p>
+                                            <p class="text-left mb-3" style="color: blue;">
+                                                <strong>Last Updated By:</strong> {{ $event->updater->name }}
+                                            </p>
                                             
                                         @else
                                             <p>No event found.</p>
