@@ -18,7 +18,6 @@ class Detainee extends Model
         'email_address',
         'home_address',
         'contact_number',
-        // ... other fields ...
     ];
 
 

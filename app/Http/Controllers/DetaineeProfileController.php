@@ -88,26 +88,25 @@ public function editDetainee($id) {
 }
 
     
-public function updateDetainee(Request $request, $detaineeId) {
-
+public function updateDetainee(Request $request, $detaineeId) {  
     $combinedRules = [
-        'first_name' => 'required|string|alpha|max:30',
-        'last_name' => 'required|string|alpha|max:30',
-        'middle_name' => 'required|string|alpha|max:30',
+        'first_name' => 'required|string|regex:/^[^\d]+$/|max:30',
+        'last_name' => 'required|string|regex:/^[^\d]+$/|max:30',
+        'middle_name' => 'required|string|regex:/^[^\d]+$/|max:30',
         'email_address' => 'required|email|max:255',
         'home_address' => 'required|string|max:255',
         'contact_number' => 'required|numeric|digits:11',
         'detainee_id' => 'required|integer|max:9999999',
         'gender' => 'required|in:Male,Female',
-        'mother_name' => 'required|string|alpha|max:255',
-        'father_name' => 'required|string|alpha|max:255',
-        'spouse_name' => 'nullable|string|alpha|max:255',
+        'mother_name' => 'required|string|regex:/^[^\d]+$/|max:255',
+        'father_name' => 'required|string|regex:/^[^\d]+$/|max:255',
+        'spouse_name' => 'nullable|string|regex:/^[^\d]+$/|max:255',
         'related_photos' => 'required',
-        'crime_history' => 'required|string',
+        'crime_history' => 'required|regex:/^[^\d]+$/',
         'detention_begin' => 'required|date|before_or_equal:today',
         'birthday' => 'required|date|before_or_equal:' . now()->subYears(15)->format('Y-m-d'),
         'emergency_contact_number' => 'required|numeric|digits:11',
-        'emergency_contact_name' => 'required|string|alpha|max:255',
+        'emergency_contact_name' => 'required|regex:/^[^\d]+$/|alpha|max:255',
     ];
     
     $request->validate($combinedRules);

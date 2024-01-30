@@ -17,7 +17,7 @@
                     </div>
                     @endif
 
-                    <form method="POST" action="{{url('update-detainee/' . $detaineeId)}}">
+                    <form method="POST" action="{{url('update-detainee/' . $detaineeId)}}" enctype="multipart/form-data">
                     @csrf
                         <div class="flex flex-col">
                             <label class="block font-bold mb-2 labelname text-lg">Name</label>
@@ -179,13 +179,7 @@
                                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                     {{$message}}
                                 </div>
-                                @enderror
-                                <!-- <label class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                    </svg>
-                                    <input type="file" class="hidden" />
-                                </label> -->
+                                @enderror   
                             </div>
                         </div>
 
@@ -198,14 +192,7 @@
                                     {{$message}}
                                 </div>
                                 @enderror
-                                <label class="bg-gray-500 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                    </svg>
-                                    <input type="file" class="hidden" />
-                                </label>
-                            </div>
-                        </div>
+                          
 
                         <div class="flex flex-row justify-end gap-2.5 mt-[2.12rem]">
                             <button type="submit" class="buttonFormat col-end-4 bg-gray-500 font-bold hover:bg-black text-white hover:text-white py-4 px-4">ADD DETAINEE</button>

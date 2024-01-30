@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name');
+            $table->string('suffix_name');
             $table->string('home_address');
             $table->string('contact_number'); // Change 'contact_address' to 'contact_number'
             $table->string('email_address')->nullable()->unique();
